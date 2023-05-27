@@ -1,0 +1,76 @@
+<app-navbar></app-navbar>
+<app-sidebar></app-sidebar>
+
+
+<div class="page-wrapper">
+    <div class="content container-fluid">
+
+
+    <div class="page-header">
+    <div class="row align-items-center">
+    <div class="col">
+    <h3 class="page-title">Room</h3>
+    <ul class="breadcrumb">
+    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+    <li class="breadcrumb-item active">Room</li>
+    </ul>
+    </div>
+    <div class="col-auto text-right float-right ml-auto">
+    <a class="btn btn-outline-primary mr-2"><i class="fas fa-download"></i> Download</a>
+    <a *ngIf="role=='ADMIN'"  routerLink="/branchs/add" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+
+    </div>
+    </div>
+    </div>
+
+
+    <div class="row">
+    <div class="col-sm-12">
+    <div class="card card-table">
+    <div class="card-body">
+    <div class="table-responsive">
+    <table class="table table-hover table-center mb-0 datatable">
+    <thead>
+    <tr>
+    <th>Room Code</th>
+    <th>Name</th>
+    <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let branch of Rooms " >
+    <td>
+    <h2>
+    <a>{{branch.code}}</a>
+    </h2>
+    </td>
+    <td>{{branch.name}}</td>
+    <td>{{branch.description}}</td>
+    <td *ngIf="role=='ADMIN'"class="text-right">
+          <div class="actions">
+          <a class="btn btn-sm bg-success-light mr-2">
+          <i class="fas fa-pen"></i>
+          </a>
+          <a class="btn btn-sm bg-danger-light">
+          <i class="fas fa-trash"></i>
+          </a>
+          </div>
+          </td>
+
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+
+    <footer>
+    <p>Copyright © 2023 SMART ENSIAS.</p>
+    </footer>
+
+
+    </div>

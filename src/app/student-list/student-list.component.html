@@ -1,0 +1,70 @@
+<app-navbar></app-navbar>
+<app-sidebar></app-sidebar>
+<div class="page-wrapper">
+  <div class="content container-fluid">
+     <div class="page-header">
+        <div class="row align-items-center">
+           <div class="col">
+              <h3 class="page-title">Doctors</h3>
+              <ul class="breadcrumb">
+                 <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                 <li class="breadcrumb-item active">Doctors</li>
+              </ul>
+           </div>
+           <div class="col-auto text-right float-right ml-auto">
+              <a (click)="downloadDoctors()" class="btn btn-outline-primary mr-2"><i class="fas fa-download"></i> Download</a>
+              <a *ngIf="role=='ADMIN'" routerLink="/Addstudent" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+           </div>
+        </div>
+     </div>
+     <div class="row">
+      <div class="col-sm-12">
+      <div class="card card-table">
+      <div class="card-body">
+      <div class="table-responsive">
+      <table class="table table-hover table-center mb-0 datatable">
+      <thead>
+      <tr>
+      <th>CNE</th>
+      <th>Name</th>
+      <th>Gender</th>
+      <!--<th>Class</th>-->
+      <th>Mobile Number</th>
+      <th>Email</th>
+      <th *ngIf="role=='ADMIN'" class="text-right">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let student of students | searchFlter: searchService.searchText ; let index = index  ">
+         <td>{{student.cne}}</td>
+         <td>
+          <h2 class="table-avatar">
+              <a href="student-details.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/avatar-0{{index+1}}.jpg" alt="User Image"></a>
+              <a href="student-details.html"> {{student?.first_name}} {{ student?.last_name }}</a>
+          </h2>
+         </td>
+         <td>{{student.genre}}</td>
+         <!--<td>0</td>-->
+         <td>{{student.phone}}</td>
+         <td>{{student.email}}</td>
+         <td class="text-right" *ngIf="role=='ADMIN'">
+          <div class="actions">
+          <a [routerLink]="['/editDoctor',student.cne]"  class="btn btn-sm bg-success-light mr-2">
+          <i class="fas fa-pen"></i>
+          </a>
+          <a (click)="deleteDoctor(student.cne)" class="btn btn-sm bg-danger-light">
+          <i class="fas fa-trash"></i>
+          </a>
+          </div>
+          </td>
+      </tr>
+      </tbody>
+      </table>
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
+  </div>
+  <footer><p>Copyright © 2023 SMART ENSIAS.</p></footer>
+</div>

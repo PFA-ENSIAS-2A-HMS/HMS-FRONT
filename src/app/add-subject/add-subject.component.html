@@ -1,0 +1,109 @@
+<app-navbar></app-navbar>
+<app-sidebar></app-sidebar>
+
+
+<div class="page-wrapper">
+    <div class="content container-fluid">
+
+
+    <div class="page-header">
+    <div class="row align-items-center">
+    <div class="col">
+    <h3 class="page-title">Add Patient</h3>
+    <ul class="breadcrumb">
+    <li class="breadcrumb-item"><a href="subject.html">Subject</a></li>
+    <li class="breadcrumb-item active">Add Patient</li>
+    </ul>
+    </div>
+    </div>
+    </div>
+
+
+    <div class="row">
+    <div class="col-sm-12">
+    <div class="card">
+    <div class="card-body">
+    <form [formGroup]="addSubjectForm" (submit)="onSubmit()">
+    <div class="row">
+    <div class="col-12">
+    <h5 class="form-title"><span>Subject Information</span></h5>
+    </div>
+    <div class="col-12 col-sm-6">
+    <div class="form-group">
+    <label>Subject code<span style="color:red">*</span></label>
+    <input type="text" title="code"  class="form-control is-invalid"
+                          [ngClass]="{'is-invalid' : code?.invalid && code?.touched}"
+                          formControlName="code">
+                          <div class="alert alert-warning mt-1" *ngIf="code?.invalid && code?.touched">
+                             <div *ngIf="code?.errors?.['required']; else elsecode">
+                              the code field is required
+                             </div>
+                             <ng-template #elsecode>
+                              <div *ngIf="code?.errors?.['minlength']">
+                                   It should be at least 2 charcters
+                              </div>
+                              </ng-template>
+                          </div>
+    </div>
+    </div>
+    <div class="col-12 col-sm-6">
+      <div class="form-group">
+      <label>Subject Name<span style="color:red">*</span></label>
+      <input type="text" formControlName="name" class="form-control"
+      [ngClass]="{'is-invalid' : name?.invalid && name?.touched}"
+      >
+      <div class="alert alert-warning mt-1" *ngIf="name?.invalid && name?.touched">
+
+
+          <div *ngIf="name?.errors?.['required']">
+              the name field is required !
+          </div>
+      </div>
+      </div>
+      </div>
+      <div class="col-12 col-sm-6">
+        <div class="form-group">
+          <label>Description<span style="color:red">*</span></label>
+          <textarea name="description" class="form-control is-invalid"
+          [ngClass]="{'is-invalid' : description?.invalid && description?.touched}"
+          formControlName="description"></textarea>
+          <div class="alert alert-warning mt-1" *ngIf="description?.invalid && description?.touched">
+             <div *ngIf="description?.errors?.['required']; else elsedescription">
+              the description field is required
+             </div>
+             <ng-template #elsedescription>
+              <div *ngIf="description?.errors?.['minlength']">
+                   It should be at least 8 characters
+              </div>
+             </ng-template>
+          </div>
+       </div>
+      </div>
+
+      <div class="col-12 col-sm-6">
+        <div class="form-group">
+          <label>Filiere<span style="color:red">*</span></label>
+          <select formControlName="filiere" class="form-control" [multiple]="true" [ngClass]="{'is-invalid' : filiere?.invalid && filiere?.touched}">
+            <option  *ngFor="let filiere of filiersExist" [value]="filiere.id">{{filiere.name}}</option>
+            <!-- <option value="filiere2">Filiere 2</option> -->
+            <!-- <option value="filiere3">Filiere 3</option> -->
+          </select>
+          <div class="alert alert-warning mt-1" *ngIf="filiere?.invalid && filiere?.touched">
+            <div *ngIf="filiere?.errors?.['required']">Filiere is required</div>
+          </div>
+        </div>
+      </div>
+
+    <div class="col-12">
+    <button type="submit" class="btn btn-primary" [disabled]="addSubjectForm.invalid">Submit</button>
+    </div>
+    </div>
+    </form>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+

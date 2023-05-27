@@ -1,0 +1,78 @@
+<app-navbar></app-navbar>
+<app-sidebar></app-sidebar>
+
+
+<div class="page-wrapper">
+    <div class="content container-fluid">
+
+
+    <div class="page-header">
+    <div class="row align-items-center">
+    <div class="col">
+    <h3 class="page-title">Subject</h3>
+    <ul class="breadcrumb">
+    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+    <li class="breadcrumb-item active">Subject</li>
+    </ul>
+    </div>
+    <div class="col-auto text-right float-right ml-auto">
+    <a class="btn btn-outline-primary mr-2" (click)="downloadPatients()"><i class="fas fa-download"></i> Download</a>
+    <a routerLink="/subjects/add" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+
+    </div>
+    </div>
+    </div>
+
+
+    <div class="row">
+    <div class="col-sm-12">
+    <div class="card card-table">
+    <div class="card-body">
+    <div class="table-responsive">
+    <table class="table table-hover table-center mb-0 datatable">
+    <thead>
+    <tr>
+    <th>Subject Code</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Rooms CONCERNED</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let subject of Patients " >
+    <td>
+    <h2>
+    <a>{{subject.code}}</a>
+    </h2>
+    </td>
+    <td>{{subject.name}}</td>
+    <td>{{subject.description}}</td>
+    <td><ul *ngFor="let filiere of subject.filiere" [style.color]="colors[(Patients.indexOf(subject) + filiere.id) % colors.length]"><li>{{filiere.name}}</li></ul></td>
+    <td *ngIf="role=='ADMIN'"class="text-right">
+          <div class="actions">
+          <a class="btn btn-sm bg-success-light mr-2">
+          <i class="fas fa-pen"></i>
+          </a>
+          <a class="btn btn-sm bg-danger-light">
+          <i class="fas fa-trash"></i>
+          </a>
+          </div>
+          </td>
+
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+
+    <footer>
+    <p>Copyright © 2023 SMART ENSIAS.</p>
+    </footer>
+
+
+    </div>
