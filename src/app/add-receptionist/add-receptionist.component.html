@@ -5,7 +5,7 @@
      <div class="page-header">
         <div class="row align-items-center">
            <div class="col">
-              <h3 class="page-title">Add Receptionists</h3>
+              <h3 class="page-title">Manage Receptionists</h3>
               <ul class="breadcrumb">
                  <li class="breadcrumb-item"><a href="students.html">Receptionists</a></li>
                  <li class="breadcrumb-item active">Add Receptionists</li>
@@ -66,7 +66,6 @@
                          formControlName="gender">
                         <option>Male</option>
                         <option>Female</option>
-                        <option>Others</option>
                         </select>
                         <div class="alert alert-warning mt-1" *ngIf="gender?.invalid && gender?.touched">
                             <div *ngIf="gender?.errors?.['required']">
@@ -131,21 +130,7 @@
                         </div>
                         </div>
                         </div>
-                        <div class="col-12 col-sm-6">
-                          <div class="form-group">
-                          <label>CIN<span style="color:red">*</span></label>
-                          <input type="text" formControlName="matricule"
-                          class="form-control"
-                          [ngClass]="{'is-invalid' : matricule?.invalid && matricule?.touched}"
-                          >
-                          <div class="alert alert-warning mt-1" *ngIf="matricule?.invalid && matricule?.touched">
-
-                              <div *ngIf="matricule?.errors?.['required']">
-                                  the CIN field is required !
-                                 </div>
-                          </div>
-                          </div>
-                          </div>
+                        
                          <div class="col-12 col-sm-6">
                             <div class="form-group">
                             <label>Joining Date<span style="color:red">*</span></label>
@@ -198,7 +183,7 @@
                               </div>
                        <div class="col-12 col-sm-6">
                           <div class="form-group">
-                             <label>Doctor Image</label>
+                             <label>Receptionist Image (optional) : </label>
                              <input type="file" required class="form-control">
                           </div>
                        </div>

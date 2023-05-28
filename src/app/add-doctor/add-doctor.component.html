@@ -5,7 +5,7 @@
      <div class="page-header">
         <div class="row align-items-center">
            <div class="col">
-              <h3 class="page-title">Add Doctors</h3>
+              <h3 class="page-title">Manage Doctors</h3>
               <ul class="breadcrumb">
                  <li class="breadcrumb-item"><a href="students.html">Doctors</a></li>
                  <li class="breadcrumb-item active">Add Doctors</li>
@@ -135,7 +135,7 @@
 
                         <div class="col-12 col-sm-6">
                           <div class="form-group">
-                          <label>CNE<span style="color:red">*</span></label>
+                          <label>Specialty: <span style="color:red">*</span></label>
                           <input type="text" formControlName="codeApogee"
                           class="form-control"
                           [ngClass]="{'is-invalid' : codeApogee?.invalid && codeApogee?.touched}"
@@ -150,7 +150,7 @@
                           </div>
                           <div class="col-12 col-sm-6">
                             <div class="form-group">
-                              <label>Field of Study<span style="color:red">*</span></label>
+                              <label>Location : <span style="color:red">*</span></label>
                               <select class="form-control" formControlName="field" (change)="onFiliereChange($event)">
                                 <option *ngFor="let filiere of filieres" [value]="filiere.id">{{ filiere.name }}</option>
                               </select>

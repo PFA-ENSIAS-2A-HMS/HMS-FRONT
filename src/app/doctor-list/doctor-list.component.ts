@@ -12,7 +12,12 @@ import { SearchService } from '../search.service';
 })
 export class DoctorListComponent implements OnInit {
   students: any;
- 
+  doctorsList =  [
+    { name: 'Dr. John Smith', specialty: 'Cardiology', location: 'New York' },
+    { name: 'Dr. Sarah Johnson', specialty: 'Pediatrics', location: 'Chicago' },
+    { name: 'Dr. Robert Davis', specialty: 'Orthopedics', location: 'Los Angeles' },
+    // Add more doctor objects as needed
+  ];
   role: string | any;
 
   constructor(private studentsServices: DoctorService

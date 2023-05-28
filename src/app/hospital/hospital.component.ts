@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HolidayService } from '../services/holiday.service';
+import { HospitalService } from '../services/hospital.service';
 import { saveAs } from 'file-saver';
 import { SearchService } from '../search.service';
 import { ToastrService } from 'ngx-toastr';
@@ -7,14 +7,14 @@ import { Holiday } from '../models/holiday';
 
 @Component({
   selector: 'app-holiday',
-  templateUrl: './holiday.component.html',
-  styleUrls: ['./holiday.component.css'],
-  providers: [HolidayService]
+  templateUrl: './hospital.component.html',
+  styleUrls: ['./hospital.component.css'],
+  providers: [HospitalService]
 })
-export class HolidayComponent implements OnInit {
+export class HospitalComponent implements OnInit {
 
   deleteHoliday(id: any) {
-    this.holidayService.deleteHoliday(id).subscribe(() => {
+    this.hospitalService.deleteHoliday(id).subscribe(() => {
       this.toastr.success('Holiday deleted successfully');
       this.getHolidays();
     }, error => {
@@ -23,13 +23,13 @@ export class HolidayComponent implements OnInit {
   }
   holidays: any;
   role : any;
-  constructor(private holidayService: HolidayService
+  constructor(private hospitalService: HospitalService
     , private toastr: ToastrService, public searchService: SearchService) {
-    console.log(this.holidayService.getHolidays().subscribe((data) => { console.log(data) }))
+    console.log(this.hospitalService.getHolidays().subscribe((data) => { console.log(data) }))
   }
 
   ngOnInit(): void {
-    this.holidayService.getHolidays().subscribe((data) => {
+    this.hospitalService.getHolidays().subscribe((data) => {
       this.holidays = data;
     });
     this.getCurrentUserRole();
@@ -40,13 +40,13 @@ export class HolidayComponent implements OnInit {
    this.role = localStorage.getItem('role');
    }
   getHolidays(): void {
-    this.holidayService.getHolidays().subscribe(holidays => {
+    this.hospitalService.getHolidays().subscribe(holidays => {
       this.holidays = holidays;
     });
   }
 
   downloadDoctors(): void {
-    this.holidayService.getHolidays().subscribe(holidays => {
+    this.hospitalService.getHolidays().subscribe(holidays => {
       this.holidays = holidays;
       const data = this.generateCsvData(this.holidays);
       const blob = new Blob([data], { type: 'text/csv;charset=utf-8' });

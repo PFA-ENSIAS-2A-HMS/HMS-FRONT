@@ -9,7 +9,7 @@
     <div class="page-header">
     <div class="row align-items-center">
     <div class="col">
-    <h3 class="page-title">Add Room</h3>
+    <h3 class="page-title">Room Management</h3>
     <ul class="breadcrumb">
     <li class="breadcrumb-item"><a href="branch.html">Room</a></li>
     <li class="breadcrumb-item active">Add Room</li>
@@ -30,8 +30,8 @@
     </div>
     <div class="col-12 col-sm-6">
     <div class="form-group">
-    <label>Room code<span style="color:red">*</span></label>
-    <input type="text" title="code"  class="form-control is-invalid"
+    <label>Room Number<span style="color:red">*</span></label>
+    <input type="number" title="code"  class="form-control is-invalid"
                           [ngClass]="{'is-invalid' : code?.invalid && code?.touched}"
                           formControlName="code">
                           <div class="alert alert-warning mt-1" *ngIf="code?.invalid && code?.touched">
@@ -48,8 +48,8 @@
     </div>
     <div class="col-12 col-sm-6">
       <div class="form-group">
-      <label>Room Name<span style="color:red">*</span></label>
-      <input type="text" formControlName="name" class="form-control"
+      <label>Room Capacity<span style="color:red">*</span></label>
+      <input type="number" formControlName="name" class="form-control"
       [ngClass]="{'is-invalid' : name?.invalid && name?.touched}"
       >
       <div class="alert alert-warning mt-1" *ngIf="name?.invalid && name?.touched">
@@ -61,26 +61,9 @@
       </div>
       </div>
       </div>
-      <div class="col-12 col-sm-6">
-        <div class="form-group">
-          <label>Description<span style="color:red">*</span></label>
-          <textarea name="description" class="form-control is-invalid"
-          [ngClass]="{'is-invalid' : description?.invalid && description?.touched}"
-          formControlName="description"></textarea>
-          <div class="alert alert-warning mt-1" *ngIf="description?.invalid && description?.touched">
-             <div *ngIf="description?.errors?.['required']; else elsedescription">
-              the description field is required
-             </div>
-             <ng-template #elsedescription>
-              <div *ngIf="description?.errors?.['minlength']">
-                   It should be at least 8 characters
-              </div>
-             </ng-template>
-          </div>
-       </div>
-      </div>
+      
     <div class="col-12">
-    <button type="submit" class="btn btn-primary" [disabled]="addRoomForm.invalid">Submit</button>
+    <button type="submit" class="btn btn-primary" [disabled]="addRoomForm.invalid">Add Room</button>
     </div>
     </div>
     </form>

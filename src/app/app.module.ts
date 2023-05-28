@@ -24,11 +24,11 @@ import { DoctorAttendanceComponent } from './student-attendance/student-attendan
 import { OverviewChartComponent } from './overview-chart/overview-chart.component';
 import { ClassAttendanceOverviewComponent } from './class-attendance-overview/class-attendance-overview.component';
 import { TeacherAttendanceComponent } from './teacher-attendance/teacher-attendance.component';
-import { HolidayComponent } from './holiday/holiday.component'; 
-import { AddHolidayComponent } from './add-holiday/add-holiday.component';
+import { HospitalComponent } from './hospital/hospital.component'; 
+import { AddHospitalComponent } from './add-hospital/add-hospital.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
-import { HolidayService } from './services/holiday.service';
+import { HospitalService } from './services/hospital.service';
 import { AuthGuard } from './auth.guard';
 import { AddRoomComponent } from './add-room/add-room.component';
 import { RoomListComponent } from './room-list/room-list.component';
@@ -65,16 +65,17 @@ const routes: Routes = [
   { path: 'editDoctor/:cne', component: EditDoctorComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
   { path: 'attendance/students', component: DoctorAttendanceComponent },
   { path: 'attendance/teachers', component: TeacherAttendanceComponent },
-  { path: 'holiday/add', component: AddHolidayComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
-  { path: 'holiday', component: AddHolidayComponent },
-  { path: 'branchs', component: RoomListComponent },
-  { path: 'branchs/add', component: AddRoomComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
+  { path: 'hospital/add', component: AddHospitalComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
+  { path: 'hospital', component: AddHospitalComponent },
+  { path: 'rooms', component: RoomListComponent },
+  { path: 'rooms/add', component: AddRoomComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
   { path: 'patients', component: PatientListComponent },
   { path: 'patients/add', component: AddPatientComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
   { path : 'profile',component : MyProfileComponent},
   { path : 'register',component : RegistrationComponent},
+  { path : 'appointments/add',component : AddAppointmentComponent},
   { path : 'appointments',component : AppointmentComponent},
-  { path : ''}
+ 
   
 ];
 
@@ -103,10 +104,10 @@ const routes: Routes = [
     MyProfileComponent,
     RegistrationComponent,
     AppointmentComponent,
-    AddHolidayComponent,
+    AddHospitalComponent,
     AddRoomComponent,
     RoomListComponent,
-    HolidayComponent,
+    HospitalComponent,
     NavbarComponent,
     AddAppointmentComponent
   ],

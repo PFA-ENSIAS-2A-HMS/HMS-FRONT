@@ -27,27 +27,24 @@
     <table class="table table-hover table-center mb-0 datatable">
     <thead>
     <tr>
-    <th>CIN</th>
-    <th>Name</th>
-    <th>Class</th>
+    <th>Full Name</th>
     <th>Gender</th>
     <th>joining date</th>
     <th>date of birth</th>
-    <th>Mobile Number</th>
+    <th>Contact Number</th>
     <th>Email</th>
     <th *ngIf="role=='ADMIN'" class="text-right">Action</th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let receptionist of receptionists | searchReceptionists: searchService.searchText;let index = index">
-       <td>{{receptionist.matricule}}</td>
+      
        <td>
         <h2 class="table-avatar">
             <a href="receptionist-details.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/avatar-0{{index+1}}.jpg" alt="User Image"></a>
         </h2>
         {{receptionist.firstname}} {{receptionist.lastname}}
        </td>
-       <td>GL</td>
        <td>{{receptionist.gender}}</td>
        <td>{{receptionist.joining_date}}</td>
        <td>{{receptionist.date_of_birth}}</td>
