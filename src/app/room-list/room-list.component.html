@@ -32,12 +32,30 @@
     <table class="table table-hover table-center mb-0 datatable">
     <thead>
     <tr>
-    <th>Room Code</th>
-    <th>Name</th>
-    <th>Description</th>
+    <th>Room Number</th>
+    <th>Capacity</th>
+    <th>Availability</th>
+    <th>Action </th>
     </tr>
+
     </thead>
     <tbody>
+
+            <tr>
+              <td><i class="fas fa-hotel"></i> 101</td>
+              <td>4</td>
+              <td style="color:green">2</td>
+              <td><button class="btn btn-sm bg-success-light mr-2" (click)="assignRoom()">Assign</button></td>
+            </tr>
+            <tr>
+              <td><i class="fas fa-hotel"></i> 201</td>
+              <td>6</td>
+              <td style="color:red">0</td>
+              <td><button class="btn btn-sm" style="background-color:darkkhaki" (click)="viewRoom()">View</button></td>
+            </tr>
+            <!-- Add more rows with example data as needed -->
+       
+      <!--
     <tr *ngFor="let branch of Rooms " >
     <td>
     <h2>
@@ -58,6 +76,7 @@
           </td>
 
     </tr>
+    -->
     </tbody>
     </table>
     </div>

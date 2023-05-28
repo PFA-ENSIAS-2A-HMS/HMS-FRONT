@@ -37,7 +37,12 @@ export class RoomListComponent implements OnInit {
     this.role = localStorage.getItem('role');
   }
 
+  assignRoom(){
 
+  }
+  viewRoom(){
+    
+  }
 
   // downloadDoctors(): void {
   //   this.holidayService.getHolidays().subscribe(holidays => {
