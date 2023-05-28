@@ -33,8 +33,8 @@ import { AuthGuard } from './auth.guard';
 import { AddRoomComponent } from './add-room/add-room.component';
 import { RoomListComponent } from './room-list/room-list.component';
 import { RoomService } from './services/branch.service';
-import { SubjectListComponent } from './subject-list/subject-list.component';
-import { AddSubjectComponent } from './add-subject/add-subject.component';
+import { PatientListComponent } from './patient-list/patient-list.component';
+import { AddPatientComponent } from './add-patient/add-patient.component';
 import { SubjectService } from './services/subject.service';
 import { SearchFlterPipe } from './pipes/search-flter.pipe';
 import { SearchHolidaysPipe } from './pipes/search-holidays.pipe';
@@ -47,6 +47,7 @@ import { AppointmentComponent } from './appointment/appointment.component';
 import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { AddAppointmentComponent } from './add-appointment/add-appointment.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -68,10 +69,13 @@ const routes: Routes = [
   { path: 'holiday', component: AddHolidayComponent },
   { path: 'branchs', component: RoomListComponent },
   { path: 'branchs/add', component: AddRoomComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
-  { path: 'subjects', component: SubjectListComponent },
-  { path: 'subjects/add', component: AddSubjectComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
+  { path: 'patients', component: PatientListComponent },
+  { path: 'patients/add', component: AddPatientComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
   { path : 'profile',component : MyProfileComponent},
-  { path : 'register',component : RegistrationComponent}
+  { path : 'register',component : RegistrationComponent},
+  { path : 'appointments',component : AppointmentComponent},
+  { path : ''}
+  
 ];
 
 @NgModule({
@@ -91,10 +95,10 @@ const routes: Routes = [
     ClassAttendanceOverviewComponent,
     SearchFlterPipe,
     TeacherAttendanceComponent,
-    AddSubjectComponent,
+    AddPatientComponent,
     SearchHolidaysPipe,
     EditReceptionistComponenet,
-    SubjectListComponent,
+    PatientListComponent,
     SearchReceptionistsPipe,
     MyProfileComponent,
     RegistrationComponent,
@@ -103,7 +107,8 @@ const routes: Routes = [
     AddRoomComponent,
     RoomListComponent,
     HolidayComponent,
-    NavbarComponent
+    NavbarComponent,
+    AddAppointmentComponent
   ],
   imports: [
     MatFormFieldModule,

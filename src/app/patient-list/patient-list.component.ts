@@ -6,11 +6,11 @@ import { Subject } from 'rxjs';
 import { saveAs } from 'file-saver';
 
 @Component({
-  selector: 'app-subject-list',
-  templateUrl: './subject-list.component.html',
-  styleUrls: ['./subject-list.component.css']
-})
-export class SubjectListComponent implements OnInit {
+  selector: 'app-patient-list',
+  templateUrl: './patient-list.component.html',
+  styleUrls: ['./patient-list.component.css']
+}) 
+export class PatientListComponent implements OnInit {
 
   Patients: any;
   role: any;

@@ -15,7 +15,7 @@ export class ReceptionistListComponent implements OnInit {
   
   students: any;
   role: string | any;
-  teachers : any;
+  receptionists : any;
   x = [
     {
       "CIN": "ZT277932",
@@ -78,7 +78,7 @@ export class ReceptionistListComponent implements OnInit {
 
   ngOnInit(): void {
     this.receptionistService.getReceptionists().subscribe((data) => {
-      this.teachers = data;
+      this.receptionists = data;
     })
     this.getCurrentUserRole();
   }
@@ -98,25 +98,25 @@ export class ReceptionistListComponent implements OnInit {
   }
 
   getReceptionists(): void {
-    this.receptionistService.getReceptionists().subscribe(teachers => {
-      this.teachers = teachers;
-      console.log(this.teachers);
+    this.receptionistService.getReceptionists().subscribe(receptionists => {
+      this.receptionists = receptionists;
+      console.log(this.receptionists);
     });
   }
 
   downloadReceptionists(): void {
-    this.receptionistService.getReceptionists().subscribe(teachers => {
-      this.teachers = teachers;
-      const data = this.generateCsvData(this.teachers);
+    this.receptionistService.getReceptionists().subscribe(receptionists => {
+      this.receptionists = receptionists;
+      const data = this.generateCsvData(this.receptionists);
       const blob = new Blob([data], { type: 'text/csv;charset=utf-8' });
-      saveAs(blob, 'teachers.csv');
+      saveAs(blob, 'receptionists.csv');
 
     });
   }
 
-  generateCsvData(teachers: Teacher[]): string {
+  generateCsvData(receptionists: Teacher[]): string {
     const headers = ['ID', 'CNE', 'First Name', 'Last Name', 'Phone', 'Email', 'Gender', 'Image URL', 'Date of Birth', 'Password'];
-    const rows = teachers.map(teacher => {
+    const rows = receptionists.map(teacher => {
       const row = [teacher.id, teacher.matricule, teacher.firstname, teacher.lastname, teacher.phone, teacher.email, teacher.gender, teacher.image_url, teacher.date_of_birth, teacher.password];
       return row.join(',');
     });

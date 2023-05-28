@@ -1,4 +1,4 @@
-import { Room } from './../models/branch';
+import { Room } from '../models/branch';
 import { Subject } from '../models/subject';
 import { Component, OnInit, Pipe } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -8,10 +8,10 @@ import { RoomService } from '../services/branch.service';
 
 @Component({
   selector: 'app-add-subject',
-  templateUrl: './add-subject.component.html',
-  styleUrls: ['./add-subject.component.css']
+  templateUrl: './add-patient.component.html',
+  styleUrls: ['./add-patient.component.css']
 })
-export class AddSubjectComponent {
+export class AddPatientComponent {
   formData: any;
   subjects: Subject[] = [];
   addSubjectForm: FormGroup;

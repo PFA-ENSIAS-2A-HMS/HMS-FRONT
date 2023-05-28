@@ -43,8 +43,8 @@
                                  <i class="fas fa-user-injured"></i> <span> Patients </span> <span class="menu-arrow"></span>
                         </a>
                 </li>
-                    <li *ngIf="showOptions[2]" style="padding-left: 10%;"><a routerLink="/subjects">Patients List</a></li>
-                    <li *ngIf="showOptions[2]" style="padding-left: 10%;"><a *ngIf="role=='ADMIN'" routerLink="/subjects/add">Patients Add</a></li>
+                    <li *ngIf="showOptions[2]" style="padding-left: 10%;"><a routerLink="/patients">Patients List</a></li>
+                    <li *ngIf="showOptions[2]" style="padding-left: 10%;"><a *ngIf="role=='ADMIN'" routerLink="/patients/add">Patients Add</a></li>
 
 
                     <li style="cursor: pointer;">
@@ -52,8 +52,8 @@
                               <i class="fa fa-calendar"></i> <span> appointments </span> <span class="menu-arrow"></span>
                      </a>
                     </li>
-                 <li *ngIf="showOptions[6]" style="padding-left: 10%;"><a routerLink="/subjects">appointment List</a></li>
-                 <li *ngIf="showOptions[6]" style="padding-left: 10%;"><a *ngIf="role=='ADMIN'" routerLink="/subjects/add">appointment Add</a></li>
+                 <li *ngIf="showOptions[6]" style="padding-left: 10%;"><a routerLink="/appointments">appointment List</a></li>
+                 <li *ngIf="showOptions[6]" style="padding-left: 10%;"><a *ngIf="role=='ADMIN'" routerLink="/appointments/add">appointment Add</a></li>
         
         
                     <li style="cursor: pointer;">
