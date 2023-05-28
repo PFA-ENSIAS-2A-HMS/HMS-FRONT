@@ -1,6 +1,9 @@
 import { ReceptionistService } from './services/receptionist.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 import { Routes, RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,7 +20,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgApexchartsModule } from "ng-apexcharts";
 import { ToastrModule } from 'ngx-toastr';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DoctorService } from './services/doctor.service';
 import { EditDoctorComponent } from './edit-doctor/edit-doctor.component';
 import { DoctorAttendanceComponent } from './student-attendance/student-attendance.component';
@@ -52,6 +54,7 @@ import { AssignRoomComponent } from './assign-room/assign-room.component';
 import { InvoicesComponent } from './invoices/invoices.component';
 import { AddInvoicesComponent } from './add-invoices/add-invoices.component';
 import { GetstartedSidebarComponent } from './getstarted-sidebar/getstarted-sidebar.component';
+import { NavbarNosearcchComponent } from './navbar-nosearcch/navbar-nosearcch.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -118,9 +121,14 @@ const routes: Routes = [
     AssignRoomComponent,
     InvoicesComponent,
     AddInvoicesComponent,
-    GetstartedSidebarComponent
+    GetstartedSidebarComponent,
+    NavbarNosearcchComponent
   ],
   imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatDialogModule,
     MatFormFieldModule,
     MatSelectModule,
     MatFormFieldModule,

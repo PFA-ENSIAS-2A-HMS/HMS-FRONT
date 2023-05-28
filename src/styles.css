@@ -3463,3 +3463,6 @@ table.table-inbox tbody tr.checked {
 		height: 355px;
 	}
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

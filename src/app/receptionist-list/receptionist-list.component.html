@@ -37,8 +37,60 @@
     </tr>
     </thead>
     <tbody>
+
+        
+              <tr>
+                
+                <td>
+                    <h2 class="table-avatar">
+                        <a href="doctor-details.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/avatar-01.jpg" alt="User Image"></a>
+                        <a href="doctor-details.html"> John Doe</a>
+                    </h2>
+                </td>
+                <td>Male</td>
+                <td>2022-01-15</td>
+                <td>1985-05-10</td>
+                <td>123-456-7890</td>
+                <td>john.doe@example.com</td>
+                <td *ngIf="role=='ADMIN'" class="text-right">
+                  <div class="actions">
+                    <button class="btn btn-sm bg-success-light mr-2" data-toggle="modal" data-target="#editReceptionistModel">
+                      <i class="fas fa-pen"></i>
+                    </button>
+                    <button data-toggle="modal" data-target="#confirmationModal" class="btn btn-sm bg-danger-light" class="btn btn-sm bg-danger-light">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                <h2 class="table-avatar">
+                        <a href="doctor-details.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/avatar-02.jpg" alt="User Image"></a>
+                        <a href="doctor-details.html"> Jane Smith</a>
+                </h2>
+                </td>
+                <td>Female</td>
+                <td>2022-03-10</td>
+                <td>1990-09-22</td>
+                <td>987-654-3210</td>
+                <td>jane.smith@example.com</td>
+                <td *ngIf="role=='ADMIN'" class="text-right">
+                  <div class="actions">
+                    <button class="btn btn-sm bg-success-light mr-2">
+                      <i class="fas fa-pen"></i>
+                    </button>
+                    <button class="btn btn-sm bg-danger-light">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <!-- Add more rows with example data as needed -->
+          
+          
+    <!--
     <tr *ngFor="let receptionist of receptionists | searchReceptionists: searchService.searchText;let index = index">
-      
        <td>
         <h2 class="table-avatar">
             <a href="receptionist-details.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/avatar-0{{index+1}}.jpg" alt="User Image"></a>
@@ -55,15 +107,13 @@
         <a routerLink="/editReceptionist/{{receptionist.id}}" class="btn btn-sm bg-success-light mr-2">
         <i class="fas fa-pen"></i>
         </a>
-        <!-- (click)="deletereceptionist(receptionist.id)" -->
         <a  class="btn btn-sm bg-danger-light">
         <i class="fas fa-trash"></i>
         </a>
         </div>
         </td>
     </tr>
-
-
+    -->
     </tbody>
     </table>
     </div>
@@ -74,3 +124,117 @@
     </div>
 
     </div>
+
+
+
+
+
+<!----------Delete a Receptionist --------------->
+<div class="modal fade" id="confirmationModal" tabindex="-1" role="dialog" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmationModalLabel">Confirmation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete {{''}}?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="confirmDelete()">Delete</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--------------- Update a doctor ------------------>
+
+<!-- Modal -->
+<div class="modal fade" id="editReceptionistModel" tabindex="-1" role="dialog" aria-labelledby="editReceptionistModelLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editReceptionistModelLabel">Edit Receptionist</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="card">
+                <div class="card-body">
+                  <form  >
+                    <div class="row">
+                      <div class="col-12">
+                        <h5 class="form-title"><span>Receptionist Information</span></h5>
+                      </div>
+                      <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                          <label>First Name<span style="color:red">*</span></label>
+                          <input type="text" name="firstname" class="form-control" formControlName="firstname">
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                          <label>Last Name<span style="color:red">*</span></label>
+                          <input type="text" name="lastname" class="form-control" formControlName="lastname">
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                          <label>Gender<span style="color:red">*</span></label>
+                          <select class="form-control" formControlName="gender">
+                            <option>Male</option>
+                            <option>Female</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                          <label>Date of Birth<span style="color:red">*</span></label>
+                          <input type="date" formControlName="dob" class="form-control">
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                          <label>Email<span style="color:red">*</span></label>
+                          <input type="text" formControlName="email" class="form-control">
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                          <label>MobileNumber<span style="color:red">*</span></label>
+                          <input type="text" formControlName="mobileNumber" class="form-control">
+                        </div>
+                      </div>
+                      <div class="col-12 col-sm-6">
+                        <div class="form-group">
+                          <label>Joining Date<span style="color:red">*</span></label>
+                          <input type="date" formControlName="jod" class="form-control">
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <button type="submit" class="btn btn-primary">update</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
