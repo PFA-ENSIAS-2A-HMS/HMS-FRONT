@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TeacherService } from '../services/teacher.service';
+import { TeacherService } from '../services/receptionist.service';
 import { ToastrService } from 'ngx-toastr';
 import { SearchService } from '../search.service';
 import { Teacher } from '../models/teacher';

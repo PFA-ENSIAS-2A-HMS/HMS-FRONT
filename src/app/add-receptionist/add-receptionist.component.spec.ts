@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddTeacherComponent } from './add-teacher.component';
+import { AddTeacherComponent } from './add-receptionist.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { RouterTestingModule } from '@angular/router/testing';

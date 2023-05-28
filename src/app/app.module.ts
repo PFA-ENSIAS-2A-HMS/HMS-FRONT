@@ -1,4 +1,4 @@
-import { TeacherService } from './services/teacher.service';
+import { ReceptionistService } from './services/receptionist.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
@@ -12,7 +12,7 @@ import { DoctorListComponent } from './doctor-list/doctor-list.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { TeacherListComponent } from './teacher-list/teacher-list.component';
-import { AddTeacherComponent } from './add-teacher/add-teacher.component';
+import { AddReceptionistComponent } from './add-receptionist/add-receptionist.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgApexchartsModule } from "ng-apexcharts";
@@ -57,12 +57,12 @@ const routes: Routes = [
   { path: 'doctors', component: DoctorListComponent },
   { path: 'addDoctor', component: AddDoctorComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
   { path: 'teachers', component: TeacherListComponent },
-  { path: 'addTeacher', component: AddTeacherComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
+  { path: 'AddReceptionist', component: AddReceptionistComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
   { path: 'editDoctor/:cne', component: EditDoctorComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
   { path: 'editTeacher/:cne', component: EditTeacherComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
   { path: 'attendance', component: DoctorAttendanceComponent },
   { path: 'teachers', component: TeacherListComponent },
-  { path: 'addTeacher', component: AddTeacherComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
+  { path: 'AddReceptionist', component: AddReceptionistComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
   { path: 'editDoctor/:cne', component: EditDoctorComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
   { path: 'attendance/students', component: DoctorAttendanceComponent },
   { path: 'attendance/teachers', component: TeacherAttendanceComponent },
@@ -89,7 +89,7 @@ const routes: Routes = [
     LoginComponent,
     DashboardComponent,
     TeacherListComponent,
-    AddTeacherComponent,
+    AddReceptionistComponent,
     EditDoctorComponent,
     DoctorAttendanceComponent,
     OverviewChartComponent,
@@ -102,7 +102,6 @@ const routes: Routes = [
     EditTeacherComponent,
     SubjectListComponent,
     SearchReceptionistsPipe,
-    EditTeacherComponent,
     MyProfileComponent,
     RegistrationComponent,
     AppointmentComponent,
@@ -138,7 +137,7 @@ const routes: Routes = [
   ],
   providers: [
     DoctorService,
-    TeacherService,
+    ReceptionistService,
     AuthGuard,
     RoomService,
     SubjectService

@@ -1,4 +1,4 @@
-import { TeacherService } from '../services/teacher.service';
+import { ReceptionistService } from '../services/receptionist.service';
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AbstractControl } from '@angular/forms';
@@ -6,11 +6,11 @@ import { Teacher } from '../models/teacher';
 import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-add-teacher',
-  templateUrl: './add-teacher.component.html',
-  styleUrls: ['./add-teacher.component.css'],
-  providers: [TeacherService]
+  templateUrl: './add-receptionist.component.html',
+  styleUrls: ['./add-receptionist.component.css'],
+  providers: [ReceptionistService]
 })
-export class AddTeacherComponent {
+export class AddReceptionistComponent {
   formData: any;
   myTeacher: Teacher = {
     matricule: '',
@@ -27,7 +27,7 @@ export class AddTeacherComponent {
   teachers: Teacher[] = [];
   addTeacherForm: FormGroup;
 
-  constructor(private teacherService: TeacherService, private toastr: ToastrService) {
+  constructor(private receptionisteService: ReceptionistService, private toastr: ToastrService) {
     this.addTeacherForm = new FormGroup({
       firstname: new FormControl('', [
         Validators.required,
@@ -114,7 +114,7 @@ export class AddTeacherComponent {
     return this.addTeacherForm.get('email');
   }
   addTeacher(teacher: Teacher) {
-    this.teacherService.addTeacher(teacher).subscribe((teachers: any) => {
+    this.receptionisteService.addTeacher(teacher).subscribe((teachers: any) => {
       this.toastr.success('Teacher added successfully');
     }, (error: any) => {
       this.toastr.error('error');

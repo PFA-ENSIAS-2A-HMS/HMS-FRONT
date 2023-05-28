@@ -7,7 +7,7 @@ import { Observable, catchError, map } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class TeacherService {
+export class ReceptionistService {
   
 
   readonly apiUrl = 'http://localhost:8080';

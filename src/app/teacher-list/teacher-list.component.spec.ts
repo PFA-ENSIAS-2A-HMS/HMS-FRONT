@@ -11,7 +11,7 @@ import { OverviewChartComponent } from '../overview-chart/overview-chart.compone
 import { SearchHolidaysPipe } from '../pipes/search-holidays.pipe';
 import { SearchService } from '../search.service';
 import { SearchReceptionistsPipe } from '../pipes/search-teachers.pipe';
-import { TeacherService } from '../services/teacher.service';
+import { TeacherService } from '../services/receptionist.service';
 import { Teacher } from '../models/teacher';
 describe('TeacherListComponent', () => {
   let component: TeacherListComponent;

@@ -1,4 +1,4 @@
-import { TeacherService } from '../services/teacher.service';
+import { TeacherService } from '../services/receptionist.service';
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AbstractControl } from '@angular/forms';

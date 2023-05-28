@@ -37,7 +37,7 @@
                   </li>
                   <li *ngIf="showOptions[1]" style="padding-left: 10%;"
                   [ngClass]="{'active': currentPath=='addTeacher'}"
-                  ><a routerLink="/addTeacher" *ngIf="role=='ADMIN'">Receptionists Add</a></li>
+                  ><a routerLink="/AddReceptionist" *ngIf="role=='ADMIN'">Receptionists Add</a></li>
             <li style="cursor: pointer;">
                         <a (click)="change(2)">
                                  <i class="fas fa-user-injured"></i> <span> Patients </span> <span class="menu-arrow"></span>
