@@ -47,6 +47,7 @@ import { AppointmentComponent } from './appointment/appointment.component';
 import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { AddAppointmentComponent } from './add-appointment/add-appointment.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -73,6 +74,7 @@ const routes: Routes = [
   { path : 'profile',component : MyProfileComponent},
   { path : 'register',component : RegistrationComponent},
   { path : 'appointments',component : AppointmentComponent},
+  { path : ''}
   
 ];
 
@@ -105,7 +107,8 @@ const routes: Routes = [
     AddRoomComponent,
     RoomListComponent,
     HolidayComponent,
-    NavbarComponent
+    NavbarComponent,
+    AddAppointmentComponent
   ],
   imports: [
     MatFormFieldModule,
