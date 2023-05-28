@@ -85,4 +85,6 @@ export class DoctorListComponent implements OnInit {
       console.log('Deleting doctor:', this.doctorName);
   }
 
+  
+
 }
