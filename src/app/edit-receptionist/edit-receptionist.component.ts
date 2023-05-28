@@ -1,4 +1,4 @@
-import { TeacherService } from '../services/receptionist.service';
+import { ReceptionistService } from '../services/receptionist.service';
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AbstractControl } from '@angular/forms';
@@ -8,12 +8,12 @@ import { ActivatedRoute } from '@angular/router';
 import { FormBuilder } from '@angular/forms';
 
 @Component({
-  selector: 'app-add-teacher',
-  templateUrl: './edit-teacher.component.html',
-  styleUrls: ['./edit-teacher.component.css'],
-  providers: [TeacherService]
+  selector: 'app-add-receptionist',
+  templateUrl: './edit-receptionist.component.html',
+  styleUrls: ['./edit-receptionist.component.css'],
+  providers: [ReceptionistService]
 })
-export class EditTeacherComponent {
+export class EditReceptionistComponenet {
   formData: any;
   myTeacher: Teacher = {
     matricule: '',
@@ -30,7 +30,7 @@ export class EditTeacherComponent {
   teachers: Teacher[] = [];
   EditTeacherForm: FormGroup;
 
-  constructor(private teacherService: TeacherService, private toastr: ToastrService,
+  constructor(private receptionistService: ReceptionistService, private toastr: ToastrService,
     private route: ActivatedRoute
     ,private fb: FormBuilder) {
     this.EditTeacherForm = new FormGroup({
@@ -121,7 +121,7 @@ export class EditTeacherComponent {
   }
 
   updateTeacher(teacher: Teacher,id : any) {
-    this.teacherService.updateTeacher(teacher,id).subscribe((teachers: any) => {
+    this.receptionistService.updateTeacher(teacher,id).subscribe((teachers: any) => {
      this.toastr.success('Teacher updated successfully');
     }, (error: any) => {
       this.toastr.error('error');
@@ -132,7 +132,7 @@ export class EditTeacherComponent {
   
   getTeacherById(){
     this.current_id = this.route.snapshot.paramMap.get('cne');
-    this.teacherService.findTeacherById(this.current_id).subscribe(teacher=>{
+    this.receptionistService.findTeacherById(this.current_id).subscribe(teacher=>{
       this.currentTeacher = teacher;
       console.log(teacher);
       this.EditTeacherForm = this.fb.group({

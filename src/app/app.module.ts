@@ -11,7 +11,7 @@ import { AddDoctorComponent } from './add-doctor/add-doctor.component';
 import { DoctorListComponent } from './doctor-list/doctor-list.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { TeacherListComponent } from './teacher-list/teacher-list.component';
+import { TeacherListComponent } from './receptionist-list/receptionist-list.component';
 import { AddReceptionistComponent } from './add-receptionist/add-receptionist.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -41,7 +41,7 @@ import { SubjectService } from './services/subject.service';
 import { SearchFlterPipe } from './pipes/search-flter.pipe';
 import { SearchHolidaysPipe } from './pipes/search-holidays.pipe';
 import { SearchReceptionistsPipe } from './pipes/search-teachers.pipe';
-import { EditTeacherComponent } from './edit-teacher/edit-teacher.component';
+import { EditReceptionistComponenet } from './edit-receptionist/edit-receptionist.component';
 import { RouterTestingModule } from "@angular/router/testing";
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -59,7 +59,7 @@ const routes: Routes = [
   { path: 'teachers', component: TeacherListComponent },
   { path: 'AddReceptionist', component: AddReceptionistComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
   { path: 'editDoctor/:cne', component: EditDoctorComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
-  { path: 'editTeacher/:cne', component: EditTeacherComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
+  { path: 'editTeacher/:cne', component: EditReceptionistComponenet, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
   { path: 'attendance', component: DoctorAttendanceComponent },
   { path: 'teachers', component: TeacherListComponent },
   { path: 'AddReceptionist', component: AddReceptionistComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
@@ -99,7 +99,7 @@ const routes: Routes = [
     EventsComponent,
     AddSubjectComponent,
     SearchHolidaysPipe,
-    EditTeacherComponent,
+    EditReceptionistComponenet,
     SubjectListComponent,
     SearchReceptionistsPipe,
     MyProfileComponent,

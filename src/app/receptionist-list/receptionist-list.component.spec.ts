@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
-import { TeacherListComponent } from './teacher-list.component';
+import { TeacherListComponent } from './receptionist-list.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -11,12 +11,12 @@ import { OverviewChartComponent } from '../overview-chart/overview-chart.compone
 import { SearchHolidaysPipe } from '../pipes/search-holidays.pipe';
 import { SearchService } from '../search.service';
 import { SearchReceptionistsPipe } from '../pipes/search-teachers.pipe';
-import { TeacherService } from '../services/receptionist.service';
+import { ReceptionistService } from '../services/receptionist.service';
 import { Teacher } from '../models/teacher';
 describe('TeacherListComponent', () => {
   let component: TeacherListComponent;
   let fixture: ComponentFixture<TeacherListComponent>;
-  let teacherServiceMock: Partial<TeacherService>;
+  let teacherServiceMock: Partial<ReceptionistService>;
   let toastrServiceMock: Partial<ToastrService>;
 
   beforeEach(async () => {
@@ -39,7 +39,7 @@ describe('TeacherListComponent', () => {
        
       ],
       providers: [
-        { provide: TeacherService, useValue: teacherServiceMock },
+        { provide: ReceptionistService, useValue: teacherServiceMock },
         { provide: ToastrService, useValue: toastrServiceMock },
         SearchService,
       ],

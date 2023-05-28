@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-edit-student',
+  selector: 'app-edit-doctor',
   templateUrl: './edit-doctor.component.html',
   styleUrls: ['./edit-doctor.component.css']
 })
