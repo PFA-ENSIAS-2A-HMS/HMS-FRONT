@@ -1,22 +1,22 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddHolidayComponent } from './add-holiday.component';
+import { AddHospitalComponent } from './add-hospital.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HolidayService } from '../services/holiday.service';
+import { HospitalService } from '../services/hospital.service';
 import { throwError } from 'rxjs/internal/observable/throwError';
 describe('AddHolidayComponent', () => {
-  let component: AddHolidayComponent;
-  let fixture: ComponentFixture<AddHolidayComponent>;
-  let holidayService: HolidayService;
+  let component: AddHospitalComponent;
+  let fixture: ComponentFixture<AddHospitalComponent>;
+  let holidayService: HospitalService;
   let toastrService: ToastrService;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddHolidayComponent,NavbarComponent,
+      declarations: [ AddHospitalComponent,NavbarComponent,
         SidebarComponent],
        imports: [RouterTestingModule, 
         HttpClientTestingModule,
@@ -24,13 +24,13 @@ describe('AddHolidayComponent', () => {
         ReactiveFormsModule,
         FormsModule
       ],
-      providers : [HolidayService, ToastrService]
+      providers : [HospitalService, ToastrService]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AddHolidayComponent);
+    fixture = TestBed.createComponent(AddHospitalComponent);
     component = fixture.componentInstance;
-    holidayService = TestBed.inject(HolidayService);
+    holidayService = TestBed.inject(HospitalService);
     toastrService = TestBed.inject(ToastrService);
     fixture.detectChanges();
   });

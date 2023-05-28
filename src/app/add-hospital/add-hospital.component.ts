@@ -1,21 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { HolidayService } from '../services/holiday.service';
+import { HospitalService } from '../services/hospital.service';
 import { Holiday } from '../models/holiday';
 import { countries } from '../store/countries';
+
 @Component({
   selector: 'app-add-holiday',
-  templateUrl: './add-holiday.component.html',
-  styleUrls: ['./add-holiday.component.css'],
-  providers: [HolidayService]
+  templateUrl: './add-hospital.component.html',
+  styleUrls: ['./add-hospital.component.css'],
+  providers: [HospitalService]
 })
-export class AddHolidayComponent {
-   countriesList =  countries;
+
+export class AddHospitalComponent {
+  public countries:any = countries;
 
   selectedCountry: string = "";
 
-  
 
   formData: any;
   myHoliday: Holiday = {
@@ -26,7 +27,7 @@ export class AddHolidayComponent {
   }
   holidays: Holiday[] = [];
   addHolidayForm: FormGroup;
-  constructor(private holidayService: HolidayService, private toastr: ToastrService) {
+  constructor(private holidayService: HospitalService, private toastr: ToastrService) {
     this.addHolidayForm = new FormGroup({
       title: new FormControl('', [
         Validators.required,

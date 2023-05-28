@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 <app-sidebar></app-sidebar>
- 
+    
 
 <div class="page-wrapper">
     <div class="content container-fluid">
@@ -9,10 +9,9 @@
     <div class="page-header">
     <div class="row align-items-center">
     <div class="col">
-    <h3 class="page-title">Add Holiday</h3>
+    <h3 class="page-title">Hospital Setup</h3>
     <ul class="breadcrumb">
-    <li class="breadcrumb-item"><a href="holiday.html">Holiday</a></li>
-    <li class="breadcrumb-item active">Add Holiday</li>
+        Welcome! To get started, please create your hospital account below.
     </ul>
     </div>
     </div>
@@ -26,11 +25,11 @@
     <form [formGroup]="addHolidayForm" (submit)="onSubmit()">
     <div class="row">
     <div class="col-12">
-    <h5 class="form-title"><span>Holiday Information</span></h5>
+    <h5 class="form-title"><span>Please provide the following information to register your hospital:</span></h5>
     </div>
     <div class="col-12 col-sm-6">
     <div class="form-group">
-    <label>Holiday title<span style="color:red">*</span></label>
+    <label>Hospital Name:<span style="color:red">*</span></label>
     <input type="text" title="title"  class="form-control is-invalid"
                           [ngClass]="{'is-invalid' : title?.invalid && title?.touched}"
                           formControlName="title">
@@ -48,15 +47,14 @@
     </div>
     <div class="col-12 col-sm-6">
     <div class="form-group">
-    <label>Type of Holiday<span style="color:red">*</span></label>
+    <label>Country: <span style="color:red">*</span></label>
     <select class="form-control"
     [ngClass]="{'is-invalid' : type?.invalid && type?.touched}"
      formControlName="type">
-    <option>Select Holiday</option>
-    <option>Public Holiday</option>
-    <option>College Holiday</option>
-    <option>Exam Holiday</option>
-    <option>Others</option>
+    
+        <option value="" disabled selected>Select Country</option>
+        <option *ngFor="let country of countries" [value]="country.name">{{country.name}}</option>
+   
     </select>
     <div class="alert alert-warning mt-1" *ngIf="type?.invalid && type?.touched">
       <div *ngIf="type?.errors?.['required']">
@@ -69,8 +67,8 @@
     </div>
     <div class="col-12 col-sm-6">
       <div class="form-group">
-      <label>Start date<span style="color:red">*</span></label>
-      <input type="date" formControlName="start_date" class="form-control"
+      <label>Address: <span style="color:red">*</span></label>
+      <input type="text" formControlName="start_date" class="form-control"
       [ngClass]="{'is-invalid' : start_date?.invalid && start_date?.touched}"
       >
       <div class="alert alert-warning mt-1" *ngIf="start_date?.invalid && start_date?.touched">
@@ -84,17 +82,10 @@
       </div>
       <div class="col-12 col-sm-6">
         <div class="form-group">
-        <label>End Date<span style="color:red">*</span></label>
-        <input type="date" formControlName="end_date" class="form-control"
-        [ngClass]="{'is-invalid' : end_date?.invalid && end_date?.touched}"
+        <label>Logo (optional):</label>
+        <input type="file" formControlName="end_date" class="form-control"
         >
-        <div class="alert alert-warning mt-1" *ngIf="end_date?.invalid && end_date?.touched">
-
-
-            <div *ngIf="end_date?.errors?.['required']">
-                the end field is required !
-            </div>
-        </div>
+        
         </div>
         </div>
     <div class="col-12">
