@@ -4,7 +4,7 @@ import { LoginService } from '../services/login.service';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { Teacher } from '../models/teacher';
-import { Doctor } from '../models/student';
+import { Doctor } from '../models/doctor';
 
 @Component({
   selector: 'app-navbar',

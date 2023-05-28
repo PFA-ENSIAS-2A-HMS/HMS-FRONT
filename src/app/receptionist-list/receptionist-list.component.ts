@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { TeacherService } from '../services/teacher.service';
+import { ReceptionistService } from '../services/receptionist.service';
 import { ToastrService } from 'ngx-toastr';
 import { SearchService } from '../search.service';
 import { Teacher } from '../models/teacher';
 import * as saveAs from 'file-saver';
 
 @Component({
-  selector: 'app-teacher-list',
-  templateUrl: './teacher-list.component.html',
-  styleUrls: ['./teacher-list.component.css'],
+  selector: 'app-receptionist-list',
+  templateUrl: './receptionist-list.component.html',
+  styleUrls: ['./receptionist-list.component.css'],
  
 })
-export class TeacherListComponent implements OnInit {
+export class ReceptionistListComponent implements OnInit {
   
   students: any;
   role: string | any;
@@ -71,13 +71,13 @@ export class TeacherListComponent implements OnInit {
   
 
   
-  constructor(private teachersServices: TeacherService
+  constructor(private receptionistService: ReceptionistService
     , private toastr: ToastrService, public searchService: SearchService) {
-     this.teachersServices.getReceptionists().subscribe((data) => { console.log(data) });
+     this.receptionistService.getReceptionists().subscribe((data) => { console.log(data) });
   }
 
   ngOnInit(): void {
-    this.teachersServices.getReceptionists().subscribe((data) => {
+    this.receptionistService.getReceptionists().subscribe((data) => {
       this.teachers = data;
     })
     this.getCurrentUserRole();
@@ -89,7 +89,7 @@ export class TeacherListComponent implements OnInit {
   }
 
   deleteTeacher(id: string) {
-    this.teachersServices.deleteTeacher(id).subscribe(() => {
+    this.receptionistService.deleteTeacher(id).subscribe(() => {
       this.toastr.success('Teacher deleted successfully');
       this.getReceptionists();
     }, error => {
@@ -98,14 +98,14 @@ export class TeacherListComponent implements OnInit {
   }
 
   getReceptionists(): void {
-    this.teachersServices.getReceptionists().subscribe(teachers => {
+    this.receptionistService.getReceptionists().subscribe(teachers => {
       this.teachers = teachers;
       console.log(this.teachers);
     });
   }
 
   downloadReceptionists(): void {
-    this.teachersServices.getReceptionists().subscribe(teachers => {
+    this.receptionistService.getReceptionists().subscribe(teachers => {
       this.teachers = teachers;
       const data = this.generateCsvData(this.teachers);
       const blob = new Blob([data], { type: 'text/csv;charset=utf-8' });

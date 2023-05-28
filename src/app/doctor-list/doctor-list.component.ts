@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { Doctor } from '../models/student';
+import { Doctor } from '../models/doctor';
 import { ToastrService } from 'ngx-toastr';
-import { DoctorService } from '../services/student.service';
+import { DoctorService } from '../services/doctor.service';
 import { saveAs } from 'file-saver';
 import { SearchService } from '../search.service';
 @Component({
-  selector: 'app-student-list',
-  templateUrl: './student-list.component.html',
-  styleUrls: ['./student-list.component.css'],
+  selector: 'app-doctor-list',
+  templateUrl: './doctor-list.component.html',
+  styleUrls: ['./doctor-list.component.css'],
   providers: [DoctorService]
 })
 export class DoctorListComponent implements OnInit {
   students: any;
-
+ 
   role: string | any;
 
   constructor(private studentsServices: DoctorService

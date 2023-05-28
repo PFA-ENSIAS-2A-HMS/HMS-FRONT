@@ -5,10 +5,10 @@
      <div class="page-header">
         <div class="row align-items-center">
            <div class="col">
-              <h3 class="page-title">Add Receptionists</h3>
+              <h3 class="page-title">Update Receptionist</h3>
               <ul class="breadcrumb">
                  <li class="breadcrumb-item"><a href="students.html">Receptionists</a></li>
-                 <li class="breadcrumb-item active">Add Receptionists</li>
+                 <li class="breadcrumb-item active">Update Receptionist</li>
               </ul>
            </div>
         </div>
@@ -17,10 +17,10 @@
         <div class="col-sm-12">
            <div class="card">
               <div class="card-body">
-                 <form [formGroup]="addTeacherForm" (submit)="onSubmit()" >
+                 <form [formGroup]="EditTeacherForm" (submit)="onSubmit()" >
                     <div class="row">
                        <div class="col-12">
-                          <h5 class="form-title"><span>Teacher Information</span></h5>
+                          <h5 class="form-title"><span>Receptionist Information</span></h5>
                        </div>
                        <div class="col-12 col-sm-6">
                         <div class="form-group">
@@ -64,9 +64,9 @@
                         <select class="form-control"
                         [ngClass]="{'is-invalid' : gender?.invalid && gender?.touched}"
                          formControlName="gender">
-                        <option>Male</option>
-                        <option>Female</option>
-                        <option>Others</option>
+                        <option>MALE</option>
+                        <option>FEMALE</option>
+                        <option>OTHERS</option>
                         </select>
                         <div class="alert alert-warning mt-1" *ngIf="gender?.invalid && gender?.touched">
                             <div *ngIf="gender?.errors?.['required']">
@@ -203,7 +203,7 @@
                           </div>
                        </div>
                        <div class="col-12">
-                          <button type="submit" class="btn btn-primary"  [disabled]="addTeacherForm.invalid">Submit</button>
+                          <button type="submit" class="btn btn-primary"  [disabled]="EditTeacherForm.invalid">Submit</button>
                        </div>
                     </div>
                  </form>

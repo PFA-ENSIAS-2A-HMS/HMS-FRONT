@@ -1,16 +1,16 @@
 
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Doctor } from '../models/student';
-import { DoctorService } from '../services/student.service';
+import { Doctor } from '../models/doctor';
+import { DoctorService } from '../services/doctor.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-edit-student',
-  templateUrl: './edit-student.component.html',
-  styleUrls: ['./edit-student.component.css']
+  selector: 'app-edit-doctor',
+  templateUrl: './edit-doctor.component.html',
+  styleUrls: ['./edit-doctor.component.css']
 })
 
 export class EditDoctorComponent implements OnInit {

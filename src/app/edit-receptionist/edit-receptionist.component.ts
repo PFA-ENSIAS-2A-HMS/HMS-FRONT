@@ -1,16 +1,19 @@
-import { TeacherService } from '../services/teacher.service';
+import { ReceptionistService } from '../services/receptionist.service';
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AbstractControl } from '@angular/forms';
 import { Teacher } from '../models/teacher';
 import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute } from '@angular/router';
+import { FormBuilder } from '@angular/forms';
+
 @Component({
-  selector: 'app-add-teacher',
-  templateUrl: './add-teacher.component.html',
-  styleUrls: ['./add-teacher.component.css'],
-  providers: [TeacherService]
+  selector: 'app-add-receptionist',
+  templateUrl: './edit-receptionist.component.html',
+  styleUrls: ['./edit-receptionist.component.css'],
+  providers: [ReceptionistService]
 })
-export class AddTeacherComponent {
+export class EditReceptionistComponenet {
   formData: any;
   myTeacher: Teacher = {
     matricule: '',
@@ -25,10 +28,12 @@ export class AddTeacherComponent {
   }
 
   teachers: Teacher[] = [];
-  addTeacherForm: FormGroup;
+  EditTeacherForm: FormGroup;
 
-  constructor(private teacherService: TeacherService, private toastr: ToastrService) {
-    this.addTeacherForm = new FormGroup({
+  constructor(private receptionistService: ReceptionistService, private toastr: ToastrService,
+    private route: ActivatedRoute
+    ,private fb: FormBuilder) {
+    this.EditTeacherForm = new FormGroup({
       firstname: new FormControl('', [
         Validators.required,
         Validators.minLength(3)
@@ -69,6 +74,7 @@ export class AddTeacherComponent {
       ]),
 
     });
+    this.getTeacherById();
   }
   matchPassword(control: AbstractControl): { [key: string]: any } | null {
     const PasswordAccount = control.parent?.get('PasswordAccount');
@@ -80,48 +86,70 @@ export class AddTeacherComponent {
     return null;
   }
   get firstname() {
-    return this.addTeacherForm.get('firstname');
+    return this.EditTeacherForm.get('firstname');
   }
   get lastname() {
-    return this.addTeacherForm.get('lastname');
+    return this.EditTeacherForm.get('lastname');
   }
   get gender() {
-    return this.addTeacherForm.get('gender');
+    return this.EditTeacherForm.get('gender');
   }
   get dob() {
-    return this.addTeacherForm.get('dob');
+    return this.EditTeacherForm.get('dob');
   }
    get jod() {
-  return this.addTeacherForm.get('jod');
+  return this.EditTeacherForm.get('jod');
   }
   get mobileNumber() {
-    return this.addTeacherForm.get('mobileNumber');
+    return this.EditTeacherForm.get('mobileNumber');
   }
 
   get matricule() {
-    return this.addTeacherForm.get('matricule');
+    return this.EditTeacherForm.get('matricule');
   }
 
   get PasswordAccount() {
-    return this.addTeacherForm.get('PasswordAccount');
+    return this.EditTeacherForm.get('PasswordAccount');
   }
   get confirmPassword() {
-    return this.addTeacherForm.get('confirmPassword');
+    return this.EditTeacherForm.get('confirmPassword');
   }
 
 
   get email() {
-    return this.addTeacherForm.get('email');
+    return this.EditTeacherForm.get('email');
   }
-  addTeacher(teacher: Teacher) {
-    this.teacherService.addTeacher(teacher).subscribe((teachers: any) => {
-      this.toastr.success('Teacher added successfully');
+
+  updateTeacher(teacher: Teacher,id : any) {
+    this.receptionistService.updateTeacher(teacher,id).subscribe((teachers: any) => {
+     this.toastr.success('Teacher updated successfully');
     }, (error: any) => {
       this.toastr.error('error');
     });
   }
+  current_id: any;
+  currentTeacher : Teacher | any;
+  
+  getTeacherById(){
+    this.current_id = this.route.snapshot.paramMap.get('cne');
+    this.receptionistService.findTeacherById(this.current_id).subscribe(teacher=>{
+      this.currentTeacher = teacher;
+      console.log(teacher);
+      this.EditTeacherForm = this.fb.group({
+      id : this.currentTeacher?.id,
+      matricule: this.currentTeacher?.matricule,
+      firstname: this.currentTeacher?.firstname,
+      lastname: this.currentTeacher?.lastname,
+      mobileNumber: this.currentTeacher?.phone,
+      email: this.currentTeacher?.email,
+      gender: this.currentTeacher?.gender,
+      dob: this.currentTeacher?.date_of_birth,
+      jod: this.currentTeacher?.joining_date,
+      });
+    });
+  }
   onSubmit(): any {
-    this.formData = this.addTeacherForm.value;
+    this.formData = this.EditTeacherForm.value;
     let teacher: Teacher;
     teacher = {
       matricule: this.formData?.matricule,
@@ -134,6 +162,7 @@ export class AddTeacherComponent {
       date_of_birth: this.formData?.dob,
       joining_date : this.formData?.jod
     }
-    this.addTeacher(teacher);
-  }
+
+    this.updateTeacher(teacher,this.current_id);
+}
 }

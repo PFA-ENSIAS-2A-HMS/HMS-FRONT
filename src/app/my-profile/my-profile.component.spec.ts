@@ -5,7 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TeacherListComponent } from '../teacher-list/teacher-list.component';
+import { TeacherListComponent } from '../receptionist-list/receptionist-list.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { OverviewChartComponent } from '../overview-chart/overview-chart.component';
 import { NavbarComponent } from '../navbar/navbar.component';

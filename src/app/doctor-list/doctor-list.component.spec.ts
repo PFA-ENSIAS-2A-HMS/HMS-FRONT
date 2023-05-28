@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DoctorListComponent } from './student-list.component';
+import { DoctorListComponent } from './doctor-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { saveAs } from 'file-saver';
@@ -11,9 +11,9 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchFlterPipe } from '../pipes/search-flter.pipe';
-import { Doctor } from '../models/student';
+import { Doctor } from '../models/doctor';
 import { of, throwError } from 'rxjs';
-import { DoctorService } from '../services/student.service';
+import { DoctorService } from '../services/doctor.service';
 describe('DoctorListComponent', () => {
   let component: DoctorListComponent;
   let fixture: ComponentFixture<DoctorListComponent>;

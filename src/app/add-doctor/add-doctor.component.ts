@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Doctor } from '../models/student';
-import { DoctorService } from '../services/student.service';
+import { Doctor } from '../models/doctor';
+import { DoctorService } from '../services/doctor.service';
 import { ToastrService } from 'ngx-toastr';
 import { FiliereService } from '../services/filiere.service';
 @Component({
   selector: 'app-add-student',
-  templateUrl: './add-student.component.html',
-  styleUrls: ['./add-student.component.css'],
+  templateUrl: './add-doctor.component.html',
+  styleUrls: ['./add-doctor.component.css'],
   providers: [DoctorService]
 })
 export class AddDoctorComponent implements OnInit {
