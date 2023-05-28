@@ -21,7 +21,7 @@
                    <form [formGroup]="addDoctorForm" (submit)="onSubmit()" >
                       <div class="row">
                          <div class="col-12">
-                            <h5 class="form-title"><span>Doctor Information</span></h5>
+                            <h5 class="form-title"><span>Please fill out the appointment details below : </span></h5>
                          </div>
                          <div class="col-12 col-sm-6">
                           <div class="form-group">
@@ -146,7 +146,7 @@
                             
                         
                          <div class="col-12">
-                            <button type="submit" class="btn btn-primary"  [disabled]="addDoctorForm.invalid">Submit</button>
+                            <button type="submit" class="btn btn-primary"  [disabled]="addDoctorForm.invalid">Create Appointment</button>
                          </div>
                       </div>
                    </form>

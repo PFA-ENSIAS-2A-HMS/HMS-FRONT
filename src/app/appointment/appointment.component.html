@@ -8,10 +8,10 @@
     <div class="page-header">
     <div class="row align-items-center">
     <div class="col">
-    <h3 class="page-title">Patients</h3>
+    <h3 class="page-title">Appointment History</h3>
     <ul class="breadcrumb">
-    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-    <li class="breadcrumb-item active">Patients</li>
+    <li class="breadcrumb-item"><a href="index.html">Appointments</a></li>
+    <li class="breadcrumb-item active">History</li>
     </ul>
     </div>
     <div class="col-auto text-right float-right ml-auto">
@@ -31,14 +31,42 @@
     <table class="table table-hover table-center mb-0 datatable">
     <thead>
     <tr>
-    <th>patientCode</th>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Rooms CONCERNED</th>
+    <th>Doctor Name</th>
+    <th>Patient Name</th>
+    <th>Consultancy Fees</th>
+    <th>Appointment Date</th>
+    <th>Appointment Time</th>
+    <th>Current status</th>
+    <th>Action</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let patient of Patients " >
+
+       
+            <tr>
+              <td>Dr. John Doe</td>
+              <td>Jane Smith</td>
+              <td>500 dhs</td>
+              <td>2023-06-01</td>
+              <td>10:00 AM</td>
+              <td style="color:rgb(23, 138, 0)">Active</td>
+              <td><button class="btn btn-sm bg-danger-light" (click)="cancelAppointment()">Cancel</button></td>
+            </tr>
+            <tr>
+              <td>Dr. Sarah Johnson</td>
+              <td>Michael Brown</td>
+              <td>750 dhs</td>
+              <td>2023-06-02</td>
+              <td>2:30 PM</td>
+              <td style="color:rgb(50, 47, 47)">Canceled by Receptionist</td>
+              
+              <td><button class="btn btn-sm bg-dark-light" (click)="cancelAppointment()">Cancelled</button></td>
+            </tr>
+            <!-- Add more rows with example data as needed -->
+          
+
+        
+   <!-- <tr *ngFor="let patient of Patients " >
     <td>
     <h2>
     <a>{{patient.code}}</a>
@@ -59,6 +87,7 @@
           </td>
 
     </tr>
+    -->
     </tbody>
     </table>
     </div>
