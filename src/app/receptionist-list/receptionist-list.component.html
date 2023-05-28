@@ -37,8 +37,60 @@
     </tr>
     </thead>
     <tbody>
+
+        
+              <tr>
+                
+                <td>
+                    <h2 class="table-avatar">
+                        <a href="doctor-details.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/avatar-01.jpg" alt="User Image"></a>
+                        <a href="doctor-details.html"> John Doe</a>
+                    </h2>
+                </td>
+                <td>Male</td>
+                <td>2022-01-15</td>
+                <td>1985-05-10</td>
+                <td>123-456-7890</td>
+                <td>john.doe@example.com</td>
+                <td *ngIf="role=='ADMIN'" class="text-right">
+                  <div class="actions">
+                    <button class="btn btn-sm bg-success-light mr-2">
+                      <i class="fas fa-pen"></i>
+                    </button>
+                    <button class="btn btn-sm bg-danger-light">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                <h2 class="table-avatar">
+                        <a href="doctor-details.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/avatar-02.jpg" alt="User Image"></a>
+                        <a href="doctor-details.html"> Jane Smith</a>
+                </h2>
+                </td>
+                <td>Female</td>
+                <td>2022-03-10</td>
+                <td>1990-09-22</td>
+                <td>987-654-3210</td>
+                <td>jane.smith@example.com</td>
+                <td *ngIf="role=='ADMIN'" class="text-right">
+                  <div class="actions">
+                    <button class="btn btn-sm bg-success-light mr-2">
+                      <i class="fas fa-pen"></i>
+                    </button>
+                    <button class="btn btn-sm bg-danger-light">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <!-- Add more rows with example data as needed -->
+          
+          
+    <!--
     <tr *ngFor="let receptionist of receptionists | searchReceptionists: searchService.searchText;let index = index">
-      
        <td>
         <h2 class="table-avatar">
             <a href="receptionist-details.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/avatar-0{{index+1}}.jpg" alt="User Image"></a>
@@ -55,15 +107,13 @@
         <a routerLink="/editReceptionist/{{receptionist.id}}" class="btn btn-sm bg-success-light mr-2">
         <i class="fas fa-pen"></i>
         </a>
-        <!-- (click)="deletereceptionist(receptionist.id)" -->
         <a  class="btn btn-sm bg-danger-light">
         <i class="fas fa-trash"></i>
         </a>
         </div>
         </td>
     </tr>
-
-
+    -->
     </tbody>
     </table>
     </div>

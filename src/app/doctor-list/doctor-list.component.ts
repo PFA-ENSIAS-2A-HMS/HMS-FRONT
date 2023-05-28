@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Doctor } from '../models/doctor';
 import { ToastrService } from 'ngx-toastr';
 import { DoctorService } from '../services/doctor.service';
 import { saveAs } from 'file-saver';
 import { SearchService } from '../search.service';
+import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-doctor-list',
   templateUrl: './doctor-list.component.html',
@@ -11,6 +12,9 @@ import { SearchService } from '../search.service';
   providers: [DoctorService]
 })
 export class DoctorListComponent implements OnInit {
+  @ViewChild('confirmationDialog') confirmationDialogTemplate!: TemplateRef<any>;
+  doctorName: string = "";
+
   students: any;
   doctorsList =  [
     { name: 'Dr. John Smith', specialty: 'Cardiology', location: 'New York' },
@@ -20,8 +24,9 @@ export class DoctorListComponent implements OnInit {
   ];
   role: string | any;
 
-  constructor(private studentsServices: DoctorService
-    , private toastr: ToastrService, public searchService: SearchService) {
+  constructor(private studentsServices: DoctorService,
+    private dialog: MatDialog,
+    private toastr: ToastrService, public searchService: SearchService) {
     this.studentsServices.getDoctors().subscribe((data) => { console.log(data) });
   }
 
@@ -32,11 +37,17 @@ export class DoctorListComponent implements OnInit {
     })
     this.getCurrentUserRole();
   }
-  
+  setDoctorName(name:string){
+   this.doctorName = name;
+  }
+
   getCurrentUserRole(){
     //le code a ajouter après
     this.role = localStorage.getItem('role');
   }
+
+ 
+ 
 
   deleteDoctor(cne: string) {
     this.studentsServices.deleteDoctor(cne).subscribe(() => {
@@ -69,6 +80,9 @@ export class DoctorListComponent implements OnInit {
       return row.join(',');
     });
     return [headers.join(','), ...rows].join('\n');
+  }
+  confirmDelete(){
+      console.log('Deleting doctor:', this.doctorName);
   }
 
 }

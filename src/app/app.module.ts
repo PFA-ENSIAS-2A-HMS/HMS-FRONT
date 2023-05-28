@@ -1,6 +1,9 @@
 import { ReceptionistService } from './services/receptionist.service';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 import { Routes, RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,7 +20,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgApexchartsModule } from "ng-apexcharts";
 import { ToastrModule } from 'ngx-toastr';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DoctorService } from './services/doctor.service';
 import { EditDoctorComponent } from './edit-doctor/edit-doctor.component';
 import { DoctorAttendanceComponent } from './student-attendance/student-attendance.component';
@@ -123,6 +125,10 @@ const routes: Routes = [
     NavbarNosearcchComponent
   ],
   imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatDialogModule,
     MatFormFieldModule,
     MatSelectModule,
     MatFormFieldModule,
