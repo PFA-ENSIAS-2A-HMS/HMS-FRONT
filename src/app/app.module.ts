@@ -49,6 +49,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { AddAppointmentComponent } from './add-appointment/add-appointment.component';
 import { AssignRoomComponent } from './assign-room/assign-room.component';
+import { InvoicesComponent } from './invoices/invoices.component';
+import { AddInvoicesComponent } from './add-invoices/add-invoices.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -64,8 +66,8 @@ const routes: Routes = [
   { path: 'teachers', component: ReceptionistListComponent },
   { path: 'AddReceptionist', component: AddReceptionistComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
   { path: 'editDoctor/:cne', component: EditDoctorComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
-  { path: 'attendance/students', component: DoctorAttendanceComponent },
-  { path: 'attendance/teachers', component: TeacherAttendanceComponent },
+  { path: 'invoices/add', component: AddInvoicesComponent },
+  { path: 'invoices', component: InvoicesComponent },
   { path: 'hospital/add', component: AddHospitalComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
   { path: 'hospital', component: AddHospitalComponent },
   { path: 'rooms', component: RoomListComponent },
@@ -112,7 +114,9 @@ const routes: Routes = [
     HospitalComponent,
     NavbarComponent,
     AddAppointmentComponent,
-    AssignRoomComponent
+    AssignRoomComponent,
+    InvoicesComponent,
+    AddInvoicesComponent
   ],
   imports: [
     MatFormFieldModule,

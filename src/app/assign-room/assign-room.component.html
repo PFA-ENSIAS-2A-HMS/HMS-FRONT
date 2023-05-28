@@ -1,10 +1,8 @@
 <app-navbar></app-navbar>
 <app-sidebar></app-sidebar>
 
-
 <div class="page-wrapper">
     <div class="content container-fluid">
-
 
     <div class="page-header">
     <div class="row align-items-center">
@@ -102,9 +100,7 @@
         <div class="col-12 col-sm-12">
             <div class="form-group">
             <label>Additional Notes: </label>
-            
             <textarea class="form-control"></textarea>
-      
             <div class="alert alert-warning mt-1" *ngIf="name?.invalid && name?.touched">
                 <div *ngIf="name?.errors?.['required']">
                     the name field is required !

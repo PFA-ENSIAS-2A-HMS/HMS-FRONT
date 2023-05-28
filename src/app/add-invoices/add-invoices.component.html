@@ -1,0 +1,98 @@
+<app-navbar></app-navbar>
+<app-sidebar></app-sidebar>
+
+
+<div class="page-wrapper">
+    <div class="content container-fluid">
+
+
+    <div class="page-header">
+         <div class="row align-items-center">
+            <div class="col">
+              <h3 class="page-title">Invoice Management</h3>
+              <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a routerLink="/dashboard">Dashboard</a></li>
+                <li class="breadcrumb-item active">Invoices</li>
+              </ul>
+            </div>
+          </div>
+          
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-12">
+          <div class="card">
+            <div class="card-body">
+              <form (submit)="onSubmit()">
+                <div class="row">
+                  <div class="col-12">
+                    <h5 class="form-title"><span>Invoice Information</span></h5>
+                  </div>
+                  <div class="col-12 col-sm-6">
+                    <div class="form-group">
+                      <label>Patient Name<span style="color:red">*</span></label>
+                      <select class="form-control" formControlName="patientName">
+                        <!-- Populate options with existing patients -->
+                        <option value=""></option>
+                        <option value=""></option>
+                        <option value=""></option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-6">
+                    <div class="form-group">
+                      <label>Invoice Date<span style="color:red">*</span></label>
+                      <input type="date" class="form-control" formControlName="invoiceDate">
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-6">
+                    <div class="form-group">
+                      <label>Due Date<span style="color:red">*</span></label>
+                      <input type="date" class="form-control" formControlName="dueDate">
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-6">
+                    <div class="form-group">
+                      <label>Billing Address</label>
+                      <input type="text" class="form-control" formControlName="billingAddress">
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-group">
+                      <label>Items/Services</label>
+                      <textarea class="form-control" formControlName="itemsServices"></textarea>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-6">
+                    <div class="form-group">
+                      <label>Taxes</label>
+                      <input type="number" class="form-control" formControlName="taxes">
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-6">
+                    <div class="form-group">
+                      <label>Discounts</label>
+                      <input type="number" class="form-control" formControlName="discounts">
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-group">
+                      <label>Notes</label>
+                      <textarea class="form-control" formControlName="notes"></textarea>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <button type="submit" class="btn btn-primary" >Add Invoice</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+   
+
+    </div>
+    </div>
