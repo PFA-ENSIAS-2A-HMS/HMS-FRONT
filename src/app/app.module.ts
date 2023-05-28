@@ -52,6 +52,7 @@ import { AssignRoomComponent } from './assign-room/assign-room.component';
 import { InvoicesComponent } from './invoices/invoices.component';
 import { AddInvoicesComponent } from './add-invoices/add-invoices.component';
 import { GetstartedSidebarComponent } from './getstarted-sidebar/getstarted-sidebar.component';
+import { NavbarNosearcchComponent } from './navbar-nosearcch/navbar-nosearcch.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -118,7 +119,8 @@ const routes: Routes = [
     AssignRoomComponent,
     InvoicesComponent,
     AddInvoicesComponent,
-    GetstartedSidebarComponent
+    GetstartedSidebarComponent,
+    NavbarNosearcchComponent
   ],
   imports: [
     MatFormFieldModule,
