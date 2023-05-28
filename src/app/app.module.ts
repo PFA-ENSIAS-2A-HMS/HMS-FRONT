@@ -71,7 +71,9 @@ const routes: Routes = [
   { path: 'patients', component: PatientListComponent },
   { path: 'patients/add', component: AddPatientComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
   { path : 'profile',component : MyProfileComponent},
-  { path : 'register',component : RegistrationComponent}
+  { path : 'register',component : RegistrationComponent},
+  { path : 'appointments',component : AppointmentComponent},
+  
 ];
 
 @NgModule({
