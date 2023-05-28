@@ -26,7 +26,6 @@ import { DoctorAttendanceComponent } from './student-attendance/student-attendan
 import { OverviewChartComponent } from './overview-chart/overview-chart.component';
 import { ClassAttendanceOverviewComponent } from './class-attendance-overview/class-attendance-overview.component';
 import { TeacherAttendanceComponent } from './teacher-attendance/teacher-attendance.component';
-import { HospitalComponent } from './hospital/hospital.component'; 
 import { AddHospitalComponent } from './add-hospital/add-hospital.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
@@ -115,7 +114,6 @@ const routes: Routes = [
     AddHospitalComponent,
     AddRoomComponent,
     RoomListComponent,
-    HospitalComponent,
     NavbarComponent,
     AddAppointmentComponent,
     AssignRoomComponent,
