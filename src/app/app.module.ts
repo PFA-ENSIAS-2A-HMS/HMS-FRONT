@@ -48,6 +48,7 @@ import { MatSelectCountryModule } from '@angular-material-extensions/select-coun
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { AddAppointmentComponent } from './add-appointment/add-appointment.component';
+import { AssignRoomComponent } from './assign-room/assign-room.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -68,6 +69,7 @@ const routes: Routes = [
   { path: 'hospital/add', component: AddHospitalComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
   { path: 'hospital', component: AddHospitalComponent },
   { path: 'rooms', component: RoomListComponent },
+  { path: 'rooms/assign',component : AssignRoomComponent},
   { path: 'rooms/add', component: AddRoomComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
   { path: 'patients', component: PatientListComponent },
   { path: 'patients/add', component: AddPatientComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
@@ -109,7 +111,8 @@ const routes: Routes = [
     RoomListComponent,
     HospitalComponent,
     NavbarComponent,
-    AddAppointmentComponent
+    AddAppointmentComponent,
+    AssignRoomComponent
   ],
   imports: [
     MatFormFieldModule,

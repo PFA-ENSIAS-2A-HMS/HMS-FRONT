@@ -1,0 +1,130 @@
+<app-navbar></app-navbar>
+<app-sidebar></app-sidebar>
+
+
+<div class="page-wrapper">
+    <div class="content container-fluid">
+
+
+    <div class="page-header">
+    <div class="row align-items-center">
+    <div class="col">
+    <h3 class="page-title">Room Management</h3>
+    <ul class="breadcrumb">
+    <li class="breadcrumb-item"><a href="branch.html">Room</a></li>
+    <li class="breadcrumb-item active">Assign Room</li>
+    </ul>
+    </div>
+    </div>
+    </div>
+
+
+    <div class="row">
+    <div class="col-sm-12">
+    <div class="card">
+    <div class="card-body">
+    <form [formGroup]="addRoomForm" (submit)="onSubmit()">
+    <div class="row">
+    <div class="col-12">
+    <h5 class="form-title"><span>Room Information</span></h5>
+    </div>
+    <div class="col-12 col-sm-6">
+    <div class="form-group">
+    <label>Room Number<span style="color:red">*</span></label>
+    <select class="form-control">
+     <option value="">100</option>
+     <option value="">120</option>
+     <option value="">143</option>   
+     </select>
+
+                          <div class="alert alert-warning mt-1" *ngIf="code?.invalid && code?.touched">
+                             <div *ngIf="code?.errors?.['required']; else elsecode">
+                              the code field is required
+                             </div>
+                             <ng-template #elsecode>
+                              <div *ngIf="code?.errors?.['minlength']">
+                                   It should be at least 2 charcters
+                              </div>
+                              </ng-template>
+                          </div>
+    </div>
+    </div>
+    <div class="col-12 col-sm-6">
+      <div class="form-group">
+      <label>Patient Name<span style="color:red">*</span></label>
+      
+      <select class="form-control">
+        <option value="">Select Patient</option>
+        <option value="John Doe">John Doe</option>
+        <option value="Jane Smith">Jane Smith</option>
+        <option value="Michael Johnson">Michael Johnson</option>
+        <option value="Emily Williams">Emily Williams</option>
+      </select>
+
+      <div class="alert alert-warning mt-1" *ngIf="name?.invalid && name?.touched">
+          <div *ngIf="name?.errors?.['required']">
+              the name field is required !
+      </div>
+      </div>
+      </div>
+      </div>
+
+      <div class="col-12 col-sm-6">
+        <div class="form-group">
+        <label>Admission Date : <span style="color:red">*</span></label>
+        
+        <input class="form-control" type="date">
+  
+        <div class="alert alert-warning mt-1" *ngIf="name?.invalid && name?.touched">
+            <div *ngIf="name?.errors?.['required']">
+                the name field is required !
+        </div>
+        </div>
+        </div>
+        </div>
+
+        <div class="col-12 col-sm-6">
+            <div class="form-group">
+            <label>Discharge Date: <span style="color:red">*</span></label>
+            
+            <input class="form-control" type="date">
+      
+            <div class="alert alert-warning mt-1" *ngIf="name?.invalid && name?.touched">
+                <div *ngIf="name?.errors?.['required']">
+                    the name field is required !
+            </div>
+            </div>
+            </div>
+            </div>
+
+
+            
+        <div class="col-12 col-sm-12">
+            <div class="form-group">
+            <label>Additional Notes: </label>
+            
+            <textarea class="form-control"></textarea>
+      
+            <div class="alert alert-warning mt-1" *ngIf="name?.invalid && name?.touched">
+                <div *ngIf="name?.errors?.['required']">
+                    the name field is required !
+            </div>
+            </div>
+            </div>
+    </div>
+
+
+      
+    <div class="col-12">
+    <button type="submit" class="btn btn-primary" [disabled]="addRoomForm.invalid">assign Room</button>
+    </div>
+    </div>
+    </form>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+
+
