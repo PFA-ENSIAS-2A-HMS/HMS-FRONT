@@ -18,13 +18,13 @@
             </li>
                  <li style="cursor: pointer;" *ngIf="showOptions[0]" style="padding-left: 10%;"
                  [ngClass]="{'active': currentPath=='studentdetails'}"
-                 ><a routerLink="/studentdetails">Doctor List</a>
+                 ><a routerLink="/doctors">Doctor List</a>
                  </li>
 
                    <li *ngIf="showOptions[0]" style="padding-left: 10%;"
                    [ngClass]="{'active': currentPath=='Addstudent'}"
                    >
-                   <a *ngIf="role=='ADMIN'" routerLink="/Addstudent">Doctor Add</a></li>
+                   <a *ngIf="role=='ADMIN'" routerLink="/addDoctor">Doctor Add</a></li>
                    <li>
 
                   <a (click)="change(1)" style="cursor: pointer;">

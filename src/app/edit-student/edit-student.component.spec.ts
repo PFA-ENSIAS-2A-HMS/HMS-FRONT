@@ -7,9 +7,9 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DoctorService } from '../services/student.service';
+import { DoctorService } from '../services/doctor.service';
 import { ActivatedRoute } from '@angular/router';
-import { Doctor } from '../models/student';
+import { Doctor } from '../models/doctor';
 
 describe('EditDoctorComponent', () => {
   let component: EditDoctorComponent;

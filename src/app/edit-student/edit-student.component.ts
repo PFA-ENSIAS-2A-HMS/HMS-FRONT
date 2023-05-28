@@ -1,8 +1,8 @@
 
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Doctor } from '../models/student';
-import { DoctorService } from '../services/student.service';
+import { Doctor } from '../models/doctor';
+import { DoctorService } from '../services/doctor.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
