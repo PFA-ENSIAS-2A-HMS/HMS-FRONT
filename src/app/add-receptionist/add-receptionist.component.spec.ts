@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddTeacherComponent } from './add-receptionist.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddReceptionistComponent } from './add-receptionist.component';
 describe('AddTeacherComponent', () => {
-  let component: AddTeacherComponent;
-  let fixture: ComponentFixture<AddTeacherComponent>;
+  let component: AddReceptionistComponent;
+  let fixture: ComponentFixture<AddReceptionistComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddTeacherComponent,NavbarComponent,
+      declarations: [ AddReceptionistComponent,NavbarComponent,
         SidebarComponent],
        imports: [RouterTestingModule, 
         HttpClientTestingModule,
@@ -24,7 +24,7 @@ describe('AddTeacherComponent', () => {
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AddTeacherComponent);
+    fixture = TestBed.createComponent(AddReceptionistComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

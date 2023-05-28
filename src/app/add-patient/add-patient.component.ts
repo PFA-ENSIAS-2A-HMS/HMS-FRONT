@@ -5,6 +5,8 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from
 import { ToastrService } from 'ngx-toastr';
 import { SubjectService } from '../services/subject.service';
 import { RoomService } from '../services/branch.service'; 
+import { Teacher } from '../models/teacher';
+import { ReceptionistService } from '../services/receptionist.service';
 
 @Component({
   selector: 'app-add-subject',
@@ -12,68 +14,132 @@ import { RoomService } from '../services/branch.service';
   styleUrls: ['./add-patient.component.css']
 })
 export class AddPatientComponent {
+  selectedBloodType : string = "";
+  medicalHistory : string = "";
   formData: any;
-  subjects: Subject[] = [];
-  addSubjectForm: FormGroup;
-  filiersExist: any;
-  constructor(private subjectService: SubjectService, private toastr: ToastrService, private branchService: RoomService) {
-    this.addSubjectForm = new FormGroup({
-      code: new FormControl('', [
+  myTeacher: Teacher = {
+    matricule: '',
+    firstname: '',
+    lastname: '',
+    phone: '',
+    email: '',
+    gender: '',
+    date_of_birth: '',
+    // joining_date: '',
+    password: ''
+  }
+
+  teachers: Teacher[] = [];
+  addTeacherForm: FormGroup;
+
+  constructor(private receptionisteService: ReceptionistService, private toastr: ToastrService) {
+    this.addTeacherForm = new FormGroup({
+      firstname: new FormControl('', [
         Validators.required,
-        Validators.minLength(2)
+        Validators.minLength(3)
       ]),
-      name: new FormControl('', [
+      lastname: new FormControl('', [
         Validators.required,
-        Validators.minLength(6)
+        Validators.minLength(3)
       ]),
-      description: new FormControl('', [
-        Validators.required,
-        Validators.minLength(10)
-      ]),
-      filiere: new FormControl('', [
+      gender: new FormControl('', [
         Validators.required
+      ]),
+      dob: new FormControl('', [
+        Validators.required,
+        //  this.dobValidator
+      ]),
+      jod: new FormControl('', [
+       Validators.required,
       ])
+      ,
+      mobileNumber: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^\d{7,}$/)
+      ]),
+      matricule: new FormControl('', [
+        Validators.required
+      ]),
+      PasswordAccount: new FormControl('', [
+        Validators.required,
+        Validators.minLength(8)
+      ]),
+      confirmPassword: new FormControl('', [
+        Validators.required,
+        this.matchPassword.bind(this)
+      ]),
+      email: new FormControl('', [
+        Validators.required,
+        Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$")
+      ]),
+
     });
-    this.branchService.getRooms().subscribe((data: any) => {
-      this.filiersExist = data;
-      console.log(this.filiersExist);
-    });
   }
-  get code() {
-    return this.addSubjectForm.get('code');
+  matchPassword(control: AbstractControl): { [key: string]: any } | null {
+    const PasswordAccount = control.parent?.get('PasswordAccount');
+    const confirmPassword = control;
+
+    if (PasswordAccount?.value !== confirmPassword.value) {
+      return { passwordMismatch: true };
+    }
+    return null;
   }
-  get name() {
-    return this.addSubjectForm.get('name');
+  get firstname() {
+    return this.addTeacherForm.get('firstname');
   }
-  get description() {
-    return this.addSubjectForm.get('description');
+  get lastname() {
+    return this.addTeacherForm.get('lastname');
   }
-  get filiere() {
-    return this.addSubjectForm.get('filiere');
+  get gender() {
+    return this.addTeacherForm.get('gender');
   }
-  addSubject(subject: Subject) {
-    this.subjectService.addSubject(subject).subscribe(subjects => {
-      this.toastr.success('Subject added successfully');
-    }, error => {
+  get dob() {
+    return this.addTeacherForm.get('dob');
+  }
+   get jod() {
+  return this.addTeacherForm.get('jod');
+  }
+  get mobileNumber() {
+    return this.addTeacherForm.get('mobileNumber');
+  }
+
+  get matricule() {
+    return this.addTeacherForm.get('matricule');
+  }
+
+  get PasswordAccount() {
+    return this.addTeacherForm.get('PasswordAccount');
+  }
+  get confirmPassword() {
+    return this.addTeacherForm.get('confirmPassword');
+  }
+
+
+  get email() {
+    return this.addTeacherForm.get('email');
+  }
+  addTeacher(teacher: Teacher) {
+    this.receptionisteService.addTeacher(teacher).subscribe((teachers: any) => {
+      this.toastr.success('Teacher added successfully');
+    }, (error: any) => {
       this.toastr.error('error');
-      console.log(error);
     });
   }
   onSubmit(): any {
-    this.formData = this.addSubjectForm.value;
-    let subject: Subject;
-    subject = {
-      course: {
-        name: this.formData?.name,
-        description: this.formData?.description,
-        code: this.formData?.code
-      },
-      filiereIDS: [].concat(...this.formData?.filiere)
+    this.formData = this.addTeacherForm.value;
+    let teacher: Teacher;
+    teacher = {
+      matricule: this.formData?.matricule,
+      firstname: this.formData?.firstname,
+      lastname: this.formData?.lastname,
+      phone: this.formData?.mobileNumber,
+      email: this.formData?.email,
+      gender: this.formData?.gender == 'Male' ? 'MALE' : 'FEMALE',
+      password: this.formData?.PasswordAccount,
+      date_of_birth: this.formData?.dob,
+      joining_date : this.formData?.jod
     }
-
-    console.log(subject);
-    this.addSubject(subject);
-    // console.log(x);
+    this.addTeacher(teacher);
   }
 
 }
