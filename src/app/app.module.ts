@@ -19,7 +19,7 @@ import { NgApexchartsModule } from "ng-apexcharts";
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DoctorService } from './services/doctor.service';
-import { EditDoctorComponent } from './edit-student/edit-student.component';
+import { EditDoctorComponent } from './edit-doctor/edit-doctor.component';
 import { DoctorAttendanceComponent } from './student-attendance/student-attendance.component';
 import { OverviewChartComponent } from './overview-chart/overview-chart.component';
 import { ClassAttendanceOverviewComponent } from './class-attendance-overview/class-attendance-overview.component';

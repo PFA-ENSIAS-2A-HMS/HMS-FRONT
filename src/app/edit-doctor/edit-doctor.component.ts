@@ -9,8 +9,8 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-student',
-  templateUrl: './edit-student.component.html',
-  styleUrls: ['./edit-student.component.css']
+  templateUrl: './edit-doctor.component.html',
+  styleUrls: ['./edit-doctor.component.css']
 })
 
 export class EditDoctorComponent implements OnInit {
