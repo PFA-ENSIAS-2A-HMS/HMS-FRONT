@@ -11,7 +11,7 @@ import * as saveAs from 'file-saver';
   styleUrls: ['./receptionist-list.component.css'],
  
 })
-export class TeacherListComponent implements OnInit {
+export class ReceptionistListComponent implements OnInit {
   
   students: any;
   role: string | any;

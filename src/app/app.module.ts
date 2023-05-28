@@ -11,7 +11,7 @@ import { AddDoctorComponent } from './add-doctor/add-doctor.component';
 import { DoctorListComponent } from './doctor-list/doctor-list.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { TeacherListComponent } from './receptionist-list/receptionist-list.component';
+import { ReceptionistListComponent } from './receptionist-list/receptionist-list.component';
 import { AddReceptionistComponent } from './add-receptionist/add-receptionist.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -26,12 +26,10 @@ import { ClassAttendanceOverviewComponent } from './class-attendance-overview/cl
 import { TeacherAttendanceComponent } from './teacher-attendance/teacher-attendance.component';
 import { HolidayComponent } from './holiday/holiday.component'; 
 import { AddHolidayComponent } from './add-holiday/add-holiday.component';
-import { EventsComponent } from './events/events.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { HolidayService } from './services/holiday.service';
 import { AuthGuard } from './auth.guard';
-import { AddEventComponent } from './add-event/add-event.component';
 import { AddRoomComponent } from './add-room/add-room.component';
 import { RoomListComponent } from './room-list/room-list.component';
 import { RoomService } from './services/branch.service';
@@ -56,20 +54,18 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'doctors', component: DoctorListComponent },
   { path: 'addDoctor', component: AddDoctorComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
-  { path: 'teachers', component: TeacherListComponent },
+  { path: 'receptionists', component: ReceptionistListComponent },
   { path: 'AddReceptionist', component: AddReceptionistComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
   { path: 'editDoctor/:cne', component: EditDoctorComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
-  { path: 'editTeacher/:cne', component: EditReceptionistComponenet, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
+  { path: 'editReceptionist/:cne', component: EditReceptionistComponenet, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
   { path: 'attendance', component: DoctorAttendanceComponent },
-  { path: 'teachers', component: TeacherListComponent },
+  { path: 'teachers', component: ReceptionistListComponent },
   { path: 'AddReceptionist', component: AddReceptionistComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
   { path: 'editDoctor/:cne', component: EditDoctorComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
   { path: 'attendance/students', component: DoctorAttendanceComponent },
   { path: 'attendance/teachers', component: TeacherAttendanceComponent },
   { path: 'holiday/add', component: AddHolidayComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
   { path: 'holiday', component: AddHolidayComponent },
-  { path: 'events', component: EventsComponent },
-  { path: 'addevents', component: EventsComponent },
   { path: 'branchs', component: RoomListComponent },
   { path: 'branchs/add', component: AddRoomComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
   { path: 'subjects', component: SubjectListComponent },
@@ -80,7 +76,6 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    AddEventComponent,
     AppComponent,
     SidebarComponent,
     MainComponent,
@@ -88,7 +83,7 @@ const routes: Routes = [
     DoctorListComponent,
     LoginComponent,
     DashboardComponent,
-    TeacherListComponent,
+    ReceptionistListComponent,
     AddReceptionistComponent,
     EditDoctorComponent,
     DoctorAttendanceComponent,
@@ -96,7 +91,6 @@ const routes: Routes = [
     ClassAttendanceOverviewComponent,
     SearchFlterPipe,
     TeacherAttendanceComponent,
-    EventsComponent,
     AddSubjectComponent,
     SearchHolidaysPipe,
     EditReceptionistComponenet,
