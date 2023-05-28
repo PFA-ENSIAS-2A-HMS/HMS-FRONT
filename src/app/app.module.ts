@@ -73,6 +73,7 @@ const routes: Routes = [
   { path: 'patients/add', component: AddPatientComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
   { path : 'profile',component : MyProfileComponent},
   { path : 'register',component : RegistrationComponent},
+  { path : 'appointments/add',component : AddAppointmentComponent},
   { path : 'appointments',component : AppointmentComponent},
  
   
