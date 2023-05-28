@@ -33,7 +33,7 @@ import { AuthGuard } from './auth.guard';
 import { AddRoomComponent } from './add-room/add-room.component';
 import { RoomListComponent } from './room-list/room-list.component';
 import { RoomService } from './services/branch.service';
-import { SubjectListComponent } from './subject-list/subject-list.component';
+import { PatientListComponent } from './patient-list/patient-list.component';
 import { AddSubjectComponent } from './add-subject/add-subject.component';
 import { SubjectService } from './services/subject.service';
 import { SearchFlterPipe } from './pipes/search-flter.pipe';
@@ -68,7 +68,7 @@ const routes: Routes = [
   { path: 'holiday', component: AddHolidayComponent },
   { path: 'branchs', component: RoomListComponent },
   { path: 'branchs/add', component: AddRoomComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
-  { path: 'subjects', component: SubjectListComponent },
+  { path: 'patients', component: PatientListComponent },
   { path: 'subjects/add', component: AddSubjectComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
   { path : 'profile',component : MyProfileComponent},
   { path : 'register',component : RegistrationComponent}
@@ -94,7 +94,7 @@ const routes: Routes = [
     AddSubjectComponent,
     SearchHolidaysPipe,
     EditReceptionistComponenet,
-    SubjectListComponent,
+    PatientListComponent,
     SearchReceptionistsPipe,
     MyProfileComponent,
     RegistrationComponent,

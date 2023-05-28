@@ -39,26 +39,26 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let teacher of teachers | searchReceptionists: searchService.searchText;let index = index">
-       <td>{{teacher.matricule}}</td>
+    <tr *ngFor="let receptionist of receptionists | searchReceptionists: searchService.searchText;let index = index">
+       <td>{{receptionist.matricule}}</td>
        <td>
         <h2 class="table-avatar">
-            <a href="teacher-details.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/avatar-0{{index+1}}.jpg" alt="User Image"></a>
+            <a href="receptionist-details.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/avatar-0{{index+1}}.jpg" alt="User Image"></a>
         </h2>
-        {{teacher.firstname}} {{teacher.lastname}}
+        {{receptionist.firstname}} {{receptionist.lastname}}
        </td>
        <td>GL</td>
-       <td>{{teacher.gender}}</td>
-       <td>{{teacher.joining_date}}</td>
-       <td>{{teacher.date_of_birth}}</td>
-       <td>{{teacher.phone}}</td>
-       <td>{{teacher.email}}</td>
+       <td>{{receptionist.gender}}</td>
+       <td>{{receptionist.joining_date}}</td>
+       <td>{{receptionist.date_of_birth}}</td>
+       <td>{{receptionist.phone}}</td>
+       <td>{{receptionist.email}}</td>
        <td *ngIf="role=='ADMIN'" class="text-right">
         <div class="actions">
-        <a routerLink="/editReceptionist/{{teacher.id}}" class="btn btn-sm bg-success-light mr-2">
+        <a routerLink="/editReceptionist/{{receptionist.id}}" class="btn btn-sm bg-success-light mr-2">
         <i class="fas fa-pen"></i>
         </a>
-        <!-- (click)="deleteTeacher(teacher.id)" -->
+        <!-- (click)="deletereceptionist(receptionist.id)" -->
         <a  class="btn btn-sm bg-danger-light">
         <i class="fas fa-trash"></i>
         </a>

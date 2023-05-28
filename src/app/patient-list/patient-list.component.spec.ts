@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { SubjectListComponent } from './subject-list.component';
+import { PatientListComponent } from './patient-list.component';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -9,12 +8,12 @@ import { ToastrModule } from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { OverviewChartComponent } from '../overview-chart/overview-chart.component';
 describe('SubjectListComponent', () => {
-  let component: SubjectListComponent;
-  let fixture: ComponentFixture<SubjectListComponent>;
+  let component: PatientListComponent;
+  let fixture: ComponentFixture<PatientListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SubjectListComponent,NavbarComponent,
+      declarations: [ PatientListComponent,NavbarComponent,
         SidebarComponent,OverviewChartComponent],
        imports: [RouterTestingModule, 
         HttpClientTestingModule,
@@ -24,7 +23,7 @@ describe('SubjectListComponent', () => {
       ],
     })
     .compileComponents();
-    fixture = TestBed.createComponent(SubjectListComponent);
+    fixture = TestBed.createComponent(PatientListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
