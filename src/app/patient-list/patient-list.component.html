@@ -17,7 +17,7 @@
     </div>
     <div class="col-auto text-right float-right ml-auto">
     <a class="btn btn-outline-primary mr-2" (click)="downloadPatients()"><i class="fas fa-download"></i> Download</a>
-    <a routerLink="/subjects/add" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+    <a routerLink="/patients/add" class="btn btn-primary"><i class="fas fa-plus"></i></a>
 
     </div>
     </div>
@@ -32,22 +32,22 @@
     <table class="table table-hover table-center mb-0 datatable">
     <thead>
     <tr>
-    <th>Subject Code</th>
+    <th>patientCode</th>
     <th>Name</th>
     <th>Description</th>
     <th>Rooms CONCERNED</th>
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let subject of Patients " >
+    <tr *ngFor="let patient of Patients " >
     <td>
     <h2>
-    <a>{{subject.code}}</a>
+    <a>{{patient.code}}</a>
     </h2>
     </td>
-    <td>{{subject.name}}</td>
-    <td>{{subject.description}}</td>
-    <td><ul *ngFor="let filiere of subject.filiere" [style.color]="colors[(Patients.indexOf(subject) + filiere.id) % colors.length]"><li>{{filiere.name}}</li></ul></td>
+    <td>{{patient.name}}</td>
+    <td>{{patient.description}}</td>
+    <td><ul *ngFor="let filiere of patient.filiere" [style.color]="colors[(Patients.indexOf(patient) + filiere.id) % colors.length]"><li>{{filiere.name}}</li></ul></td>
     <td *ngIf="role=='ADMIN'"class="text-right">
           <div class="actions">
           <a class="btn btn-sm bg-success-light mr-2">
@@ -71,7 +71,7 @@
 
 
     <footer>
-    <p>Copyright © 2023 SMART ENSIAS.</p>
+    <p>Copyright © 2023 HMS.</p>
     </footer>
 
 

@@ -34,7 +34,7 @@ import { AddRoomComponent } from './add-room/add-room.component';
 import { RoomListComponent } from './room-list/room-list.component';
 import { RoomService } from './services/branch.service';
 import { PatientListComponent } from './patient-list/patient-list.component';
-import { AddSubjectComponent } from './add-subject/add-subject.component';
+import { AddPatientComponent } from './add-patient/add-patient.component';
 import { SubjectService } from './services/subject.service';
 import { SearchFlterPipe } from './pipes/search-flter.pipe';
 import { SearchHolidaysPipe } from './pipes/search-holidays.pipe';
@@ -69,7 +69,7 @@ const routes: Routes = [
   { path: 'branchs', component: RoomListComponent },
   { path: 'branchs/add', component: AddRoomComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
   { path: 'patients', component: PatientListComponent },
-  { path: 'subjects/add', component: AddSubjectComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
+  { path: 'patients/add', component: AddPatientComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
   { path : 'profile',component : MyProfileComponent},
   { path : 'register',component : RegistrationComponent}
 ];
@@ -91,7 +91,7 @@ const routes: Routes = [
     ClassAttendanceOverviewComponent,
     SearchFlterPipe,
     TeacherAttendanceComponent,
-    AddSubjectComponent,
+    AddPatientComponent,
     SearchHolidaysPipe,
     EditReceptionistComponenet,
     PatientListComponent,
