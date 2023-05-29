@@ -55,9 +55,11 @@ import { AddInvoicesComponent } from './add-invoices/add-invoices.component';
 import { GetstartedSidebarComponent } from './getstarted-sidebar/getstarted-sidebar.component';
 import { NavbarNosearcchComponent } from './navbar-nosearcch/navbar-nosearcch.component';
 import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './about/about.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
+  { path: 'about', component : AboutComponent},
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'doctors', component: DoctorListComponent },
@@ -122,7 +124,8 @@ const routes: Routes = [
     AddInvoicesComponent,
     GetstartedSidebarComponent,
     NavbarNosearcchComponent,
-    HomeComponent
+    HomeComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
