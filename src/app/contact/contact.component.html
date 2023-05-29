@@ -5,12 +5,11 @@
         <header class="header_section">
           <div class="container">
             <nav class="navbar navbar-expand-lg custom_nav-container ">
-              <a class="navbar-brand" routerLink="/">
-                <span>
-                    <img style="width:10%" src="assets/home/images/logo.png"> HMS
-                </span>
-              </a>
-    
+                <a class="navbar-brand" routerLink="/">
+                    <span>
+                        <img style="width:10%" src="assets/home/images/logo.png"> HMS
+                    </span>
+                </a>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class=""> </span>
               </button>
@@ -20,10 +19,10 @@
                     <li class="nav-item">
                         <a class="nav-link" routerLink="/">Home <span class="sr-only">(current)</span></a>
                       </li>
-                      <li class="nav-item active">
+                      <li class="nav-item">
                         <a class="nav-link" routerLink="/about"> About</a>
                       </li>
-                      <li class="nav-item">
+                      <li class="nav-item active">
                         <a class="nav-link" routerLink="/contact">Contact Us</a>
                       </li>
                       <li class="nav-item">
@@ -42,32 +41,54 @@
       </div>
 
 
-      <section class="about_section layout_padding">
+      <section class="contact_section layout_padding">
         <div class="container">
+          <div class="heading_container">
+            <h2>
+              Get In Touch
+            </h2>
+          </div>
           <div class="row">
             <div class="col-md-6">
-              <div class="img-box">
-                <img src="assets/home/images/about-img.jpg" alt="">
+              <div class="form_container contact-form">
+                <form action="">
+                  <div class="form-row">
+                    <div class="col-lg-6">
+                      <div>
+                        <input type="text" placeholder="Your Name" />
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div>
+                        <input type="text" placeholder="Phone Number" />
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <input type="email" placeholder="Email" />
+                  </div>
+                  <div>
+                    <input type="text" class="message-box" placeholder="Message" />
+                  </div>
+                  <div class="btn_box">
+                    <button>
+                      SEND
+                    </button>
+                  </div>
+                </form>
               </div>
             </div>
             <div class="col-md-6">
-              <div class="detail-box">
-                <div class="heading_container">
-                  <h2>
-                    About <span>Us</span>
-                  </h2>
-                </div>
-                <p>
-                  At our hospital management platform, we are dedicated to revolutionizing the way hospitals manage their operations. With a focus on efficiency, security, and advanced features, we provide a comprehensive solution that simplifies hospital management. Our platform streamlines processes such as appointment scheduling, patient record-keeping, and resource management, allowing hospitals to enhance their operational efficiency and provide the best healthcare services. Join us today and experience the future of hospital management.
-                </p>
-                <a href="">
-                  Read More
-                </a>
+              <div class="map_container">
+                  <div class="map" style="display: flex; justify-content: center;">
+                      <img style="width: 45%;" src="/assets/home/images/get-in-touch.png">
+                  </div> 
               </div>
             </div>
           </div>
         </div>
       </section>
+     
     
   
       <footer class="footer_section">
