@@ -22,7 +22,7 @@
     <div class="col-sm-12">
     <div class="card">
     <div class="card-body">
-    <form [formGroup]="addHolidayForm" (submit)="onSubmit()">
+    <form>
     <div class="row">
     <div class="col-12">
     <h5 class="form-title"><span>Please provide the following information to register your hospital:</span></h5>
@@ -39,7 +39,7 @@
                              </div>
                              <ng-template #elsetitle>
                               <div *ngIf="title?.errors?.['minlength']">
-                                   It should be at least 8 charcters
+                                   It should be at least 8 characters
                               </div>
                               </ng-template>
                           </div>
@@ -89,7 +89,8 @@
         </div>
         </div>
     <div class="col-12">
-    <button type="submit" class="btn btn-primary" [disabled]="addHolidayForm.invalid">get started</button>
+    <button data-toggle="modal" data-target="#informationModal" type="submit" class="btn btn-primary" >get started</button>
+    <!--[disabled]="addHolidayForm.invalid"-->
     </div>
     </div>
     </form>
@@ -99,3 +100,26 @@
     </div>
     </div>
     </div>
+
+<!-- Confirmation Message -->
+<div class="modal fade" id="informationModal" tabindex="-1" role="dialog" aria-labelledby="informationModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="informationModalLabel">Account Creation Confirmation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <img class="mx-auto d-block mb-5" style="width: 50%" src="assets/img/wait.png">
+        <p>Thank you for creating your hospital account!</p>
+        <p>Your request has been submitted for review and approval by the administrator.</p>
+        <p>Please wait patiently for the confirmation. We will notify you once your account is approved.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
