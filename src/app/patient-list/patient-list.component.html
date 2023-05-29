@@ -29,9 +29,9 @@
     <div class="card card-table">
     <div class="card-body">
     <div class="table-responsive">
-    <table class="table table-hover table-center mb-0 datatable">
-    <thead>
-      <tr>
+      <table class="table table-hover table-center mb-0 datatable">
+        <thead>
+          <tr>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Gender</th>
@@ -39,30 +39,36 @@
             <th>Contact Number</th>
             <th>Emergency Contact</th>
             <th>Blood Type</th>
+            <th>Status</th> <!-- New column for displaying status -->
             <th *ngIf="role=='ADMIN'" class="text-right">Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-            <td>John</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <a class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/avatar-04.jpg" alt="User Image"></a>
+              John
+            </td>
             <td>Doe</td>
             <td>Male</td>
             <td>1990-01-01</td>
             <td>123456789</td>
             <td>987654321</td>
             <td>Blood Type A+</td>
-            
+            <td>Pending/Admitted/Discharged</td> <!-- Example status, replace with dynamic data -->
             <td *ngIf="role=='ADMIN'" class="text-right">
-                  <div class="actions">
-                    <button class="btn btn-sm bg-success-light mr-2" data-toggle="modal" data-target="#editPatientModal">
-                      <i class="fas fa-pen"></i>
-                    </button>
-                    
-          </div>
-           </td>
-      </tr>
-    </tbody>
-    </table>
+              <div class="actions">
+                <button class="btn btn-sm bg-success-light mr-2" data-toggle="modal" data-target="#editPatientModal">
+                  <i class="fas fa-pen"></i>
+                </button>
+                <button class="btn btn-sm bg-primary-light" >Change Status</button> <!-- Button to change status -->
+                                                <!--(click)="changeStatus(patient)" 
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
     </div>
     </div>
     </div>
