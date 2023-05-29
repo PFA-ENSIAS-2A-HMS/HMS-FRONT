@@ -54,9 +54,10 @@ import { InvoicesComponent } from './invoices/invoices.component';
 import { AddInvoicesComponent } from './add-invoices/add-invoices.component';
 import { GetstartedSidebarComponent } from './getstarted-sidebar/getstarted-sidebar.component';
 import { NavbarNosearcchComponent } from './navbar-nosearcch/navbar-nosearcch.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', component: HomeComponent},
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'doctors', component: DoctorListComponent },
@@ -120,7 +121,8 @@ const routes: Routes = [
     InvoicesComponent,
     AddInvoicesComponent,
     GetstartedSidebarComponent,
-    NavbarNosearcchComponent
+    NavbarNosearcchComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

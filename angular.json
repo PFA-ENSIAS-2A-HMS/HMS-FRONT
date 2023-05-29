@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "smart-enais": {
+    "HMS": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/smart-enais",
+            "outputPath": "dist/HMS",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -41,7 +41,8 @@
               "src/assets/plugins/bootstrap/js/bootstrap.min.js",
               "src/assets/js/script.js",
               "src/assets/file.js",
-              "src/assets/js/jquery-ui.min.js"
+              "src/assets/js/jquery-ui.min.js",
+              "src/assets/home/js/custom.js"
             ]
           },
           "configurations": {
@@ -75,10 +76,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "smart-enais:build:production"
+              "browserTarget": "HMS:build:production"
             },
             "development": {
-              "browserTarget": "smart-enais:build:development"
+              "browserTarget": "HMS:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -86,7 +87,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "smart-enais:build"
+            "browserTarget": "HMS:build"
           }
         },
         "test": {
@@ -118,7 +119,8 @@
               "src/assets/js/script.js",
               "src/assets/file.js",
               "src/assets/js/jquery-ui.min.js",
-              "node_modules/apexcharts/dist/apexcharts.min.js"
+              "node_modules/apexcharts/dist/apexcharts.min.js",
+              "src/assets/home/js/custom.js"
             ]
           }
         }
