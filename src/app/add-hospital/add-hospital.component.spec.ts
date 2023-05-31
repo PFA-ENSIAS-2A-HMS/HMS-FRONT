@@ -40,7 +40,7 @@ describe('AddHolidayComponent', () => {
   });
 
   it('should initialize the form with default values', () => {
-    expect(component.addHolidayForm.value).toEqual({
+    expect(component.addHospitalForm.value).toEqual({
       title: '',
       type: '',
       start_date: '',
@@ -48,15 +48,15 @@ describe('AddHolidayComponent', () => {
     });
   });
   it('should set form controls correctly', () => {
-    const titleControl = component.addHolidayForm.get('title');
-    const typeControl = component.addHolidayForm.get('type');
-    const startDateControl = component.addHolidayForm.get('start_date');
-    const endDateControl = component.addHolidayForm.get('end_date');
+    const nameControl = component.addHospitalForm.get('name');
+    const countryControl = component.addHospitalForm.get('country');
+    const addresseDateControl = component.addHospitalForm.get('addresse');
+    const logoControl = component.addHospitalForm.get('logo');
 
-    expect(titleControl).toBeTruthy();
-    expect(typeControl).toBeTruthy();
-    expect(startDateControl).toBeTruthy();
-    expect(endDateControl).toBeTruthy();
+    expect(nameControl).toBeTruthy();
+    expect(countryControl).toBeTruthy();
+    expect(addresseDateControl).toBeTruthy();
+    expect(logoControl).toBeTruthy();
   });
  
   

@@ -1,105 +1,69 @@
-<app-navbar-nosearcch>
-</app-navbar-nosearcch>
-<!--<app-sidebar></app-sidebar>-->
+<app-navbar-nosearcch></app-navbar-nosearcch>
 
-<app-getstarted-sidebar>
-</app-getstarted-sidebar>
+<app-getstarted-sidebar></app-getstarted-sidebar>
+
 <div class="page-wrapper">
-    <div class="content container-fluid">
+  <div class="content container-fluid">
     <div class="page-header">
-    <div class="row align-items-center">
-    <div class="col">
-    <h3 class="page-title">Hospital Setup</h3>
-    <ul class="breadcrumb">
-        Welcome! To get started, please create your hospital account below.
-    </ul>
-    </div>
-    </div>
-    </div>
-
-
-    <div class="row">
-    <div class="col-sm-12">
-    <div class="card">
-    <div class="card-body">
-    <form>
-    <div class="row">
-    <div class="col-12">
-    <h5 class="form-title"><span>Please provide the following information to register your hospital:</span></h5>
-    </div>
-    <div class="col-12 col-sm-6">
-    <div class="form-group">
-    <label>Hospital Name:<span style="color:red">*</span></label>
-    <input type="text" title="title"  class="form-control is-invalid"
-                          [ngClass]="{'is-invalid' : title?.invalid && title?.touched}"
-                          formControlName="title">
-                          <div class="alert alert-warning mt-1" *ngIf="title?.invalid && title?.touched">
-                             <div *ngIf="title?.errors?.['required']; else elsetitle">
-                              the title field is required
-                             </div>
-                             <ng-template #elsetitle>
-                              <div *ngIf="title?.errors?.['minlength']">
-                                   It should be at least 8 characters
-                              </div>
-                              </ng-template>
-                          </div>
-    </div>
-    </div>
-    <div class="col-12 col-sm-6">
-    <div class="form-group">
-    <label>Country: <span style="color:red">*</span></label>
-    <select class="form-control"
-    [ngClass]="{'is-invalid' : type?.invalid && type?.touched}"
-     formControlName="type">
-    
-        <option value="" disabled selected>Select Country</option>
-        <option *ngFor="let country of countries" [value]="country.name">{{country.name}}</option>
-   
-    </select>
-    <div class="alert alert-warning mt-1" *ngIf="type?.invalid && type?.touched">
-      <div *ngIf="type?.errors?.['required']">
-          the type field is required
+      <div class="row align-items-center">
+        <div class="col">
+          <h3 class="page-title">Hospital Setup</h3>
+          <ul class="breadcrumb">
+            <li>Welcome! To get started, please create your hospital account below.</li>
+          </ul>
+        </div>
       </div>
-
-
-  </div>
     </div>
-    </div>
-    <div class="col-12 col-sm-6">
-      <div class="form-group">
-      <label>Address: <span style="color:red">*</span></label>
-      <input type="text" formControlName="start_date" class="form-control"
-      [ngClass]="{'is-invalid' : start_date?.invalid && start_date?.touched}"
-      >
-      <div class="alert alert-warning mt-1" *ngIf="start_date?.invalid && start_date?.touched">
 
-
-          <div *ngIf="start_date?.errors?.['required']">
-              the start date field is required !
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-body">
+            <form [formGroup]="addHospitalForm" (ngSubmit)="onSubmit()">
+              <div class="row">
+                <div class="col-12">
+                  <h5 class="form-title"><span>Please provide the following information to register your hospital:</span></h5>
+                </div>
+                <div class="col-12 col-sm-6">
+                  <div class="form-group">
+                    <label>Hospital Name:<span style="color:red">*</span></label>
+                    <input type="text" class="form-control" formControlName="name">
+                  </div>
+                </div>
+                <div class="col-12 col-sm-6">
+                  <div class="form-group">
+                    <label>Country: <span style="color:red">*</span></label>
+                    <select class="form-control" formControlName="country">
+                      <option value="" disabled selected>Select Country</option>
+                      <option *ngFor="let country of countries" [value]="country.name">{{country.name}}</option>
+                    </select>
+                    
+                  </div>
+                </div>
+                <div class="col-12 col-sm-6">
+                  <div class="form-group">
+                    <label>Address: <span style="color:red">*</span></label>
+                    <input type="text" class="form-control" formControlName="address">
+                    
+                  </div>
+                </div>
+                <div class="col-12 col-sm-6">
+                  <div class="form-group">
+                    <label>Logo (optional):</label>
+                    <input type="file" class="form-control" formControlName="logo">
+                  </div>
+                </div>
+                <div class="col-12">
+                  <button [disabled]="addHospitalForm['invalid']" type="submit" class="btn btn-primary">Get Started</button>
+                </div>
+              </div>
+            </form>
           </div>
-      </div>
-      </div>
-      </div>
-      <div class="col-12 col-sm-6">
-        <div class="form-group">
-        <label>Logo (optional):</label>
-        <input type="file" formControlName="end_date" class="form-control"
-        >
-        
         </div>
-        </div>
-    <div class="col-12">
-    <button data-toggle="modal" data-target="#informationModal" type="submit" class="btn btn-primary" >get started</button>
-    <!--[disabled]="addHolidayForm.invalid"-->
+      </div>
     </div>
-    </div>
-    </form>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
+  </div>
+</div>
 
 <!-- Confirmation Message -->
 <div class="modal fade" id="informationModal" tabindex="-1" role="dialog" aria-labelledby="informationModalLabel" aria-hidden="true">
