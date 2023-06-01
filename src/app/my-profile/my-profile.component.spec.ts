@@ -5,11 +5,9 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TeacherListComponent } from '../receptionist-list/receptionist-list.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { OverviewChartComponent } from '../overview-chart/overview-chart.component';
 import { NavbarComponent } from '../navbar/navbar.component';
-import { SearchReceptionistsPipe } from '../pipes/search-teachers.pipe';
 
 describe('MyProfileComponent', () => {
   let component: MyProfileComponent;
@@ -17,8 +15,8 @@ describe('MyProfileComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TeacherListComponent,NavbarComponent,
-        SidebarComponent,OverviewChartComponent,SearchReceptionistsPipe,MyProfileComponent],
+      declarations: [NavbarComponent,
+        SidebarComponent,OverviewChartComponent,MyProfileComponent],
        imports: [RouterTestingModule, 
         HttpClientTestingModule,
         ToastrModule.forRoot(),

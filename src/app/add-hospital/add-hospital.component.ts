@@ -20,7 +20,8 @@ export class AddHospitalComponent {
     name: '',
     country: '',
     address: '',
-    logo : ''
+    logo : '',
+    
   };
   hospitals: Hospital[] = [];
   addHospitalForm: FormGroup;
@@ -58,7 +59,7 @@ export class AddHospitalComponent {
     return this.addHospitalForm.get('logo');
   }
   addHospital(hospital: Hospital) {
-    this.hospitalService.addHospital(hospital).subscribe(
+    this.hospitalService.addHospital(hospital,"1").subscribe(
       () => {
         $('#informationModal').modal('show');
         this.toastr.success('Your request has been submitted successfully.');
@@ -80,7 +81,7 @@ export class AddHospitalComponent {
       name: this.formData?.name,
       country: this.formData?.country,
       address: this.formData?.address,
-      logo : this.formData?.logo
+      logo : this.formData?.logo,
     };
     console.log(hospital);
     this.addHospital(hospital);

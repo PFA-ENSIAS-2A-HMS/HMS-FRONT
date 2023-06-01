@@ -17,7 +17,7 @@ export class NavbarNosearcchComponent {
   constructor(public searchService: SearchService,private loginService :  LoginService
     ,private router : Router,private userService :  UserService) { 
       this.id = localStorage.getItem('id');
-      //this.getUserById(this.id);
+      this.getUserById(this.id);
     }
 
   logout() {
@@ -30,11 +30,9 @@ export class NavbarNosearcchComponent {
   }
 
   getUserById(id : any){
-   this.userService.getUserById(id).subscribe(user=>{
+   this.userService.getAdminById(id).subscribe(user=>{
       this.user = user;
-      
    },error=>{
-
    }
    ); 
   }

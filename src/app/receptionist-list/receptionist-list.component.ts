@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ReceptionistService } from '../services/receptionist.service';
 import { ToastrService } from 'ngx-toastr';
 import { SearchService } from '../search.service';
-import { Teacher } from '../models/teacher';
+
 import * as saveAs from 'file-saver';
 
 @Component({
@@ -49,7 +49,7 @@ export class ReceptionistListComponent implements OnInit {
       console.log(this.receptionists);
     });
   }
-
+/*
   downloadReceptionists(): void {
     this.receptionistService.getReceptionists().subscribe(receptionists => {
       this.receptionists = receptionists;
@@ -58,19 +58,20 @@ export class ReceptionistListComponent implements OnInit {
       saveAs(blob, 'receptionists.csv');
 
     });
-  }
+  }*/
 
   confirmDelete(){
     
   }
-  generateCsvData(receptionists: Teacher[]): string {
+  /*
+  generateCsvData(receptionists: Re[]): string {
     const headers = ['ID', 'CNE', 'First Name', 'Last Name', 'Phone', 'Email', 'Gender', 'Image URL', 'Date of Birth', 'Password'];
     const rows = receptionists.map(teacher => {
       const row = [teacher.id, teacher.matricule, teacher.firstname, teacher.lastname, teacher.phone, teacher.email, teacher.gender, teacher.image_url, teacher.date_of_birth, teacher.password];
       return row.join(',');
     });
     return [headers.join(','), ...rows].join('\n');
-  }
+  }*/
 }
    
  

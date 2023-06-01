@@ -1,4 +1,4 @@
-import { Room } from '../models/branch';
+import { Room } from '../models/room';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -11,7 +11,7 @@ import { RoomService } from '../services/branch.service';
 })
 
 export class AddRoomComponent {
-  formData: any;
+  /*formData: any;
   myRoom: Room = {
     code: '',
     name: '',
@@ -64,4 +64,5 @@ export class AddRoomComponent {
     }
     let x = this.addHoliday(branch);
   }
+  */
 }

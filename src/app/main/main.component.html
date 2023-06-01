@@ -3,7 +3,7 @@
       <div class="page-header">
          <div class="row">
             <div class="col-sm-12">
-               <h3 class="page-title">Welcome {{user?.first_name || user?.firstname || 'unkown' }}!</h3>
+               <h1 class="page-title"><b>Welcome {{user?.firstName || user?.firstName || 'unkown' }}!</b></h1>
                <ul class="breadcrumb">
                   <li class="breadcrumb-item active">Dashboard</li>
                </ul>
@@ -19,7 +19,7 @@
                         <i class="fas fa-user-md"></i>
                      </div>
                      <div class="db-info">
-                        <h3>10</h3>
+                        <h3>{{dashboardInfo?.totalDoctors}}</h3>
                         <h6>Total doctors</h6>
                      </div>
                   </div>
@@ -35,7 +35,7 @@
                         
                      </div>
                      <div class="db-info">
-                        <h3>50</h3>
+                        <h3>{{dashboardInfo?.totalPatients}}</h3>
                         <h6>Total Patients</h6>
                      </div>
                   </div>
@@ -51,7 +51,7 @@
                         <i class="fa fa-calendar"></i>
                      </div>
                      <div class="db-info">
-                        <h3>100</h3>
+                        <h3>{{dashboardInfo?.totalAppointments}}</h3>
                         <h6>Total Appointments</h6>
 
                      </div>
@@ -67,7 +67,7 @@
                         <i class="fas fa-building"></i>
                      </div>
                      <div class="db-info">
-                        <h3>30</h3>
+                        <h3>{{dashboardInfo?.totalRooms}}</h3>
                         <h6>Total Rooms</h6>
                      </div>
                   </div>

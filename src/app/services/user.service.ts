@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Admin } from '../models/admin';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   user: any;
-  apiUrl: string = "http://localhost:8080";
+  apiUrl: string = "http://localhost:8080/api/v1/admin";
 
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+      //'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
     })
   };
 
@@ -19,5 +21,22 @@ export class UserService {
 
   getUserById(id: any) {
     return this.http.get(`${this.apiUrl}/user/${id}`, this.httpOptions);
+  }
+  registerAdmin(admin: Admin): Observable<any> {
+    return this.http.post<any>(this.apiUrl, admin);
+  }
+  deleteAdmin(adminId: string): Observable<any> {
+    const url = `${this.apiUrl}/${adminId}`;
+    return this.http.delete<any>(url);
+  }
+
+  getAdminById(adminId: string): Observable<Admin> {
+    const url = `${this.apiUrl}/${adminId}`;
+    return this.http.get<Admin>(url);
+  }
+
+  updateAdmin(adminId: string, admin: Admin): Observable<any> {
+    const url = `${this.apiUrl}/${adminId}`;
+    return this.http.put<any>(url, admin);
   }
 }

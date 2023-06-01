@@ -21,16 +21,18 @@ export class HospitalService {
   getHolidays() {
     return this.http.get(this.apiUrl + this.endPointStudents, httpOptions);
   }
-  addHospital(hospital: any): Observable<any> {
+  addHospital(hospital: any,adminId : string): Observable<any> {
     let addHospitalUrl = this.apiUrl;
-    return this.http.post<any>(addHospitalUrl, hospital, httpOptions).pipe(
+    return this.http.post<any>(addHospitalUrl+adminId, hospital, httpOptions).pipe(
       map(response => {
         
       })
     );
-    ;
   }
   deleteHospital(id: string) {
     return this.http.delete(this.apiUrl + "/" + id, httpOptions);
+  }
+  getDashboardInfo(hospitalId : number){
+    return this.http.get(this.apiUrl + hospitalId, httpOptions);
   }
 }

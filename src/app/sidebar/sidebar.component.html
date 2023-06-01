@@ -17,12 +17,12 @@
                </a>
             </li>
                  <li style="cursor: pointer;" *ngIf="showOptions[0]" style="padding-left: 10%;"
-                 [ngClass]="{'active': currentPath=='studentdetails'}"
+                 
                  ><a routerLink="/doctors">Doctor List</a>
                  </li>
 
                    <li *ngIf="showOptions[0]" style="padding-left: 10%;"
-                   [ngClass]="{'active': currentPath=='Addstudent'}"
+                  
                    >
                    <a *ngIf="role=='ADMIN'" routerLink="/addDoctor">Doctor Add</a></li>
                    <li>
@@ -32,11 +32,11 @@
                    </a>
                     </li>
                   <li *ngIf="showOptions[1]" style="padding-left: 10%;"
-                  [ngClass]="{'active': currentPath=='teachers'}" >
+                  >
                   <a routerLink="/receptionists">Receptionists List</a>
                   </li>
                   <li *ngIf="showOptions[1]" style="padding-left: 10%;"
-                  [ngClass]="{'active': currentPath=='addTeacher'}"
+                 
                   ><a routerLink="/AddReceptionist" *ngIf="role=='ADMIN'">Receptionists Add</a></li>
             <li style="cursor: pointer;">
                         <a (click)="change(2)">

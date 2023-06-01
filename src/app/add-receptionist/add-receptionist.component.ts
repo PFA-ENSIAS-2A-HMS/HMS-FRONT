@@ -2,7 +2,7 @@ import { ReceptionistService } from '../services/receptionist.service';
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AbstractControl } from '@angular/forms';
-import { Teacher } from '../models/teacher';
+ 
 import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-add-teacher',
@@ -12,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AddReceptionistComponent {
   formData: any;
-  myTeacher: Teacher = {
+  /*myTeacher: Teacher = {
     matricule: '',
     firstname: '',
     lastname: '',
@@ -136,4 +136,5 @@ export class AddReceptionistComponent {
     }
     this.addTeacher(teacher);
   }
+  */
 }

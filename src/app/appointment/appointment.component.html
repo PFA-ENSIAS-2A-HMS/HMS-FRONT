@@ -15,7 +15,8 @@
     </ul>
     </div>
     <div class="col-auto text-right float-right ml-auto">
-    <a class="btn btn-outline-primary mr-2" (click)="downloadPatients()"><i class="fas fa-download"></i> Download</a>
+    <a class="btn btn-outline-primary mr-2" ><i class="fas fa-download"></i> Download</a>
+    <!--(click)="downloadPatients()"-->
     <a routerLink="/patients/add" class="btn btn-primary"><i class="fas fa-plus"></i></a>
 
     </div>
@@ -65,7 +66,8 @@
               <td>2:30 PM</td>
               <td style="color:rgb(50, 47, 47)">Canceled by Receptionist</td>
               
-              <td><button class="btn btn-sm bg-dark-light" (click)="cancelAppointment()">Cancelled</button></td>
+              <td><button class="btn btn-sm bg-dark-light" >Cancelled</button></td>
+                                         <!--(click)="cancelAppointment()"-->
             </tr>
             <!-- Add more rows with example data as needed -->
           

@@ -4,6 +4,7 @@ import { ApexAxisChartSeries, ApexChart, ApexDataLabels, ApexPlotOptions, ApexRe
 import { OverviewChartComponent } from '../overview-chart/overview-chart.component';
 
 import { UserService } from '../services/user.service';
+import { DashboardService } from '../services/dashboard.service';
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -13,13 +14,17 @@ import { UserService } from '../services/user.service';
 export class MainComponent {
 
   user: any;
+  dashboardInfo : any;
 
-  constructor(private userService : UserService) { }
+  constructor(private userService : UserService,
+    private dashboardService  : DashboardService) {
+      this.getDashboardInfo(1);
+     }
 
   ngOnInit() {
-    const userId = localStorage.getItem('id');
+    const userId = localStorage.getItem('id') || 'unkonwn';
     console.log(userId);
-    this.userService.getUserById(userId).subscribe((user) => {
+    this.userService.getAdminById(userId).subscribe((user) => {
       this.user = user;
     });
   }
@@ -92,7 +97,17 @@ export class MainComponent {
     opacity: 1
   };
 
-
+  getDashboardInfo(hospitalId : number): void {
+    this.dashboardService.getDashboardInfo(hospitalId)
+      .subscribe(
+        (data: any) => {
+          this.dashboardInfo = data;
+          },
+        (error) => {
+          console.error(error);
+        }
+      );
+  }
 
  
 }

@@ -1,4 +1,4 @@
-import { Room } from '../models/branch';
+import { Room } from '../models/room';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
@@ -9,6 +9,7 @@ import { RoomService } from '../services/branch.service';
   styleUrls: ['./add-invoices.component.css']
 })
 export class AddInvoicesComponent {
+  /*
   formData: any;
   myRoom: Room = {
     code: '',
@@ -61,5 +62,5 @@ export class AddInvoicesComponent {
       description: this.formData?.description,
     }
     let x = this.addHoliday(branch);
-  }
+  }*/
 }

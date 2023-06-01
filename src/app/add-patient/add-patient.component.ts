@@ -1,11 +1,10 @@
-import { Room } from '../models/branch';
-import { Subject } from '../models/subject';
+import { Room } from '../models/room';
 import { Component, OnInit, Pipe } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { SubjectService } from '../services/subject.service';
 import { RoomService } from '../services/branch.service'; 
-import { Teacher } from '../models/teacher';
+ 
 import { ReceptionistService } from '../services/receptionist.service';
 
 @Component({
@@ -14,7 +13,7 @@ import { ReceptionistService } from '../services/receptionist.service';
   styleUrls: ['./add-patient.component.css']
 })
 export class AddPatientComponent {
-  selectedBloodType : string = "";
+  /*selectedBloodType : string = "";
   medicalHistory : string = "";
   formData: any;
   myTeacher: Teacher = {
@@ -141,5 +140,5 @@ export class AddPatientComponent {
     }
     this.addTeacher(teacher);
   }
-
+  */
 }

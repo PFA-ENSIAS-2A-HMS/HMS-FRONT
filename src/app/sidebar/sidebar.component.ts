@@ -19,7 +19,7 @@ export class SidebarComponent implements OnInit{
    }
   ngOnInit(): void {
     this.currentPath = this.route.snapshot.url.join('/');
-    //this.getCurrentUserRole();
+    this.getCurrentUserRole();
   }
   getCurrentUserRole(){
     //le code a changer après

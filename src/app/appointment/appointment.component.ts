@@ -9,7 +9,7 @@ import { saveAs } from 'file-saver';
   styleUrls: ['./appointment.component.css']
 })
 export class AppointmentComponent {
-  
+  /*
   Patients: any;
   role: any;
   colors = ['#FFC107', '#2196F3', '#4CAF50'];
@@ -73,4 +73,5 @@ for (let i = 0; i < data.length; i++) {
   cancelAppointment(){
     
   }
+  */
 }

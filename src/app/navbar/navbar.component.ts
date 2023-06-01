@@ -3,7 +3,7 @@ import { SearchService } from '../search.service';
 import { LoginService } from '../services/login.service';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
-import { Teacher } from '../models/teacher';
+ 
 import { Doctor } from '../models/doctor';
 
 @Component({
@@ -20,7 +20,7 @@ export class NavbarComponent {
   constructor(public searchService: SearchService,private loginService :  LoginService
     ,private router : Router,private userService :  UserService) { 
       this.id = localStorage.getItem('id');
-      //this.getUserById(this.id);
+      this.getUserById(this.id);
     }
 
   logout() {
@@ -33,12 +33,10 @@ export class NavbarComponent {
   }
 
   getUserById(id : any){
-   this.userService.getUserById(id).subscribe(user=>{
-      this.user = user;
-      
-   },error=>{
-
+    this.userService.getAdminById(id).subscribe(user=>{
+       this.user = user;
+    },error=>{
+    }
+    ); 
    }
-   );
-  }
 }
