@@ -24,8 +24,8 @@
       <div class="col-sm-12">
          <div class="card">
             <div class="card-body">
-               <form  >
-                <!--[formGroup]="addTeacherForm" (submit)="onSubmit()"-->
+               <form  [formGroup]="addPatientForm" (submit)="onSubmit()">
+               
                   <div class="row">
                      <div class="col-12">
                         <h5 class="form-title"><span>Patient Information</span></h5>
@@ -33,16 +33,16 @@
                      <div class="col-12 col-sm-6">
                       <div class="form-group">
                         <label>First Name<span style="color:red">*</span></label>
-                        <input type="text" name="firstname"  class="form-control is-invalid"
-                        formControlName="firstname">
+                        <input type="text" name="firstname"  class="form-control"
+                        formControlName="firstName">
                         
                      </div>
                      </div>
                      <div class="col-12 col-sm-6">
                       <div class="form-group">
                         <label>Last Name<span style="color:red">*</span></label>
-                        <input type="text" name="lastname"  class="form-control is-invalid"
-                        formControlName="lastname">
+                        <input type="text" name="lastname"  class="form-control"
+                        formControlName="lastName">
                        
                      </div>
                      </div>
@@ -51,8 +51,8 @@
                       <label>Gender<span style="color:red">*</span></label>
                       <select class="form-control"
                        formControlName="gender">
-                      <option>Male</option>
-                      <option>Female</option>
+                      <option>MALE</option>
+                      <option>FEMALE</option>
                       </select>
                       
                       </div>
@@ -69,7 +69,7 @@
                     <div class="col-12 col-sm-6">
                       <div class="form-group">
                       <label> Contact Number: <span style="color:red">*</span></label>
-                      <input type="text" formControlName="email"
+                      <input type="text" formControlName="phoneNumber"
                       class="form-control"
                       >
                      
@@ -79,7 +79,7 @@
                     <div class="col-12 col-sm-6">
                       <div class="form-group">
                       <label>Emergency Contact: <span style="color:red">*</span></label>
-                      <input type="text" formControlName="mobileNumber"
+                      <input type="text" formControlName="EmergencyContact"
                       class="form-control"
                       >
                      
@@ -89,7 +89,7 @@
                        <div class="col-12 col-sm-6">
                           <div class="form-group">
                           <label>Blood Type : <span style="color:red">*</span></label>
-                          <select class="form-control" >
+                          <select class="form-control" formControlName="BloodType" >
                             <!--[(ngModel)]="selectedBloodType"-->
                             <option value="A+">Blood Type A+</option>
                             <option value="A-">Blood Type A-</option>
@@ -107,7 +107,7 @@
                           <div class="col-12 col-sm-6">
                             <div class="form-group">
                                <label>Patient Image (optional) : </label>
-                               <input type="file" required class="form-control">
+                               <input type="file" formControlName="profile"  class="form-control">
                             </div>
                          </div>
                          
@@ -115,17 +115,15 @@
                           <div class="form-group">
                       
                             <label for="medicalHistory">Medical History:</label>
-                            <textarea class="form-control" id="medicalHistory"  rows="5"></textarea>
-                                              <!--[(ngModel)]="medicalHistory"-->
-                          
-                         
+                            <textarea formControlName="medicalHistory" class="form-control" id="medicalHistory"  rows="5"></textarea>
+                      
                           </div>
                           </div>
                          
                      
                      <div class="col-12">
-                        <button type="submit" class="btn btn-primary"  >Submit</button>
-                                                <!--[disabled]="addTeacherForm.invalid"-->
+                        <button type="submit" [disabled]="addPatientForm.invalid" class="btn btn-primary"  >Submit</button>
+                                                
                      </div>
                   </div>
                </form>

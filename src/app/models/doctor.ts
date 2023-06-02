@@ -3,10 +3,11 @@ export interface Doctor {
   firstName: string;
   phoneNumber: string;
   lastName: string;
-  dateOfBirth: string; // Assurez-vous d'utiliser le format de date approprié en Angular
-  imageUrl: string;
+  date_of_birth?: string; // Assurez-vous d'utiliser le format de date approprié en Angular
+  imageUrl?: string;
   role: string;
-  password: string;
+  email?: string;
+  password?: string;
   gender: string;
   speciality: string;
   location: string;

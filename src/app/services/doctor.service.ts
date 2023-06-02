@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError, map, switchMap } from 'rxjs';
+import { environment } from 'src/config/environment';
 
 const httpOptions = {
   headers: new HttpHeaders(
@@ -17,9 +18,8 @@ const httpOptions = {
 })
 export class DoctorService {
 
-
-  readonly apiUrlPOST = 'http://localhost:8080/api/v1/doctors/add/1';
-  readonly apiUrl = 'http://localhost:8080/api/v1/doctors';
+  readonly apiUrlPOST = environment.serverAddress+'/api/v1/doctors/add/1';
+  readonly apiUrl = environment.serverAddress+'/api/v1/doctors';
   constructor(private http: HttpClient) { }
   
   saveDoctor(doctor : any){

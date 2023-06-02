@@ -15,7 +15,7 @@ const httpOptions = {
 })
 export class RoomService {
 
-  readonly apiUrl = 'http://localhost:8080/filiere';
+  readonly apiUrl = 'http://100.76.108.249:8080/filiere';
   // readonly endPointRooms = '/all'
   constructor(private http: HttpClient) { }
   getRooms() {

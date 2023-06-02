@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Admin } from '../models/admin';
 import { Observable } from 'rxjs';
+import { environment } from 'src/config/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   user: any;
-  apiUrl: string = "http://localhost:8080/api/v1/admin";
+  apiUrl: string = environment.serverAddress+"/api/v1/admin";
 
   httpOptions = {
     headers: new HttpHeaders({

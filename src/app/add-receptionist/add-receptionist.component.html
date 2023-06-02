@@ -1,100 +1,87 @@
-<app-navbar-nosearcch>
-</app-navbar-nosearcch>
+<app-navbar-nosearcch></app-navbar-nosearcch>
 <app-sidebar></app-sidebar>
+
 <div class="page-wrapper">
   <div class="content container-fluid">
-     <div class="page-header">
-        <div class="row align-items-center">
-           <div class="col">
-              <h3 class="page-title">Manage Receptionists</h3>
-              <ul class="breadcrumb">
-                 <li class="breadcrumb-item"><a href="students.html">Receptionists</a></li>
-                 <li class="breadcrumb-item active">Add Receptionists</li>
-              </ul>
-           </div>
+    <div class="page-header">
+      <div class="row align-items-center">
+        <div class="col">
+          <h3 class="page-title">Manage Receptionists</h3>
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="receptionists.html">Receptionists</a></li>
+            <li class="breadcrumb-item active">Add Receptionist</li>
+          </ul>
         </div>
-     </div>
-     <div class="row">
-        <div class="col-sm-12">
-           <div class="card">
-              <div class="card-body">
-                 <form >
-                  <!--[formGroup]="addTeacherForm" (submit)="onSubmit()"-->
-                    <div class="row">
-                       <div class="col-12">
-                          <h5 class="form-title"><span>Receptionist Information</span></h5>
-                       </div>
-                       <div class="col-12 col-sm-6">
-                        <div class="form-group">
-                          <label>First Name</label>
-                          <input type="text" name="firstname"  class="form-control"
-                          formControlName="firstname">
-                       </div>
-                       </div>
-                       <div class="col-12 col-sm-6">
-                        <div class="form-group">
-                          <label>Last Name</label>
-                          <input type="text" name="lastname"  class="form-control"
-                          formControlName="lastname">
-                       </div>
-                       </div>
-                       <div class="col-12 col-sm-6">
-                        <div class="form-group">
-                          <label>Gender</label>
-                          <select class="form-control"
-                          formControlName="gender">
-                        <option>Male</option>
-                        <option>Female</option>
-                        </select>
-                       </div>
-                       </div>
-                        <div class="col-12 col-sm-6">
-                          <div class="form-group">
-                          <label>Date of Birth</label>
-                          <input type="date" formControlName="dob" class="form-control">
-                          </div>
-                          </div>
-
-                      <div class="col-12 col-sm-6">
-                        <div class="form-group">
-                        <label>Email</label>
-                        <input type="text" formControlName="email"
-                        class="form-control">
-                       </div>
-                       </div>
-
-                      <div class="col-12 col-sm-6">
-                        <div class="form-group">
-                        <label>MobileNumber</label>
-                        <input type="text" formControlName="mobileNumber"
-                        class="form-control">
-                       </div>
-                       </div>
-                        
-                         <div class="col-12 col-sm-6">
-                            <div class="form-group">
-                            <label>Joining Date</label>
-                            <input type="date" formControlName="jod" class="form-control">
-                            </div>
-                            </div> 
-                          
-                            
-                       <div class="col-12 col-sm-6">
-                          <div class="form-group">
-                             <label>Receptionist Image (optional) : </label>
-                             <input type="file" required class="form-control">
-                          </div>
-                       </div>
-                       <div class="col-12">
-                          <button type="submit" class="btn btn-primary"  >Submit</button>
-                              <!--[disabled]="addTeacherForm.invalid"-->
-                       </div>
-                    </div>
-                 </form>
-               </div>
-            </div>
-         </div>
       </div>
-   </div>
- </div>
- 
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card">
+          <div class="card-body">
+            <form (ngSubmit)="onSubmit()" [formGroup]="addReceptionistForm" enctype="multipart/form-data">
+              <div class="row">
+                <div class="col-12">
+                  <h5 class="form-title"><span>Receptionist Information</span></h5>
+                </div>
+                <div class="col-12 col-sm-6">
+                  <div class="form-group">
+                    <label>First Name<span style="color:red">*</span></label>
+                    <input type="text" name="firstName" class="form-control" formControlName="firstName">
+                  </div>
+                </div>
+                <div class="col-12 col-sm-6">
+                  <div class="form-group">
+                    <label>Last Name<span style="color:red">*</span></label>
+                    <input type="text" name="lastName" class="form-control" formControlName="lastName">
+                  </div>
+                </div>
+                <div class="col-12 col-sm-6">
+                  <div class="form-group">
+                    <label>Gender<span style="color:red">*</span></label>
+                    <select class="form-control" formControlName="gender">
+                      <option>MALE</option>
+                      <option>FEMALE</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-6">
+                  <div class="form-group">
+                    <label>Date of Birth<span style="color:red">*</span></label>
+                    <input type="date" formControlName="dob" class="form-control">
+                  </div>
+                </div>
+                <div class="col-12 col-sm-6">
+                  <div class="form-group">
+                    <label>Email<span style="color:red">*</span></label>
+                    <input type="text" formControlName="email" class="form-control">
+                  </div>
+                </div>
+                <div class="col-12 col-sm-6">
+                  <div class="form-group">
+                    <label>Phone Number<span style="color:red">*</span></label>
+                    <input type="text" formControlName="phoneNumber" class="form-control">
+                  </div>
+                </div>
+                <div class="col-12 col-sm-6">
+                  <div class="form-group">
+                    <label>Joining Date<span style="color:red">*</span></label>
+                    <input type="date" formControlName="joiningDate" class="form-control">
+                  </div>
+                </div>
+                <div class="col-12 col-sm-6">
+                  <div class="form-group">
+                    <label>Receptionist Image</label>
+                    <input type="file" class="form-control" formControlName="profile" (change)="onFileChange($event)">
+                  </div>
+                </div>
+                <div class="col-12">
+                  <button type="submit" class="btn btn-primary" [disabled]="addReceptionistForm.invalid">Submit</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
