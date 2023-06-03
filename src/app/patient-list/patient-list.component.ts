@@ -23,6 +23,7 @@ export class PatientListComponent implements OnInit {
   role: string | any;
   updatePatientForm: FormGroup | any;
   patient: any;
+  updatePatientStatusForm : FormGroup | any;
 
   constructor(private patientService: PatientService,
     private formBuilder: FormBuilder,
@@ -42,6 +43,31 @@ export class PatientListComponent implements OnInit {
       profile: [null],
       medicalHistory: ['']
     });
+
+    this.updatePatientStatusForm = this.formBuilder.group({
+      status : ['',Validators.required]
+    })
+  }
+
+  SaveStatus(){
+    if(this.updatePatientStatusForm.invalid){
+      return;
+    }
+    const patientStatus = {
+      status : this.updatePatientStatusForm.value.status
+    };
+    console.log(patientStatus);
+    this.patientService.updatePatient(patientStatus, this.patientId).subscribe(
+      () => {
+        this.toastr.success('Patient updated successfully');
+        this.getPatients();
+        
+      },
+      (error) => {
+        this.toastr.error('Error while updating patient');
+      }
+    );
+
   }
 
   ngOnInit(): void {
@@ -89,6 +115,9 @@ export class PatientListComponent implements OnInit {
         BloodType: this.patient.bloodType,
         medicalHistory: this.patient.medicalHistory // Update status field value
       });
+      this.updatePatientStatusForm.patchValue({
+        status: this.patient.status,
+      });
     });
   }
 
@@ -101,7 +130,11 @@ export class PatientListComponent implements OnInit {
       this.patients = patients;
       console.log(this.patients);
       this.patients.forEach((patient: any) => {
+        if(patient.image_url!='https://example.com/image.jpg')
         patient.image_url = environment.serverAddress+"/api/v1/doctors/display/" + patient.image_url;
+        else{
+          patient.image_url = environment.serverAddress+"/api/v1/doctors/display/images/" + patient.gender+".jpg";
+        }
       });
     });
   }
@@ -115,6 +148,7 @@ export class PatientListComponent implements OnInit {
       () => {
         this.toastr.success('Patient updated successfully');
         this.getPatients();
+        
       },
       (error) => {
         this.toastr.error('Error while updating patient');
@@ -128,10 +162,10 @@ export class PatientListComponent implements OnInit {
       lastName: formData.lastName,
       gender: formData.gender,
       date_of_birth: formData.dob,
-      contactNumber: formData.contactNumber,
-      emergencyContact: formData.emergencyContact,
-      bloodType: formData.bloodType,
-      status: formData.status // Include status field
+      phoneNumber: formData.phoneNumber,
+      emergencyContact: formData.EmergencyContact,
+      bloodType: formData.BloodType,
+      MedicalHistory: formData.medicalHistory // Include status field
     };
     return transformedData;
   }

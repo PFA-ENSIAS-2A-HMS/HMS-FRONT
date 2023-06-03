@@ -10,14 +10,13 @@
     <div class="col">
     <h3 class="page-title">Appointment History</h3>
     <ul class="breadcrumb">
-    <li class="breadcrumb-item"><a href="index.html">Appointments</a></li>
+    <li class="breadcrumb-item"><a routerLink="/appointments/add">Appointments</a></li>
     <li class="breadcrumb-item active">History</li>
     </ul>
     </div>
     <div class="col-auto text-right float-right ml-auto">
-    <a class="btn btn-outline-primary mr-2" ><i class="fas fa-download"></i> Download</a>
-    <!--(click)="downloadPatients()"-->
-    <a routerLink="/patients/add" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+    <a (click)="downloadAppointments()" class="btn btn-outline-primary mr-2" ><i class="fas fa-download"></i> Download</a>
+    <a routerLink="/appointments/add" class="btn btn-primary"><i class="fas fa-plus"></i></a>
 
     </div>
     </div>
@@ -25,84 +24,49 @@
 
 
     <div class="row">
-    <div class="col-sm-12">
-    <div class="card card-table">
-    <div class="card-body">
-    <div class="table-responsive">
-    <table class="table table-hover table-center mb-0 datatable">
-    <thead>
-    <tr>
-    <th>Doctor Name</th>
-    <th>Patient Name</th>
-    <th>Consultancy Fees</th>
-    <th>Appointment Date</th>
-    <th>Appointment Time</th>
-    <th>Current status</th>
-    <th>Action</th>
-    </tr>
-    </thead>
-    <tbody>
-
-       
-            <tr>
-              <td>Dr. John Doe</td>
-              <td>Jane Smith</td>
-              <td>500 dhs</td>
-              <td>2023-06-01</td>
-              <td>10:00 AM</td>
-              <td style="color:rgb(23, 138, 0)">Active</td>
-              <td>
-                <button class="btn btn-sm bg-danger-light" data-toggle="modal" data-target="#cancelAppointmentModal">
-                  Cancel
-                </button>
-              </td>
-              
-            </tr>
-            <tr>
-              <td>Dr. Sarah Johnson</td>
-              <td>Michael Brown</td>
-              <td>750 dhs</td>
-              <td>2023-06-02</td>
-              <td>2:30 PM</td>
-              <td style="color:rgb(50, 47, 47)">Canceled by Receptionist</td>
-              
-              <td><button class="btn btn-sm bg-dark-light" >Cancelled</button></td>
-                                         <!--(click)="cancelAppointment()"-->
-            </tr>
-            <!-- Add more rows with example data as needed -->
-          
-
-        
-   <!-- <tr *ngFor="let patient of Patients " >
-    <td>
-    <h2>
-    <a>{{patient.code}}</a>
-    </h2>
-    </td>
-    <td>{{patient.name}}</td>
-    <td>{{patient.description}}</td>
-    <td><ul *ngFor="let filiere of patient.filiere" [style.color]="colors[(Patients.indexOf(patient) + filiere.id) % colors.length]"><li>{{filiere.name}}</li></ul></td>
-    <td *ngIf="role=='ADMIN'"class="text-right">
-          <div class="actions">
-          <a class="btn btn-sm bg-success-light mr-2">
-          <i class="fas fa-pen"></i>
-          </a>
-          <a class="btn btn-sm bg-danger-light">
-          <i class="fas fa-trash"></i>
-          </a>
+      <div class="col-sm-12">
+        <div class="card card-table">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover table-center mb-0 datatable">
+                <thead>
+                  <tr>
+                    <th>Doctor Name</th>
+                    <th>Patient Name</th>
+                    <th>Consultancy Fees</th>
+                    <th>Appointment Date</th>
+                    <th>Appointment Time</th>
+                    <th>Current status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let appointment of appointments">
+                    <td> Dr. {{ appointment.doctor.firstName }} {{ appointment.doctor.lastName }}</td>
+                    <td>{{ appointment.patient.firstName }} {{ appointment.patient.lastName }}</td>
+                    <td>{{ appointment.fees }} MAD</td>
+                    <td>{{ appointment.date }}</td>
+                    <td>{{ appointment.time }}</td>
+                    <td [ngStyle]="{ color: getStatusColor(appointment.status) }">{{ appointment.status }}</td>
+                    <td>
+                      <!--
+                      <button class="btn btn-sm bg-danger-light" data-toggle="modal" data-target="#cancelAppointmentModal">
+                        Cancel
+                      </button>
+                      -->
+                      <button class="btn btn-sm bg-primary-light ml-1" data-toggle="modal" data-target="#changeStatusModal" (click)="selectAppointmentId(appointment.id)">
+                        Change Status
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-          </td>
-
-    </tr>
-    -->
-    </tbody>
-    </table>
+        </div>
+      </div>
     </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
+    
 
 
     <footer>
@@ -137,4 +101,39 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="changeStatusModal" tabindex="-1" role="dialog" aria-labelledby="changeStatusModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="changeStatusModalLabel">Change Status</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+     <form [formGroup]="updateStatusForm" (submit)="onSubmit()">
+      <div class="modal-body text-center">
+        <p>Select the new status for this appointment:</p>
+        <select class="form-control" formControlName="status">
+          <option value="SCHEDULED">Scheduled</option>
+          <option value="CONFIRMED">Confirmed</option>
+          <option value="CANCELLED">Cancelled</option>
+          <option value="PENDING">Pending</option>
+          <option value="IN_PROGRESS">In Progress</option>
+          <option value="COMPLETED">Completed</option>
+          <option value="MISSED">Missed</option>
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+    </form>
+
+    </div>
+  </div>
+</div>
+
+
+
 

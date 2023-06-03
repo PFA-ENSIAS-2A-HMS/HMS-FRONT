@@ -61,7 +61,7 @@
                 <button class="btn btn-sm bg-success-light mr-2" data-toggle="modal" (click)="setPatientNameAndId(patient.firstName, patient.id)" data-target="#editPatientModal">
                   <i class="fas fa-pen"></i>
                 </button>                              <!--(click)="changeStatus(patient)"-->
-                <button class="btn btn-sm bg-primary-light" >Change Status</button> <!-- Button to change status -->
+                <button class="btn btn-sm bg-primary-light" (click)="setPatientNameAndId(patient.firstName, patient.id)" data-toggle="modal" data-target="#changePatientStatusModal">Change Status</button> <!-- Button to change status -->
               </div>
             </td>
           </tr>
@@ -196,8 +196,7 @@
                      
                  
                  <div class="col-12">
-                    <button type="submit" [disabled]="updatePatientForm.invalid" class="btn btn-primary"  >Submit</button>
-                                            
+                    <button type="submit" [disabled]="updatePatientForm.invalid" class="btn btn-primary"  >Submit</button>                         
                  </div>
               </div>
            </form>
@@ -207,6 +206,31 @@
     </div>
     
   
-    
+
+    <div class="modal fade" id="changePatientStatusModal" tabindex="-1" role="dialog" aria-labelledby="changePatientStatusModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="changePatientStatusModalLabel">Changer l'état du patient</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="updatePatientStatusForm" (submit)="SaveStatus()">
+              <div class="form-group">
+                <label for="patientStatus">Patient Status: :</label>
+                <select class="form-control" formControlName="status">
+                  <option value="PENDING">PENDING</option>
+                  <option value="ADMITTED">ADMITTED</option>
+                  <option value="DISCHARGED">DISCHARGED</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
     
     

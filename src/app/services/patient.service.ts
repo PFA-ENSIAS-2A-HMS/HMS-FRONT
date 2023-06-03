@@ -6,8 +6,8 @@ import { environment } from 'src/config/environment';
 const httpOptions = {
   headers: new HttpHeaders(
     {
-      //'Content-Type': 'application/json',
-      'Authorization': `Bearer ${localStorage.getItem('accessToken')}` // add token from localStorage
+      'Content-Type': 'application/json',
+      //'Authorization': `Bearer ${localStorage.getItem('accessToken')}` // add token from localStorage
     }
   )
 };
@@ -23,7 +23,7 @@ export class PatientService {
   constructor(private http: HttpClient) { }
 
   savePatient(patient: any): Observable<any> {
-    return this.http.post(this.apiUrlPOST, patient, httpOptions);
+    return this.http.post(this.apiUrlPOST, patient);
   }
 
   getPatients(): Observable<any> {
@@ -41,4 +41,5 @@ export class PatientService {
   updatePatient(patient: any, patientId: string): Observable<any> {
     return this.http.put(this.apiUrl + "/" + patientId, patient, httpOptions);
   }
+  
 }
