@@ -30,10 +30,8 @@ import { HospitalService } from './services/hospital.service';
 import { AuthGuard } from './auth.guard';
 import { AddRoomComponent } from './add-room/add-room.component';
 import { RoomListComponent } from './room-list/room-list.component';
-import { RoomService } from './services/branch.service';
 import { PatientListComponent } from './patient-list/patient-list.component';
 import { AddPatientComponent } from './add-patient/add-patient.component';
-import { SubjectService } from './services/subject.service';
 import { RouterTestingModule } from "@angular/router/testing";
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -60,8 +58,6 @@ const routes: Routes = [
   { path: 'doctors', component: DoctorListComponent },
   { path: 'addDoctor', component: AddDoctorComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
   { path: 'receptionists', component: ReceptionistListComponent },
-  { path: 'AddReceptionist', component: AddReceptionistComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
-  { path: 'teachers', component: ReceptionistListComponent },
   { path: 'AddReceptionist', component: AddReceptionistComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
   { path: 'invoices/add', component: AddInvoicesComponent },
   { path: 'invoices', component: InvoicesComponent },
@@ -144,8 +140,6 @@ const routes: Routes = [
     DoctorService,
     ReceptionistService,
     AuthGuard,
-    RoomService,
-    SubjectService
   ],
   bootstrap: [AppComponent]
 })
