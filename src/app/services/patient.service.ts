@@ -6,7 +6,7 @@ import { environment } from 'src/config/environment';
 const httpOptions = {
   headers: new HttpHeaders(
     {
-      'Content-Type': 'application/json',
+      //'Content-Type': 'application/json',
       //'Authorization': `Bearer ${localStorage.getItem('accessToken')}` // add token from localStorage
     }
   )

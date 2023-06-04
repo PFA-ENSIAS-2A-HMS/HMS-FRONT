@@ -24,7 +24,7 @@
       <div class="col-sm-12">
          <div class="card">
             <div class="card-body">
-               <form  [formGroup]="addPatientForm" (submit)="onSubmit()">
+               <form  [formGroup]="addPatientForm" (submit)="onSubmit()" enctype="multipart/form-data">
                
                   <div class="row">
                      <div class="col-12">
@@ -107,7 +107,7 @@
                           <div class="col-12 col-sm-6">
                             <div class="form-group">
                                <label>Patient Image (optional) : </label>
-                               <input type="file" formControlName="profile"  class="form-control">
+                               <input type="file" formControlName="profile" (change)="onFileChange($event)"  class="form-control">
                             </div>
                          </div>
                          
