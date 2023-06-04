@@ -1,53 +1,44 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, catchError, map } from 'rxjs';
+import { Observable } from 'rxjs';
+import { environment } from 'src/config/environment';
 
-
+const httpOptions = {
+  headers: new HttpHeaders(
+    {
+      //'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem('accessToken')}` // add token from localStorage
+    }
+  )
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class ReceptionistService {
-  
 
-  readonly apiUrl = 'http://localhost:8080';
+  readonly apiUrlPOST = environment.serverAddress+'/api/v1/receptionists/add/1';
+  readonly apiUrl = environment.serverAddress+'/api/v1/receptionists';
 
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
-    })
-  };
   constructor(private http: HttpClient) { }
 
-  addTeacher(teacher: any): Observable<any> {
-    let addTeacherUrl = this.apiUrl + "/api/v1/auth/register/teacher";
-    return this.http.post<any>(addTeacherUrl, teacher, this.httpOptions).pipe(
-      map(response => {
-        console.log(response)
-      })
-    );
-    ;
+  saveReceptionist(receptionist: any): Observable<any> {
+    return this.http.post(this.apiUrlPOST, receptionist, httpOptions);
   }
 
-  updateTeacher(teacher: any,id : AnalyserOptions): Observable<any> {
-    let addTeacherUrl = this.apiUrl + "/api/v1/teacher/"+id;
-  return this.http.patch<any>(addTeacherUrl, teacher, this.httpOptions).pipe(
-      map(response => {
-        console.log(response)
-      })
-    );
-    ;
+  getReceptionists(): Observable<any> {
+    return this.http.get(this.apiUrl, httpOptions);
   }
 
-  getReceptionists() {
-    return this.http.get(this.apiUrl +"/api/v1/teacher/all" , this.httpOptions);
+  deleteReceptionist(receptionistId: any): Observable<any> {
+    return this.http.delete(this.apiUrl + "/" + receptionistId, httpOptions);
   }
-  deleteTeacher(id: string) {
-    return this.http.delete(this.apiUrl  +"/api/v1/teacher/"+id,this.httpOptions);
+
+  getReceptionistById(receptionistId: any): Observable<any> {
+    return this.http.get(this.apiUrl + "/" + receptionistId, httpOptions);
   }
- 
-  findTeacherById(id: string) {
-    return this.http.get(this.apiUrl  + "/api/v1/teacher/" + id, this.httpOptions);
+
+  updateReceptionist(receptionist: any, receptionistId: string): Observable<any> {
+    return this.http.put(this.apiUrl + "/" + receptionistId, receptionist, httpOptions);
   }
 }

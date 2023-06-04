@@ -1,84 +1,89 @@
-import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { HospitalService } from '../services/hospital.service';
-import { Holiday } from '../models/holiday';
+import { Hospital } from '../models/hospital';
 import { countries } from '../store/countries';
-
+declare var $: any; 
 @Component({
-  selector: 'app-add-holiday',
+  selector: 'app-add-hospital',
   templateUrl: './add-hospital.component.html',
   styleUrls: ['./add-hospital.component.css'],
   providers: [HospitalService]
 })
-
 export class AddHospitalComponent {
-  public countries:any = countries;
-
+  public countries: any = countries;
   selectedCountry: string = "";
 
-
   formData: any;
-  myHoliday: Holiday = {
-    title: '',
-    type: '',
-    start_date: '',
-    end_date: '',
-  }
-  holidays: Holiday[] = [];
-  addHolidayForm: FormGroup;
-  constructor(private holidayService: HospitalService, private toastr: ToastrService) {
-    this.addHolidayForm = new FormGroup({
-      title: new FormControl('', [
+  myHospital: Hospital = {
+    name: '',
+    country: '',
+    address: '',
+    logo : '',
+    
+  };
+  hospitals: Hospital[] = [];
+  addHospitalForm: FormGroup;
+
+  constructor(private hospitalService: HospitalService, private toastr: ToastrService) {
+    this.addHospitalForm = new FormGroup({
+      name: new FormControl('', [
         Validators.required,
         Validators.minLength(5)
       ]),
-      type: new FormControl('', [
+      country: new FormControl('', [
         Validators.required,
         Validators.minLength(3)
       ]),
-      start_date: new FormControl('', [
+      address: new FormControl('', [
         Validators.required,
       ]),
-      end_date: new FormControl('', [
-        Validators.required,
-      ]),
+      logo : new FormControl('')
     });
   }
-  get title() {
-    return this.addHolidayForm.get('title');
+
+  get name() {
+    return this.addHospitalForm.get('name');
   }
-  get type() {
-    return this.addHolidayForm.get('type');
+
+  get country() {
+    return this.addHospitalForm.get('country');
   }
-  get start_date() {
-    return this.addHolidayForm.get('start_date');
+
+  get address() {
+    return this.addHospitalForm.get('address');
   }
-  get end_date() {
-    return this.addHolidayForm.get('end_date');
+
+  get logo() {
+    return this.addHospitalForm.get('logo');
   }
-  addHoliday(holiday: Holiday) {
-    console.log(holiday);
-    this.holidayService.addHoliday(holiday).subscribe(holidays => {
-      this.toastr.success('Holiday added successfully');
-    }, error => {
-      this.toastr.error('error');
-      console.log(error);
-    });
+  addHospital(hospital: Hospital) {
+    this.hospitalService.addHospital(hospital,"1").subscribe(
+      () => {
+        $('#informationModal').modal('show');
+        this.toastr.success('Your request has been submitted successfully.');
+      },
+      (error) => {
+        this.toastr.error('Error: Failed to submit your request. Please try again later.');
+
+      }
+    );
   }
-  onSubmit(): any {
-    this.formData = this.addHolidayForm.value;
-    let holiday: Holiday;
-    holiday = {
-      title: this.formData?.title,
-      type: this.formData?.type,
-      start_date: this.formData?.start_date,
-      end_date: this.formData?.end_date,
+
+  onSubmit(): void {
+    if (this.addHospitalForm.invalid) {
+      return;
     }
 
-
-    console.log(holiday);
-    let x = this.addHoliday(holiday);
-    console.log(x);
+    this.formData = this.addHospitalForm.value;
+    const hospital: Hospital = {
+      name: this.formData?.name,
+      country: this.formData?.country,
+      address: this.formData?.address,
+      logo : this.formData?.logo,
+    };
+    console.log(hospital);
+    this.addHospital(hospital);
   }
 }

@@ -8,13 +8,13 @@
         <div class="col">
           <h2 class="page-title">List of Doctors</h2>
           <ul class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+            <li class="breadcrumb-item"><a routerLink="/dashboard">Dashboard</a></li>
             <li class="breadcrumb-item active">Doctors</li>
           </ul>
         </div>
         <div class="col-auto text-right float-right ml-auto">
-          <a href="#" class="btn btn-outline-primary mr-2"><i class="fas fa-download"></i> Download</a>
-          <a *ngIf="role=='ADMIN'" routerLink="/AddReceptionist" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+          <a (click)="downloadDoctorsCSV()" class="btn btn-outline-primary mr-2"><i class="fas fa-download" ></i> Download</a>
+          <a *ngIf="role=='ADMIN'" routerLink="/addDoctor" class="btn btn-primary"><i class="fas fa-plus"></i></a>
           </div>
       </div>
     </div>
@@ -36,50 +36,29 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
+                
+                  <tr *ngFor="let doctor of doctors">
                     <td>
                       <h2 class="table-avatar">
-                        <a href="doctor-details.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/avatar-04.jpg" alt="User Image"></a>
-                        <a href="doctor-details.html">Dr. John Doe</a>
+                        <a href="doctor-details.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="{{doctor.image_url}}" alt="User Image"></a>
+                        <a href="doctor-details.html">Dr. {{doctor?.firstName}} {{doctor?.lastName}}</a>
                       </h2>
                     </td>
-                    <td>Cardiology</td>
-                    <td>123-456-7890</td>
-                    <td>john.doe@example.com</td>
-                    <td>New York</td>
+                    <td>{{doctor?.speciality}}</td>
+                    <td>{{doctor?.phoneNumber}}</td>
+                    <td>{{doctor?.email}}</td>
+                    <td>{{doctor?.location}}</td>
                     <td *ngIf="role=='ADMIN'" class="text-right">
                       <div class="actions">
-                        <button data-toggle="modal" data-target="#editDoctorModal" class="btn btn-sm bg-success-light mr-2">
+                        <button data-toggle="modal" data-target="#editDoctorModal" class="btn btn-sm bg-success-light mr-2" (click)="setDoctorNameAndId(doctor.firstName, doctor.id)">
                           <i class="fas fa-pen"></i>
                         </button>
-                        <button data-toggle="modal" data-target="#confirmationModal" class="btn btn-sm bg-danger-light" (click)="setDoctorName('Dr. John Doe')">
-                          <i class="fas fa-trash"></i>
+                        <button data-toggle="modal" data-target="#confirmationModal" class="btn btn-sm bg-danger-light" (click)="setDoctorNameAndId(doctor.firstName, doctor.id)">  <i class="fas fa-trash"></i>
                         </button>
                       </div>
                     </td>
                   </tr>
-                  <tr>
-                    <td>
-                      <h2 class="table-avatar">
-                        <a href="doctor-details.html" class="avatar avatar-sm mr-2"><img class="avatar-img rounded-circle" src="assets/img/profiles/avatar-05.jpg" alt="User Image"></a>
-                        <a href="doctor-details.html">Dr. Jane Smith</a>
-                      </h2>
-                    </td>
-                    <td>Pediatrics</td>
-                    <td>987-654-3210</td>
-                    <td>jane.smith@example.com</td>
-                    <td>Los Angeles</td>
-                    <td *ngIf="role=='ADMIN'" class="text-right">
-                      <div class="actions">
-                        <button class="btn btn-sm bg-success-light mr-2">
-                          <i class="fas fa-pen"></i>
-                        </button>
-                        <button class="btn btn-sm bg-danger-light">
-                          <i class="fas fa-trash"></i>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
+                  
                 </tbody>
               </table>
             </div>
@@ -132,15 +111,12 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
-          
-
-
+       
           <div class="row">
             <div class="col-sm-12">
                <div class="card">
                   <div class="card-body">
-                     <form  >
+                     <form  (ngSubmit)="onSubmit()" [formGroup]="addDoctorForm">
                         <div class="row">
                            <div class="col-12">
                               <h5 class="form-title"><span>Doctor Information</span></h5>
@@ -150,6 +126,7 @@
                               <label>First Name<span style="color:red">*</span></label>
                               <input type="text" name="firstname"  class="form-control"
                               formControlName="firstname">
+                              
                             
                            </div>
                            </div>
@@ -157,7 +134,8 @@
                             <div class="form-group">
                               <label>Last Name<span style="color:red">*</span></label>
                               <input type="text" name="lastname"  class="form-control"
-                              formControlName="lastname">
+                              formControlName="lastname" >
+                              <!--formControlName="lastname"-->
                               
                            </div>
                            </div>
@@ -165,9 +143,10 @@
                             <div class="form-group">
                             <label>Gender<span style="color:red">*</span></label>
                             <select class="form-control"
-                             formControlName="gender">
-                            <option>Male</option>
-                            <option>Female</option>
+                            formControlName="gender">
+                             <!--formControlName="gender"-->
+                            <option>MALE</option>
+                            <option>FEMALE</option>
                             </select>
                             
                             </div>
@@ -175,8 +154,9 @@
                             <div class="col-12 col-sm-6">
                               <div class="form-group">
                               <label>Date of Birth<span style="color:red">*</span></label>
-                              <input type="date" formControlName="dob" class="form-control"
-                              >
+                              <input type="date"  class="form-control"
+                              formControlName="dob" >
+                              <!--formControlName="dob"-->
                               
                               </div>
                               </div>
@@ -184,9 +164,10 @@
                           <div class="col-12 col-sm-6">
                             <div class="form-group">
                             <label>Email<span style="color:red">*</span></label>
-                            <input type="text" formControlName="email"
+                            <input type="text" 
                             class="form-control"
-                            >
+                            formControlName="email" >
+                            <!--formControlName="email"-->
                            
                             </div>
                             </div>
@@ -194,9 +175,11 @@
                           <div class="col-12 col-sm-6">
                             <div class="form-group">
                             <label>MobileNumber<span style="color:red">*</span></label>
-                            <input type="text" formControlName="mobileNumber"
+                            <input type="text" 
                             class="form-control"
+                            formControlName="mobileNumber"
                              >
+                             <!--formControlName="mobileNumber"-->
                            
                             </div>
                             </div>
@@ -204,25 +187,25 @@
                             <div class="col-12 col-sm-6">
                               <div class="form-group">
                               <label>Specialty: <span style="color:red">*</span></label>
-                              <input type="text" formControlName="codeApogee"
-                              class="form-control"
-            
+                              <input type="text" 
+                              class="form-control" formControlName="specialty"
+        
                               >
+                              <!--formControlName="codeApogee"-->
                               
                               </div>
                               </div>
                               <div class="col-12 col-sm-6">
                                 <div class="form-group">
                                   <label>Location : <span style="color:red">*</span></label>
-                                  <select class="form-control" formControlName="field">
-                                    <option value="">new York </option>
-                                  </select>
+                                  <input type="text" class="form-control" formControlName="location">
+                                  <!--formControlName="field"-->
                                 </div>
                               </div>
                               
                       
                            <div class="col-12">
-                              <button type="submit" class="btn btn-primary" >Update</button>
+                              <button type="submit" [disabled]="addDoctorForm.invalid" class="btn btn-primary" >Update</button>
                            </div>
                         </div>
                      </form>
@@ -232,7 +215,7 @@
          </div>
           
        
-        </form>
+        
       </div>
     </div>
   </div>

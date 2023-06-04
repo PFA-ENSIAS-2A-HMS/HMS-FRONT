@@ -21,11 +21,8 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgApexchartsModule } from "ng-apexcharts";
 import { ToastrModule } from 'ngx-toastr';
 import { DoctorService } from './services/doctor.service';
-import { EditDoctorComponent } from './edit-doctor/edit-doctor.component';
-import { DoctorAttendanceComponent } from './student-attendance/student-attendance.component';
 import { OverviewChartComponent } from './overview-chart/overview-chart.component';
 import { ClassAttendanceOverviewComponent } from './class-attendance-overview/class-attendance-overview.component';
-import { TeacherAttendanceComponent } from './teacher-attendance/teacher-attendance.component';
 import { AddHospitalComponent } from './add-hospital/add-hospital.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
@@ -33,14 +30,8 @@ import { HospitalService } from './services/hospital.service';
 import { AuthGuard } from './auth.guard';
 import { AddRoomComponent } from './add-room/add-room.component';
 import { RoomListComponent } from './room-list/room-list.component';
-import { RoomService } from './services/branch.service';
 import { PatientListComponent } from './patient-list/patient-list.component';
 import { AddPatientComponent } from './add-patient/add-patient.component';
-import { SubjectService } from './services/subject.service';
-import { SearchFlterPipe } from './pipes/search-flter.pipe';
-import { SearchHolidaysPipe } from './pipes/search-holidays.pipe';
-import { SearchReceptionistsPipe } from './pipes/search-teachers.pipe';
-import { EditReceptionistComponenet } from './edit-receptionist/edit-receptionist.component';
 import { RouterTestingModule } from "@angular/router/testing";
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -68,12 +59,6 @@ const routes: Routes = [
   { path: 'addDoctor', component: AddDoctorComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
   { path: 'receptionists', component: ReceptionistListComponent },
   { path: 'AddReceptionist', component: AddReceptionistComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
-  { path: 'editDoctor/:cne', component: EditDoctorComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
-  { path: 'editReceptionist/:cne', component: EditReceptionistComponenet, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
-  { path: 'attendance', component: DoctorAttendanceComponent },
-  { path: 'teachers', component: ReceptionistListComponent },
-  { path: 'AddReceptionist', component: AddReceptionistComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
-  { path: 'editDoctor/:cne', component: EditDoctorComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
   { path: 'invoices/add', component: AddInvoicesComponent },
   { path: 'invoices', component: InvoicesComponent },
   { path: 'hospital/add', component: AddHospitalComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
@@ -102,17 +87,10 @@ const routes: Routes = [
     DashboardComponent,
     ReceptionistListComponent,
     AddReceptionistComponent,
-    EditDoctorComponent,
-    DoctorAttendanceComponent,
     OverviewChartComponent,
     ClassAttendanceOverviewComponent,
-    SearchFlterPipe,
-    TeacherAttendanceComponent,
     AddPatientComponent,
-    SearchHolidaysPipe,
-    EditReceptionistComponenet,
     PatientListComponent,
-    SearchReceptionistsPipe,
     MyProfileComponent,
     RegistrationComponent,
     AppointmentComponent,
@@ -162,8 +140,6 @@ const routes: Routes = [
     DoctorService,
     ReceptionistService,
     AuthGuard,
-    RoomService,
-    SubjectService
   ],
   bootstrap: [AppComponent]
 })

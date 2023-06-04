@@ -1,145 +1,90 @@
-import { Room } from '../models/branch';
-import { Subject } from '../models/subject';
-import { Component, OnInit, Pipe } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { PatientService } from '../services/patient.service';
 import { ToastrService } from 'ngx-toastr';
-import { SubjectService } from '../services/subject.service';
-import { RoomService } from '../services/branch.service'; 
-import { Teacher } from '../models/teacher';
-import { ReceptionistService } from '../services/receptionist.service';
 
 @Component({
-  selector: 'app-add-subject',
+  selector: 'app-add-patient',
   templateUrl: './add-patient.component.html',
-  styleUrls: ['./add-patient.component.css']
+  styleUrls: ['./add-patient.component.css'],
 })
-export class AddPatientComponent {
-  selectedBloodType : string = "";
-  medicalHistory : string = "";
-  formData: any;
-  myTeacher: Teacher = {
-    matricule: '',
-    firstname: '',
-    lastname: '',
-    phone: '',
-    email: '',
-    gender: '',
-    date_of_birth: '',
-    // joining_date: '',
-    password: ''
-  }
+export class AddPatientComponent implements OnInit {
+  addPatientForm: FormGroup | any;
 
-  teachers: Teacher[] = [];
-  addTeacherForm: FormGroup;
-
-  constructor(private receptionisteService: ReceptionistService, private toastr: ToastrService) {
-    this.addTeacherForm = new FormGroup({
-      firstname: new FormControl('', [
-        Validators.required,
-        Validators.minLength(3)
-      ]),
-      lastname: new FormControl('', [
-        Validators.required,
-        Validators.minLength(3)
-      ]),
-      gender: new FormControl('', [
-        Validators.required
-      ]),
-      dob: new FormControl('', [
-        Validators.required,
-        //  this.dobValidator
-      ]),
-      jod: new FormControl('', [
-       Validators.required,
-      ])
-      ,
-      mobileNumber: new FormControl('', [
-        Validators.required,
-        Validators.pattern(/^\d{7,}$/)
-      ]),
-      matricule: new FormControl('', [
-        Validators.required
-      ]),
-      PasswordAccount: new FormControl('', [
-        Validators.required,
-        Validators.minLength(8)
-      ]),
-      confirmPassword: new FormControl('', [
-        Validators.required,
-        this.matchPassword.bind(this)
-      ]),
-      email: new FormControl('', [
-        Validators.required,
-        Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$")
-      ]),
-
+  constructor(
+    private formBuilder: FormBuilder,
+    private patientService : PatientService,
+    private toast: ToastrService
+  ) {
+    this.addPatientForm = this.formBuilder.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      gender: ['', Validators.required],
+      dob: ['', Validators.required],
+      phoneNumber: ['', Validators.required],
+      EmergencyContact: ['', Validators.required],
+      BloodType: ['', Validators.required],
+      profile: [null],
+      medicalHistory: ['']
     });
   }
-  matchPassword(control: AbstractControl): { [key: string]: any } | null {
-    const PasswordAccount = control.parent?.get('PasswordAccount');
-    const confirmPassword = control;
 
-    if (PasswordAccount?.value !== confirmPassword.value) {
-      return { passwordMismatch: true };
+  ngOnInit(): void {}
+
+  // Getter for form controls
+  get f() {
+    return this.addPatientForm.controls;
+  }
+
+  onSubmit(): void {
+    if (this.addPatientForm.invalid) {
+      return;
     }
-    return null;
-  }
-  get firstname() {
-    return this.addTeacherForm.get('firstname');
-  }
-  get lastname() {
-    return this.addTeacherForm.get('lastname');
-  }
-  get gender() {
-    return this.addTeacherForm.get('gender');
-  }
-  get dob() {
-    return this.addTeacherForm.get('dob');
-  }
-   get jod() {
-  return this.addTeacherForm.get('jod');
-  }
-  get mobileNumber() {
-    return this.addTeacherForm.get('mobileNumber');
+
+    const patientData = this.transformFormDataToPatient(this.addPatientForm.value);
+    this.patientService.savePatient(patientData).subscribe(
+      () => {
+        this.toast.success('Patient added successfully');
+      },
+      (error) => {
+        this.toast.error('Error while adding patient');
+      }
+    );
   }
 
-  get matricule() {
-    return this.addTeacherForm.get('matricule');
-  }
+  selectedImageFile: File | undefined;
 
-  get PasswordAccount() {
-    return this.addTeacherForm.get('PasswordAccount');
-  }
-  get confirmPassword() {
-    return this.addTeacherForm.get('confirmPassword');
-  }
-
-
-  get email() {
-    return this.addTeacherForm.get('email');
-  }
-  addTeacher(teacher: Teacher) {
-    this.receptionisteService.addTeacher(teacher).subscribe((teachers: any) => {
-      this.toastr.success('Teacher added successfully');
-    }, (error: any) => {
-      this.toastr.error('error');
-    });
-  }
-  onSubmit(): any {
-    this.formData = this.addTeacherForm.value;
-    let teacher: Teacher;
-    teacher = {
-      matricule: this.formData?.matricule,
-      firstname: this.formData?.firstname,
-      lastname: this.formData?.lastname,
-      phone: this.formData?.mobileNumber,
-      email: this.formData?.email,
-      gender: this.formData?.gender == 'Male' ? 'MALE' : 'FEMALE',
-      password: this.formData?.PasswordAccount,
-      date_of_birth: this.formData?.dob,
-      joining_date : this.formData?.jod
+  onFileChange(event: any) {
+    const files = event.target.files;
+    if (files && files.length > 0) {
+      this.selectedImageFile = files[0];
     }
-    this.addTeacher(teacher);
   }
 
+  private transformFormDataToPatient(formData: any): FormData {
+    const transformedData = new FormData();
+    transformedData.append('firstName', formData.firstName);
+    transformedData.append('lastName', formData.lastName);
+    transformedData.append('gender', formData.gender);
+    transformedData.append('date_of_birth', formData.dob);
+    transformedData.append('phoneNumber', formData.phoneNumber);
+    transformedData.append('emergencyContact', formData.EmergencyContact);
+    transformedData.append('bloodType', formData.BloodType);
+    if (this.selectedImageFile) {
+      transformedData.append('imageFile', this.selectedImageFile);
+    }
+    transformedData.append('MedicalHistory', formData.medicalHistory);
+    return transformedData;
+  }
+
+  savePatient(patient: FormData) {
+    this.patientService.savePatient(patient).subscribe(
+      () => {
+        this.toast.success('Patient added successfully');
+      },
+      (error) => {
+        this.toast.error('Error while adding patient');
+      }
+    );
+  }
 }

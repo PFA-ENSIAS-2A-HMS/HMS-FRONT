@@ -1,167 +1,115 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Doctor } from '../models/doctor';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Appointment } from '../models/appointment';
 import { DoctorService } from '../services/doctor.service';
 import { ToastrService } from 'ngx-toastr';
-import { FiliereService } from '../services/filiere.service';
+import { PatientService } from '../services/patient.service';
+import { AppointmentService } from '../services/appointment.service';
 
 @Component({
   selector: 'app-add-appointment',
   templateUrl: './add-appointment.component.html',
   styleUrls: ['./add-appointment.component.css']
 })
-export class AddAppointmentComponent {
-  formData: any;
-  filieres: any[] = [];
-  selectedFiliereId: number  = 1;
+export class AddAppointmentComponent implements OnInit {
+  addAppointmentForm: FormGroup | any;
+  patient : any;
+  doctor : any;
+  patients : any;
+  doctors : any;
 
-  myDoctor: Doctor = {
-    cne: '',
-    firstname: '',
-    lastname: '',
-    phone: '',
-    email: '',
-    gender: '',
-    date_of_birth: '',
-    password: ''
-  }
+  constructor(
+    private formBuilder: FormBuilder,
+    private doctorService: DoctorService,
+    private toastr: ToastrService,
+    private patientService : PatientService,
+    private appointmentService:  AppointmentService
+  ) {
 
-  students: Doctor[] = [];
-  addDoctorForm: FormGroup;
-  
-
-
-
-  constructor(private filiereService: FiliereService,private studentService: DoctorService, private toastr: ToastrService) {
-    this.addDoctorForm = new FormGroup({
-      firstname: new FormControl('', [
-        Validators.required,
-        Validators.minLength(3)
-      ]),
-      lastname: new FormControl('', [
-        Validators.required,
-        Validators.minLength(3)
-      ]),
-      gender: new FormControl('', [
-        Validators.required
-      ]),
-      dob: new FormControl('', [
-        Validators.required,
-        //  this.dobValidator
-      ]),
-      mobileNumber: new FormControl('', [
-        Validators.required,
-        Validators.pattern(/^\d{7,}$/)
-      ]),
-      codeApogee: new FormControl('', [
-        Validators.required
-      ]),
-      PasswordAccount: new FormControl('', [
-        Validators.required,
-        Validators.minLength(8)
-      ]),
-      confirmPassword: new FormControl('', [
-        Validators.required,
-        this.matchPassword.bind(this)
-      ]),
-
-      email: new FormControl('', [
-        Validators.required,
-        Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$")
-      ])
-      
+    this.addAppointmentForm = this.formBuilder.group({
+      doctorsName : ['', Validators.required],
+      patientsName : ['',Validators.required],
+      dateAppointment : ['',Validators.required],
+      consultancyFees : ['',Validators.required],
+      timeAppointment :  ['',Validators.required],
+      reason :  ['',Validators.required],
+      additionalInfo :  [''],
     });
-    
-  }
-  
-
-  ngOnInit() {
-    this.loadFilieres();
+    this.getAllPatients();
+    this.getAllDoctors();
   }
 
-  loadFilieres() {
-    this.filiereService.getFilieres().subscribe(
-      (filieres: any[]) => {
-        this.filieres = filieres;
-        console.log('hi');
-        console.log(filieres);
+  get f() {
+    return this.addAppointmentForm.controls;
+  }
+
+  onSubmit(){
+    if (this.addAppointmentForm.invalid) {
+      return;
+    }
+    const AppointmentData = this.transformFormDataToAppointment(this.addAppointmentForm.value);
+    this.appointmentService.saveAppointment(AppointmentData).subscribe(
+      () => {
+        this.toastr.success('Appointment added successfully');
       },
       (error) => {
-        console.error(error);
+        this.toastr.error('Error while adding Appointment');
       }
     );
   }
 
-  matchPassword(control: AbstractControl): { [key: string]: any } | null {
-    const PasswordAccount = control.parent?.get('PasswordAccount');
-    const confirmPassword = control;
-
-    if (PasswordAccount?.value !== confirmPassword.value) {
-      return { passwordMismatch: true };
-    }
-    return null;
+  ngOnInit(): void {
+      
   }
-  get firstname() {
-    return this.addDoctorForm.get('firstname');
-  }
-  get lastname() {
-    return this.addDoctorForm.get('lastname');
-  }
-  get gender() {
-    return this.addDoctorForm.get('gender');
-  }
-  get dob() {
-    return this.addDoctorForm.get('dob');
-  }
-
-  get mobileNumber() {
-    return this.addDoctorForm.get('mobileNumber');
-  }
-
-  get codeApogee() {
-    return this.addDoctorForm.get('codeApogee');
-  }
-
-  get PasswordAccount() {
-    return this.addDoctorForm.get('PasswordAccount');
-  }
-
-  get confirmPassword() {
-    return this.addDoctorForm.get('confirmPassword');
-  }
-
-  get email() {
-    return this.addDoctorForm.get('email');
-  }
-  addDoctor(student: Doctor) {
+  getAllPatients(){
   
-    this.studentService.addDoctor(student,this.selectedFiliereId).subscribe(students => {
-      this.toastr.success('Doctor added successfully');
-    }, error => {
-      this.toastr.error('error');
-     
+   this.patientService.getPatients().subscribe((data)=>{
+     this.patients = data;
+    
+   });
+  }
+
+  getAllDoctors(){
+    
+    this.doctorService.getDoctors().subscribe((data)=>{
+      this.doctors = data;
+      
+    })
+  }
+  transformFormDataToAppointment(appointmentForm : any){
+       const Appointment = {
+        doctor : this.doctor,
+        patient : this.patient,
+        fees : appointmentForm.consultancyFees,
+        date : appointmentForm.dateAppointment,
+        time : appointmentForm.timeAppointment,
+        reason : appointmentForm.reason,
+        additionalInfos : appointmentForm.additionalInfo
+       }
+       return Appointment;
+  }
+
+  getPatientById(id: any){
+    this.patientService.getPatientById(id).subscribe((data)=>{
+      this.patient = data;
+      console.log(this.patient);
     });
   }
-
-
-  onFiliereChange(event: any) {
-    this.selectedFiliereId = event.target.value;
+  getDoctorById(id:any){
+    this.doctorService.getDoctorById(id).subscribe((data)=>{
+      this.doctor = data;
+      console.log(this.doctor);
+    });
   }
-  onSubmit(): any {
-    this.formData = this.addDoctorForm.value;
-    
-    let student: Doctor;
-    student = {
-      cne: this.formData?.codeApogee,
-      firstname: this.formData?.firstname,
-      lastname: this.formData?.lastname,
-      phone: this.formData?.mobileNumber,
-      email: this.formData?.email,
-      gender: this.formData?.gender == 'Male' ? 'MALE' : 'FEMALE',
-      password: this.formData?.PasswordAccount,
-      date_of_birth: this.formData?.dob
-    }
-    let x = this.addDoctor(student);
-
+  onPatientSelected() {
+    const selectedPatientId = this.addAppointmentForm.get('patientsName')?.value;
+    this.getPatientById(selectedPatientId);
   }
+  
+  onDoctorSelected() {
+    const selectedDoctorId = this.addAppointmentForm.get('doctorsName')?.value;
+    this.getDoctorById(selectedDoctorId);
+  }
+  
+  
 }

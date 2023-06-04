@@ -30,12 +30,10 @@ export class NavbarNosearcchComponent {
   }
 
   getUserById(id : any){
-   this.userService.getUserById(id).subscribe(user=>{
+   this.userService.getAdminById(id).subscribe(user=>{
       this.user = user;
-      
    },error=>{
-
    }
-   );
+   ); 
   }
 }

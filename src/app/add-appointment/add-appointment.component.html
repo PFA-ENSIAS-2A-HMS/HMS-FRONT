@@ -9,7 +9,7 @@
              <div class="col">
                 <h3 class="page-title">Create an appointment</h3>
                 <ul class="breadcrumb">
-                   <li class="breadcrumb-item"><a href="students.html">Appointments</a></li>
+                   <li class="breadcrumb-item"><a routerLink="/appointments">Appointments</a></li>
                    <li class="breadcrumb-item active">Add appointment</li>
                 </ul>
              </div>
@@ -19,120 +19,61 @@
           <div class="col-sm-12">
              <div class="card">
                 <div class="card-body">
-                   <form [formGroup]="addDoctorForm" (submit)="onSubmit()" >
+                   <form [formGroup]="addAppointmentForm" (submit)="onSubmit()" >
+                     <!---->
                       <div class="row">
                          <div class="col-12">
                             <h5 class="form-title"><span>Please fill out the appointment details below : </span></h5>
                          </div>
                          <div class="col-12 col-sm-6">
-                          <div class="form-group">
-                            <label>Doctor Name: <span style="color:red">*</span></label>
-                            <select class="form-control">
-                                <option>Dr. John Doe</option>
-                                <option>Dr. Jane Smith</option>
-                                <option>Dr. Mark Johnson</option>
-                                <!-- Add more options for other doctors if needed -->
-                            </select>
-                              
-                            <div class="alert alert-warning mt-1" *ngIf="firstname?.invalid && firstname?.touched">
-                               <div *ngIf="firstname?.errors?.['required']; else elsefirstname">
-                                the firstname field is required
-                               </div>
-                               <ng-template #elsefirstname>
-                                <div *ngIf="firstname?.errors?.['minlength']">
-                                     It should be at least 8 charcters
-                                </div>
-                                </ng-template>
-                            </div>
-                         </div>
+                           <div class="form-group">
+                             <label>Doctor Name: <span style="color:red">*</span></label>
+                             <select class="form-control" required formControlName="doctorsName" (change)="onDoctorSelected()">
+                               <option *ngFor="let doctor of doctors"  [value]="doctor.id">Dr. {{ doctor.firstName }} {{doctor.lastName}}</option>
+                             </select>
+                           </div>
                          </div>
                          <div class="col-12 col-sm-6">
-                            <div class="form-group">
-                              <label>Patient Name: <span style="color:red">*</span></label>
-                              <select id="patientName" class="form-control">
-                                <option>John Doe</option>
-                                <option>Jane Smith</option>
-                                <option>Mark Johnson</option>
-                                <!-- Add more options for other patient names if needed -->
-                              </select>
-                                
-                              <div class="alert alert-warning mt-1" *ngIf="firstname?.invalid && firstname?.touched">
-                                 <div *ngIf="firstname?.errors?.['required']; else elsefirstname">
-                                  the firstname field is required
-                                 </div>
-                                 <ng-template #elsefirstname>
-                                  <div *ngIf="firstname?.errors?.['minlength']">
-                                       It should be at least 8 charcters
-                                  </div>
-                                  </ng-template>
-                              </div>
+                           <div class="form-group">
+                             <label>Patient Name: <span style="color:red">*</span></label>
+                             <select required class="form-control" formControlName="patientsName" (change)="onPatientSelected()">
+                               <option *ngFor="let patient of patients" [value]="patient.id">{{ patient.firstName }} {{ patient.lastName }}</option>
+                             </select>
                            </div>
+                         </div>
+                         
+                         <div class="col-12 col-sm-6">
+                           <div class="form-group">
+                             <label>Date: <span style="color:red">*</span></label>
+                             <input required type="date" formControlName="dateAppointment" class="form-control">
                            </div>
+                         </div>
                          
-                         
-                          <div class="col-12 col-sm-6">
-                            <div class="form-group">
-                            <label>Date : <span style="color:red">*</span></label>
-                            <input type="date" formControlName="dob" class="form-control"
-                            [ngClass]="{'is-invalid' : dob?.invalid && dob?.touched}"
-                            >
-                            <div class="alert alert-warning mt-1" *ngIf="dob?.invalid && dob?.touched">
-  
-                                <div *ngIf="dob?.errors?.['required']">
-                                    the date of birth field is required !
-                                </div>
-                            </div>
-                            </div>
-                            </div>
-  
                             <div class="col-12 col-sm-6">
                                 <div class="form-group">
                                     <label for="consultancyFees">Consultancy Fees:</label>
-                                    <input type="number" id="consultancyFees" formControlName="consultancyFees" class="form-control">
+                                    <input required type="number" formControlName="consultancyFees" class="form-control">
                                 
-                                    <div class="alert alert-warning mt-1" *ngIf="dob?.invalid && dob?.touched">
-      
-                                    <div *ngIf="dob?.errors?.['required']">
-                                        the date of birth field is required !
-                                    </div>
-                                </div>
                                 </div>
                                 </div>
   
                         <div class="col-12 col-sm-6">
                           <div class="form-group">
                           <label>Time : <span style="color:red">*</span></label>
-                          <input type="time" formControlName="mobileNumber"
+                          <input required type="time" formControlName="timeAppointment"
                           class="form-control"
-                          [ngClass]="{'is-invalid' : mobileNumber?.invalid && mobileNumber?.touched}"
                           >
-                          <div class="alert alert-warning mt-1" *ngIf="mobileNumber?.invalid && mobileNumber?.touched">
-  
-                              <div *ngIf="mobileNumber?.errors?.['required']; else elseMobileNumber">
-                                  the mobileNumber field is required !
-                                 </div>
-                                 <ng-template #elseMobileNumber>
-                                  <div *ngIf="mobileNumber?.errors?.['pattern']">
-                                      Please enter a valid mobileNumber number
-                                  </div>
-                              </ng-template>
-                          </div>
+                          
                           </div>
                           </div>
   
                           <div class="col-12 col-sm-6">
                             <div class="form-group">
                             <label>Appointment Reason: <span style="color:red">*</span></label>
-                            <input type="text" formControlName="codeApogee"
-                            class="form-control"
-                            [ngClass]="{'is-invalid' : codeApogee?.invalid && codeApogee?.touched}"
-                            >
-                            <div class="alert alert-warning mt-1" *ngIf="codeApogee?.invalid && codeApogee?.touched">
-  
-                                <div *ngIf="codeApogee?.errors?.['required']">
-                                    the CNE field is required !
-                                   </div>
-                            </div>
+                            <input required type="text" formControlName="reason"
+                            class="form-control" 
+                             >
+                          
                             </div>
                             </div>
 
@@ -147,7 +88,7 @@
                             
                         
                          <div class="col-12">
-                            <button type="submit" class="btn btn-primary"  [disabled]="addDoctorForm.invalid">Create Appointment</button>
+                            <button type="submit" [disabled]="addAppointmentForm.invalid" class="btn btn-primary">Create Appointment</button>
                          </div>
                       </div>
                    </form>

@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError, map } from 'rxjs';
 import { Router } from '@angular/router';
 import jwt_decode from 'jwt-decode';
+import { environment } from 'src/config/environment';
 const httpOptions = {
   headers: new HttpHeaders(
     {
@@ -15,7 +16,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class LoginService {
-  readonly apiUrl = 'http://localhost:8080';
+  readonly apiUrl = environment.serverAddress;
   readonly endPointDoctors = '/api/v1/auth/login';
   isLoggedIn : boolean = false;
   constructor(private http: HttpClient,private router: Router) { 
