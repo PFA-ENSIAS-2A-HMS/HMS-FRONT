@@ -17,7 +17,7 @@
     </div>
     <div class="col-auto text-right float-right ml-auto">
     <a (click)="downloadCSV()" class="btn btn-outline-primary mr-2"><i class="fas fa-download"></i> Download</a>
-    <a *ngIf="role=='ADMIN'"  routerLink="/branchs/add" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+    <a *ngIf="role=='ADMIN'"  routerLink="/rooms/add" class="btn btn-primary"><i class="fas fa-plus"></i></a>
 
     </div>
     </div>
@@ -48,7 +48,7 @@
             <td>
               <button class="btn btn-sm" data-toggle="modal" data-target="#roomDetailsModal" style="background-color: darkkhaki; margin-right: 3px;"
               (click)="selectRoomId(room.id)" >Details</button>
-              <button *ngIf="room.roomCapacity-room.occupiedBeds > 0" lass="btn btn-sm bg-danger-light" data-toggle="modal" data-target="#assignRoomModal" class="btn btn-sm bg-success-light mr-2" (click)="assignRoom(); selectRoomId(room.id)">Assign</button>
+              <button *ngIf="room.roomCapacity-room.occupiedBeds > 0 && role=='RECEPTIONIST'" class="btn btn-sm bg-danger-light" data-toggle="modal" data-target="#assignRoomModal" class="btn btn-sm bg-success-light mr-2" (click)="assignRoom(); selectRoomId(room.id)">Assign</button>
             </td>
           </tr>
         </tbody>

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Admin } from '../models/admin';
 import { UserService } from '../services/user.service';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -14,7 +15,8 @@ export class RegistrationComponent implements OnInit {
   admin : Admin | any;
   constructor(private formBuilder: FormBuilder,
     private userService : UserService,
-    private toastr: ToastrService) {
+    private toastr: ToastrService,
+    private router : Router) {
     this.registrationForm = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -49,7 +51,9 @@ export class RegistrationComponent implements OnInit {
   registerAdmin(){
     this.userService.registerAdmin(this.admin).subscribe(
       (response) => {
+        
         this.toastr.success('You have registered successfully!');
+        this.router.navigateByUrl('/login'); // Redirige vers la page de connexion
        },
       (error) => {
         this.toastr.error('Something went wrong');

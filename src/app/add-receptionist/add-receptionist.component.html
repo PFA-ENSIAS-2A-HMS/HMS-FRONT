@@ -23,6 +23,12 @@
                 <div class="col-12">
                   <h5 class="form-title"><span>Receptionist Information</span></h5>
                 </div>
+                <div class="col-12 mb-3 mt-1">
+                  <ng-container *ngIf="isCreatingReceptionist">
+                    <div class="progress-bar pt-2 pb-2">Account creation in progress<span class="dot-animation" style="font-size:40px;">...</span></div>
+                  </ng-container>
+               </div>
+               
                 <div class="col-12 col-sm-6">
                   <div class="form-group">
                     <label>First Name<span style="color:red">*</span></label>

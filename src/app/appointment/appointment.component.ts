@@ -14,6 +14,7 @@ export class AppointmentComponent implements OnInit {
   updateStatusForm : FormGroup | any;
   appointmentId :any;
   appointmentSelected : any;
+  role : any= "";
   constructor(private appointmentService: AppointmentService,
     private formBuilder: FormBuilder,
     private toastr: ToastrService
@@ -24,10 +25,16 @@ export class AppointmentComponent implements OnInit {
   
   }
 
+  
+
   ngOnInit(): void {
     this.loadAppointments();
+    this.getCurrentUserRole();
   }
 
+  getCurrentUserRole() {
+    this.role = localStorage.getItem('role');
+  }
   loadAppointments() {
     this.appointmentService.getAppointments().subscribe((data) => {
       this.appointments = data;

@@ -1,0 +1,10 @@
+@keyframes dotBlink {
+    0%, 20%, 80%, 100% { opacity: 0; }
+    40%, 60% { opacity: 1; }
+  }
+  
+  .dot-animation {
+    display: inline;
+    animation: dotBlink 1.5s infinite;
+  }
+  

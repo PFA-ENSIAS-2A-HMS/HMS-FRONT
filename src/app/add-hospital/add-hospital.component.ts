@@ -14,7 +14,7 @@ declare var $: any;
 export class AddHospitalComponent {
   public countries: any = countries;
   selectedCountry: string = "";
-
+  isSent = false;
   formData: any;
   myHospital: Hospital = {
     name: '',
@@ -59,9 +59,11 @@ export class AddHospitalComponent {
     return this.addHospitalForm.get('logo');
   }
   addHospital(hospital: Hospital) {
-    this.hospitalService.addHospital(hospital,"1").subscribe(
+    const userId = localStorage.getItem('id')+"";
+    this.hospitalService.addHospital(hospital,userId).subscribe(
       () => {
         $('#informationModal').modal('show');
+        this.isSent = true;
         this.toastr.success('Your request has been submitted successfully.');
       },
       (error) => {

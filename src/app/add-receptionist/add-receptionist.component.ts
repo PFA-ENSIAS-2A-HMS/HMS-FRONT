@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AddReceptionistComponent implements OnInit {
   addReceptionistForm: FormGroup | any;
-
+  isCreatingReceptionist : boolean = false;
   constructor(
     private formBuilder: FormBuilder,
     private receptionistService: ReceptionistService,
@@ -39,13 +39,15 @@ export class AddReceptionistComponent implements OnInit {
     if (this.addReceptionistForm.invalid) {
       return;
     }
-    
+    this.isCreatingReceptionist = true;
     const receptionistData = this.transformFormDataToReceptionist(this.addReceptionistForm.value);
     this.receptionistService.saveReceptionist(receptionistData).subscribe(
       () => {
+        this.isCreatingReceptionist=false;
         this.toast.success('Receptionist added successfully');
       },
       (error) => {
+        this.isCreatingReceptionist=false;
         this.toast.error('Error while adding receptionist');
       }
     );

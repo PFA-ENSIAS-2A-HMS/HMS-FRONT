@@ -17,7 +17,7 @@
     </div>
     <div class="col-auto text-right float-right ml-auto">
     <a class="btn btn-outline-primary mr-2" (click)="downloadPatients()"><i class="fas fa-download"></i> Download</a>
-    <a routerLink="/patients/add" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+    <a *ngIf="role=='ADMIN' || role=='RECEPTIONIST'" routerLink="/patients/add" class="btn btn-primary"><i class="fas fa-plus"></i></a>
 
     </div>
     </div>
@@ -40,7 +40,7 @@
             <th>Emergency Contact</th>
             <th>Blood Type</th>
             <th>Status</th> <!-- New column for displaying status -->
-            <th *ngIf="role=='ADMIN'" class="text-right">Action</th>
+            <th *ngIf="role=='ADMIN' || role=='RECEPTIONIST'" class="text-right">Action</th>
           </tr>
         </thead>
         <tbody>
@@ -56,7 +56,7 @@
             <td>{{ patient.emergencyContact }}</td>
             <td>{{ patient.bloodType }}</td>
             <td>{{ patient.status }}</td> <!-- Example status, replace with dynamic data -->
-            <td *ngIf="role=='ADMIN'" class="text-right">
+            <td *ngIf="role=='ADMIN' || role=='RECEPTIONIST'" class="text-right">
               <div class="actions">
                 <button class="btn btn-sm bg-success-light mr-2" data-toggle="modal" (click)="setPatientNameAndId(patient.firstName, patient.id)" data-target="#editPatientModal">
                   <i class="fas fa-pen"></i>

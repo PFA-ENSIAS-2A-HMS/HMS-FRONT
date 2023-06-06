@@ -12,13 +12,13 @@ const httpOptions = {
   )
 };
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class DoctorService {
-
-  readonly apiUrlPOST = environment.serverAddress+'/api/v1/doctors/add/1';
+  
+  readonly hospitalId = localStorage.getItem('hospitalId');
+  readonly apiUrlPOST = environment.serverAddress+'/api/v1/doctors/add/'+this.hospitalId;
   readonly apiUrl = environment.serverAddress+'/api/v1/doctors';
   constructor(private http: HttpClient) { }
   
@@ -36,7 +36,7 @@ export class DoctorService {
      return this.http.get(this.apiUrl+"/"+doctorId,httpOptions);
   }
   updateDoctor(doctor : any,doctorId : string){
-    console.log(doctor);
+
     return this.http.put(this.apiUrl+"/"+doctorId,doctor,httpOptions);
   }
 }
