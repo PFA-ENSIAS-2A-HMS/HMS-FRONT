@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import jwt_decode from "jwt-decode";
 
 @Component({
   selector: 'app-sidebar',
@@ -24,6 +25,8 @@ export class SidebarComponent implements OnInit{
   getCurrentUserRole(){
     //le code a changer après
    this.role = localStorage.getItem('role');
+   
+   console.log(this.role);
   }
 }
 

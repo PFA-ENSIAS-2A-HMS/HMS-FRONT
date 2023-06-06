@@ -7,7 +7,7 @@ const httpOptions = {
   headers: new HttpHeaders(
     {
       'Content-Type': 'application/json',
-      //'Authorization': `Bearer ${localStorage.getItem('accessToken')}` // add token from localStorage
+      'Authorization': `Bearer ${localStorage.getItem('accessToken')}` // add token from localStorage
     }
   )
 };
@@ -15,20 +15,15 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class HospitalService {
-
-  readonly apiUrl = environment.serverAddress+'/api/v1/hospitals/';
+  readonly hospitalId = localStorage.getItem('hospitalId');
+  readonly apiUrl = environment.serverAddress+'/api/v1/hospitals';
   readonly endPointStudents = '/all'
   constructor(private http: HttpClient) { }
   getHolidays() {
     return this.http.get(this.apiUrl + this.endPointStudents, httpOptions);
   }
   addHospital(hospital: any,adminId : string): Observable<any> {
-    let addHospitalUrl = this.apiUrl;
-    return this.http.post<any>(addHospitalUrl+adminId, hospital, httpOptions).pipe(
-      map(response => {
-        
-      })
-    );
+    return this.http.post<any>(this.apiUrl+"/"+adminId, hospital, httpOptions);
   }
   deleteHospital(id: string) {
     return this.http.delete(this.apiUrl + "/" + id, httpOptions);

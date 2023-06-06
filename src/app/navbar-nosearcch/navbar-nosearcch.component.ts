@@ -1,16 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../search.service';
 import { LoginService } from '../services/login.service';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
+import { environment } from 'src/config/environment';
 
 @Component({
   selector: 'app-navbar-nosearcch',
   templateUrl: './navbar-nosearcch.component.html',
   styleUrls: ['./navbar-nosearcch.component.css']
 })
-export class NavbarNosearcchComponent {
-
+export class NavbarNosearcchComponent  implements OnInit{
   user: any;
   
   id : any;
@@ -18,7 +18,11 @@ export class NavbarNosearcchComponent {
     ,private router : Router,private userService :  UserService) { 
       this.id = localStorage.getItem('id');
       this.getUserById(this.id);
-    }
+  }
+
+  ngOnInit(): void {
+    this.getUserById(this.id);
+  }
 
   logout() {
     localStorage.removeItem('accessToken');
@@ -30,10 +34,20 @@ export class NavbarNosearcchComponent {
   }
 
   getUserById(id : any){
-   this.userService.getAdminById(id).subscribe(user=>{
-      this.user = user;
-   },error=>{
+    this.userService.getAdminById(id).subscribe(user=>{
+       this.user = user;
+       this.getHospitalId(this.user?.id);
+       this.user.image_url =  environment.serverAddress+"/api/v1/doctors/display/"+this.user?.image_url;
+      },error=>{
+    }
+    ); 
    }
-   ); 
-  }
+
+   getHospitalId(id : string){
+    this.userService.getHospitalId(""+id).subscribe((data)=>{
+     localStorage.setItem("hospitalId",data?.id);
+    });
+   }
+
+  
 }

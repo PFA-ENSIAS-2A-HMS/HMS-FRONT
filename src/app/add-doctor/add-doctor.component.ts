@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DoctorService } from '../services/doctor.service';
+import { UserService } from '../services/user.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -10,11 +11,12 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AddDoctorComponent implements OnInit {
   addDoctorForm: FormGroup | any;
-
+  isCreatingDoctor: boolean = false;
   constructor(
     private formBuilder: FormBuilder,
     private doctorService: DoctorService,
-    private toast: ToastrService
+    private toast: ToastrService,
+    private userService : UserService
   ) {
     this.addDoctorForm = this.formBuilder.group({
       firstname: ['', Validators.required],
@@ -29,7 +31,9 @@ export class AddDoctorComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    
+  }
 
   // Getter for form controls
   get f() {
@@ -42,11 +46,14 @@ export class AddDoctorComponent implements OnInit {
     }
 
     const doctorData = this.transformFormDataToDoctor(this.addDoctorForm.value);
+    this.isCreatingDoctor = true;
     this.doctorService.saveDoctor(doctorData).subscribe(
       () => {
+        this.isCreatingDoctor = false;
         this.toast.success('Doctor added successfully');
       },
       (error) => {
+        this.isCreatingDoctor = false;
         this.toast.error('Error while adding doctor');
       }
     );

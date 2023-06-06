@@ -35,7 +35,7 @@ export class LoginComponent {
   }
   submitForm() {
    this.loginService.login(this.email?.value,this.password?.value).subscribe(data=>{
-    this.router.navigate(['/dashboard']);
+    this.router.navigateByUrl('/hospital');
    }, error=>{
     this.toastr.error('Invalid email or password. Please try again.')
    });

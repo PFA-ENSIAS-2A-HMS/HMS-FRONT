@@ -7,7 +7,7 @@ const httpOptions = {
   headers: new HttpHeaders(
     {
       //'Content-Type': 'application/json',
-      //'Authorization': `Bearer ${localStorage.getItem('accessToken')}` // add token from localStorage
+      'Authorization': `Bearer ${localStorage.getItem('accessToken')}` // add token from localStorage
     }
   )
 };
@@ -16,14 +16,14 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class PatientService {
-  
-  readonly apiUrlPOST = environment.serverAddress+'/api/v1/patients/add/1';
+  readonly hospitalId = localStorage.getItem('hospitalId');
+  readonly apiUrlPOST = environment.serverAddress+'/api/v1/patients/add/'+this.hospitalId;
   readonly apiUrl = environment.serverAddress+'/api/v1/patients';
 
   constructor(private http: HttpClient) { }
 
   savePatient(patient: any): Observable<any> {
-    return this.http.post(this.apiUrlPOST, patient);
+    return this.http.post(this.apiUrlPOST, patient,httpOptions);
   }
 
   getPatients(): Observable<any> {

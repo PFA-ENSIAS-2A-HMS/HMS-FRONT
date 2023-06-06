@@ -8,6 +8,8 @@ const httpOptions = {
   headers: new HttpHeaders(
     {
       'Content-Type': 'application/json',
+      'Authorization': `Bearer ${localStorage.getItem('accessToken')}` // add token from localStorage
+   
     }
   )
 };
@@ -39,7 +41,7 @@ export class LoginService {
       email : email,
       password : password
     };
-    return this.http.post<any>(loginUrl, loginObject,httpOptions).pipe(
+    return this.http.post<any>(loginUrl, loginObject).pipe(
       map(response => {
         localStorage.setItem('accessToken', response.accessToken);
         localStorage.setItem('refreshToken', response.refreshToken);

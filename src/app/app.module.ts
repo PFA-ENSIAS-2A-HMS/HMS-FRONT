@@ -27,7 +27,6 @@ import { AddHospitalComponent } from './add-hospital/add-hospital.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { HospitalService } from './services/hospital.service';
-import { AuthGuard } from './auth.guard';
 import { AddRoomComponent } from './add-room/add-room.component';
 import { RoomListComponent } from './room-list/room-list.component';
 import { PatientListComponent } from './patient-list/patient-list.component';
@@ -52,28 +51,26 @@ import { ContactComponent } from './contact/contact.component';
 const routes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'about', component : AboutComponent},
-  { path : 'contact', component : ContactComponent},
+  { path :'contact', component : ContactComponent},
   { path: 'login', component: LoginComponent },
-  { path: 'dashboard', component: DashboardComponent },
   { path: 'doctors', component: DoctorListComponent },
-  { path: 'addDoctor', component: AddDoctorComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
+  { path: 'addDoctor', component: AddDoctorComponent },
   { path: 'receptionists', component: ReceptionistListComponent },
-  { path: 'AddReceptionist', component: AddReceptionistComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
+  { path: 'AddReceptionist', component: AddReceptionistComponent },
   { path: 'invoices/add', component: AddInvoicesComponent },
   { path: 'invoices', component: InvoicesComponent },
-  { path: 'hospital/add', component: AddHospitalComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
+  { path: 'hospital/add', component: AddHospitalComponent },
   { path: 'hospital', component: AddHospitalComponent },
   { path: 'rooms', component: RoomListComponent },
   { path: 'rooms/assign',component : AssignRoomComponent},
-  { path: 'rooms/add', component: AddRoomComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
+  { path: 'rooms/add', component: AddRoomComponent },
   { path: 'patients', component: PatientListComponent },
-  { path: 'patients/add', component: AddPatientComponent, canActivate: [AuthGuard], data: { allowedRoles: ['admin'] } },
+  { path: 'patients/add', component: AddPatientComponent},
   { path : 'profile',component : MyProfileComponent},
   { path : 'register',component : RegistrationComponent},
   { path : 'appointments/add',component : AddAppointmentComponent},
   { path : 'appointments',component : AppointmentComponent},
- 
-  
+  { path: 'dashboard', component: DashboardComponent },
 ];
 
 @NgModule({
@@ -138,8 +135,7 @@ const routes: Routes = [
   ],
   providers: [
     DoctorService,
-    ReceptionistService,
-    AuthGuard,
+    ReceptionistService
   ],
   bootstrap: [AppComponent]
 })

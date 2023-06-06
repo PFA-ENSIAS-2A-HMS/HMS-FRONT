@@ -16,10 +16,10 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class ReceptionistService {
-
-  readonly apiUrlPOST = environment.serverAddress+'/api/v1/receptionists/add/1';
+  readonly hospitalId = localStorage.getItem('hospitalId');
+  readonly apiUrlPOST = environment.serverAddress+'/api/v1/receptionists/add/'+this.hospitalId;
   readonly apiUrl = environment.serverAddress+'/api/v1/receptionists';
-
+  readonly apiUrlRegister = environment.serverAddress+'/api/v1/auth/register/receptionist/'+this.hospitalId;
   constructor(private http: HttpClient) { }
 
   saveReceptionist(receptionist: any): Observable<any> {
